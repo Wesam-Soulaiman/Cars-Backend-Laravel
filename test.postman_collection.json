@@ -1,0 +1,4948 @@
+{
+	"info": {
+		"_postman_id": "d124771d-577e-4f20-8ac3-4e0e83ba7448",
+		"name": "test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41279060"
+	},
+	"item": [
+		{
+			"name": "Dashboard Admin",
+			"item": [
+				{
+					"name": "Stores",
+					"item": [
+						{
+							"name": "Create Store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "5|PvD08tvajaHgjFtIN5Gzd8ECFqOTgUT9QeBq2j7hf4135db2",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "address",
+											"type": "text"
+										},
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/mrame/Downloads/e42c77c69f5d0e925c225bd0211419ac4988ee00.png"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "ame22r@gmail.com12",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "office",
+											"description": "office,gallery",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "0932023464",
+											"type": "text"
+										},
+										{
+											"key": "whatsapp_phone",
+											"value": "0932023464",
+											"type": "text"
+										},
+										{
+											"key": "name_ar",
+											"value": "ar",
+											"type": "text"
+										},
+										{
+											"key": "address_ar",
+											"value": "ar",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/stores",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"stores"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "49|laravel_sanctum_S2CLjpoNE313gthty1dw1ZCO54XhCutEnvYtbngf3ef72726",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "address",
+											"value": "addressa",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "postman-cloud:///1efe0d9f-1cb6-4ae0-b49c-a48076011052"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "ame22r@gmail.com",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "office",
+											"description": "office,gallery",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "phone",
+											"value": "0932023464",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "whatsapp_phone",
+											"value": "0932023464",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/stores/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"stores",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Stores",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "139|laravel_sanctum_PGmgzCSuARolYHOvMU755GUlP7GAip9sdE46gky74c651fd1",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "address",
+											"type": "text"
+										},
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "postman-cloud:///1efe0d9f-1cb6-4ae0-b49c-a48076011052"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "ame22r@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "office",
+											"description": "office,gallery",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "0932023464",
+											"type": "text"
+										},
+										{
+											"key": "whatsapp_phone",
+											"value": "0932023464",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/stores",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"stores"
+									],
+									"query": [
+										{
+											"key": "per_page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Store",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "address",
+											"type": "text"
+										},
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "postman-cloud:///1efe0d9f-1cb6-4ae0-b49c-a48076011052"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "ame22r@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "office",
+											"description": "office,gallery",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "0932023464",
+											"type": "text"
+										},
+										{
+											"key": "whatsapp_phone",
+											"value": "0932023464",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/stores/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"stores",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Store",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "namea",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "addressa",
+											"type": "text"
+										},
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "postman-cloud:///1efe0d9f-1cb6-4ae0-b49c-a48076011052"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "ame22r@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "office",
+											"description": "office,gallery",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "0932023464",
+											"type": "text"
+										},
+										{
+											"key": "whatsapp_phone",
+											"value": "0932023464",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/stores/3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"stores",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Brands",
+					"item": [
+						{
+							"name": "Create Brand",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": "/C:/Users/mrame/Downloads/f87d4a40a7022b24034be8d4aca6820a781a2cc7.png"
+										},
+										{
+											"key": "name",
+											"value": "brand12243",
+											"type": "text"
+										},
+										{
+											"key": "name_ar",
+											"value": "ar122",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/brands",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"brands"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Brand",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": "/C:/Users/mrame/Downloads/car logo (1)/car logo/Hyundai.png",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "brand223",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/brands/10",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"brands",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get brands",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/brands?page=2&per_page=1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"brands"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2"
+										},
+										{
+											"key": "per_page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show brands",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/brands/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"brands",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete brands",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/brands/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"brands",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "model",
+					"item": [
+						{
+							"name": "Create Model",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "pmw model 1",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "name_ar",
+											"value": "ar",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/models",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"models"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Model",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "pmw model 11",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "11",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/models/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"models",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Model",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "pmw model 1",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/models/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"models",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Index Models",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "pmw model 1",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/models?page=1&per_page=1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"models"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show  Model",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "pmw model 1",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/models/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"models",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "roles",
+					"item": [
+						{
+							"name": "Create Role",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "pmw model 1",
+											"type": "text"
+										},
+										{
+											"key": "name_ar",
+											"value": "e",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/roles",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Role",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "pmw model 12",
+											"type": "text"
+										},
+										{
+											"key": "name_ar",
+											"value": "ew",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/roles/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"roles",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update permissions",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "53|laravel_sanctum_14JGC6Ladn6Jxqhk1hySx9fjXFN2UBHkESiFMy4Hddec3a45",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"permission_ids\": [\r\n        1,\r\n        2,\r\n        4,\r\n        5,\r\n        6,\r\n        7,\r\n        8,\r\n        9,\r\n        10,\r\n        11,\r\n        12,\r\n        13,\r\n        14,\r\n        15,\r\n        16,\r\n        17,\r\n        18,\r\n        19,\r\n        20,\r\n        21,\r\n        22,\r\n        23,\r\n        24,\r\n        25,\r\n        26,\r\n        27,\r\n        28,\r\n        29,\r\n        30,\r\n        31,\r\n        32,\r\n        33,\r\n        34,\r\n        35,\r\n        36\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base}}/admin/roles/permissions/1",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"roles",
+										"permissions",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Role",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "pmw model 1",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/roles/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"roles",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Index Roles",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "pmw model 1",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/roles",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Role",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "52|laravel_sanctum_EsTmIDBWSBFD5Fdd5C4z8RSqDPWBuTF4tYylN0D29411fa61",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "pmw model 1",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base}}/admin/roles/1",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"admin",
+										"roles",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "products(cars)",
+					"item": [
+						{
+							"name": "Get Product",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "bmw qq model 122",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "structure_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "store_id",
+											"value": "12",
+											"type": "text"
+										},
+										{
+											"key": "model_id",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "main_photo",
+											"type": "file",
+											"src": "postman-cloud:///1efe0d9f-1cb6-4ae0-b49c-a48076011052"
+										},
+										{
+											"key": "price",
+											"value": "1300",
+											"type": "text"
+										},
+										{
+											"key": "mileage",
+											"value": "24",
+											"type": "text"
+										},
+										{
+											"key": "year_of_construction",
+											"value": "2024",
+											"type": "text"
+										},
+										{
+											"key": "number_of_seats",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "drive_type",
+											"value": "front",
+											"description": "front,rear",
+											"type": "text"
+										},
+										{
+											"key": "fuel_type",
+											"value": "petrol",
+											"description": "petrol,diesel",
+											"type": "text"
+										},
+										{
+											"key": "cylinders",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "cylinder_capacity",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "gears",
+											"value": "manual",
+											"description": "manual,automatic",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "used",
+											"description": "used,new",
+											"type": "text"
+										},
+										{
+											"key": "seat_type",
+											"value": "leather",
+											"description": "leather,cloth",
+											"type": "text"
+										},
+										{
+											"key": "sunroof",
+											"value": "1",
+											"description": "1 true or 0 false",
+											"type": "text"
+										},
+										{
+											"key": "color",
+											"value": "red",
+											"type": "text"
+										},
+										{
+											"key": "lights",
+											"value": "light",
+											"type": "text"
+										},
+										{
+											"key": "photos[1]",
+											"type": "file",
+											"src": "/C:/Users/mrame/OneDrive/الصور/Get Yourself Going with These Motivational Wallpapers.jfif"
+										},
+										{
+											"key": "photos[2]",
+											"type": "file",
+											"src": "postman-cloud:///1efd7612-4028-4840-86c3-dccd9ac7fe6f"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/products/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"2"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "pmw",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "used",
+											"description": "used,new",
+											"disabled": true
+										},
+										{
+											"key": "model_id",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "store_id",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "structure_id",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "MinPrice",
+											"value": "2600",
+											"disabled": true
+										},
+										{
+											"key": "MaxPrice",
+											"value": "240000",
+											"disabled": true
+										},
+										{
+											"key": "minYear",
+											"value": "1980",
+											"disabled": true
+										},
+										{
+											"key": "maxYear",
+											"value": "2026",
+											"disabled": true
+										},
+										{
+											"key": "fuel_type",
+											"value": "diesel",
+											"description": "hybrid,electric,diesel,petrol",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show Product",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "4|kPrvkmXhTCc45sDNAO6M5BEgfQwu71INxtRnnlHR989d5128",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "bmw qq model 122",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "structure_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "store_id",
+											"value": "12",
+											"type": "text"
+										},
+										{
+											"key": "model_id",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "main_photo",
+											"type": "file",
+											"src": "postman-cloud:///1efe0d9f-1cb6-4ae0-b49c-a48076011052"
+										},
+										{
+											"key": "price",
+											"value": "1300",
+											"type": "text"
+										},
+										{
+											"key": "mileage",
+											"value": "24",
+											"type": "text"
+										},
+										{
+											"key": "year_of_construction",
+											"value": "2024",
+											"type": "text"
+										},
+										{
+											"key": "number_of_seats",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "drive_type",
+											"value": "front",
+											"description": "front,rear",
+											"type": "text"
+										},
+										{
+											"key": "fuel_type",
+											"value": "petrol",
+											"description": "petrol,diesel",
+											"type": "text"
+										},
+										{
+											"key": "cylinders",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "cylinder_capacity",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "gears",
+											"value": "manual",
+											"description": "manual,automatic",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "used",
+											"description": "used,new",
+											"type": "text"
+										},
+										{
+											"key": "seat_type",
+											"value": "leather",
+											"description": "leather,cloth",
+											"type": "text"
+										},
+										{
+											"key": "sunroof",
+											"value": "1",
+											"description": "1 true or 0 false",
+											"type": "text"
+										},
+										{
+											"key": "color",
+											"value": "red",
+											"type": "text"
+										},
+										{
+											"key": "lights",
+											"value": "light",
+											"type": "text"
+										},
+										{
+											"key": "photos[1]",
+											"type": "file",
+											"src": "/C:/Users/mrame/OneDrive/الصور/Get Yourself Going with These Motivational Wallpapers.jfif"
+										},
+										{
+											"key": "photos[2]",
+											"type": "file",
+											"src": "postman-cloud:///1efd7612-4028-4840-86c3-dccd9ac7fe6f"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/products/5",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "3|NfLzfLnq8Aoiecpqz3RPeHDvGgxr91aOeNLQjCiKcf959e6d",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "bmw qq model 122",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "structure_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "store_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "model_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "main_photo",
+											"type": "file",
+											"src": "/C:/Users/mrame/Downloads/e42c77c69f5d0e925c225bd0211419ac4988ee00.png"
+										},
+										{
+											"key": "price",
+											"value": "13006",
+											"type": "text"
+										},
+										{
+											"key": "mileage",
+											"value": "24",
+											"type": "text"
+										},
+										{
+											"key": "year_of_construction",
+											"value": "2024",
+											"type": "text"
+										},
+										{
+											"key": "number_of_seats",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "drive_type",
+											"value": "1",
+											"description": "front,rear",
+											"type": "text"
+										},
+										{
+											"key": "fuel_type",
+											"value": "1",
+											"description": "petrol,diesel",
+											"type": "text"
+										},
+										{
+											"key": "cylinders",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "cylinder_capacity",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "gears",
+											"value": "manual",
+											"description": "manual,automatic",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "1",
+											"description": "used,new",
+											"type": "text"
+										},
+										{
+											"key": "seat_type",
+											"value": "1",
+											"description": "leather,cloth",
+											"type": "text"
+										},
+										{
+											"key": "sunroof",
+											"value": "1",
+											"description": "1 true or 0 false",
+											"type": "text"
+										},
+										{
+											"key": "color",
+											"value": "red",
+											"type": "text"
+										},
+										{
+											"key": "lights",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "photos[1]",
+											"type": "file",
+											"src": "/C:/Users/mrame/Downloads/f87d4a40a7022b24034be8d4aca6820a781a2cc7.png"
+										},
+										{
+											"key": "photos[2]",
+											"type": "file",
+											"src": "postman-cloud:///1efd7612-4028-4840-86c3-dccd9ac7fe6f"
+										},
+										{
+											"key": "photos[2]",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										},
+										{
+											"key": "features[1]",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "features[2]",
+											"value": "features2",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "register_year",
+											"value": "2022",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/products",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"products"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "4|kPrvkmXhTCc45sDNAO6M5BEgfQwu71INxtRnnlHR989d5128",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "bmw qq model 122",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "brand_id",
+											"value": "11",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "structure_id",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "store_id",
+											"value": "3",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "model_id",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "main_photo",
+											"type": "file",
+											"src": "postman-cloud:///1efe0d9f-1cb6-4ae0-b49c-a48076011052",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "1300",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "mileage",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "year_of_construction",
+											"value": "2024",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "number_of_seats",
+											"value": "5",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "drive_type",
+											"value": "front",
+											"description": "front,rear",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "fuel_type",
+											"value": "petrol",
+											"description": "petrol,diesel",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "cylinders",
+											"value": "5",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "cylinder_capacity",
+											"value": "200",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "gears",
+											"value": "manual",
+											"description": "manual,automatic",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "used",
+											"description": "used,new",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "seat_type",
+											"value": "leather",
+											"description": "leather,cloth",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "sunroof",
+											"value": "1",
+											"description": "1 true or 0 false",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "color",
+											"value": "red",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "lights",
+											"value": "light",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "photos[1]",
+											"type": "file",
+											"src": "/C:/Users/mrame/Downloads/WhatsApp Image 2025-02-07 at 5.32.11 PM.jpeg"
+										},
+										{
+											"key": "photos[2]",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										},
+										{
+											"key": "features[1]",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "features[2]",
+											"value": "3",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/products/5",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "40|laravel_sanctum_AZoXwGhwzd8k6l7juYlZLz0ez5wLIyOO9b62vo0u4bc0bc28",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "bmw qq model 122",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "structure_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "store_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "model_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "main_photo",
+											"type": "file",
+											"src": "postman-cloud:///1efe0d9f-1cb6-4ae0-b49c-a48076011052"
+										},
+										{
+											"key": "price",
+											"value": "1300",
+											"type": "text"
+										},
+										{
+											"key": "mileage",
+											"value": "24",
+											"type": "text"
+										},
+										{
+											"key": "year_of_construction",
+											"value": "2024",
+											"type": "text"
+										},
+										{
+											"key": "number_of_seats",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "drive_type",
+											"value": "front",
+											"description": "front,rear",
+											"type": "text"
+										},
+										{
+											"key": "fuel_type",
+											"value": "petrol",
+											"description": "petrol,diesel",
+											"type": "text"
+										},
+										{
+											"key": "cylinders",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "cylinder_capacity",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "gears",
+											"value": "manual",
+											"description": "manual,automatic",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "used",
+											"description": "used,new",
+											"type": "text"
+										},
+										{
+											"key": "seat_type",
+											"value": "leather",
+											"description": "leather,cloth",
+											"type": "text"
+										},
+										{
+											"key": "sunroof",
+											"value": "1",
+											"description": "1 true or 0 false",
+											"type": "text"
+										},
+										{
+											"key": "color",
+											"value": "red",
+											"type": "text"
+										},
+										{
+											"key": "lights",
+											"value": "light",
+											"type": "text"
+										},
+										{
+											"key": "photos[1]",
+											"type": "file",
+											"src": "/C:/Users/mrame/OneDrive/الصور/Get Yourself Going with These Motivational Wallpapers.jfif"
+										},
+										{
+											"key": "photos[2]",
+											"type": "file",
+											"src": "postman-cloud:///1efd7612-4028-4840-86c3-dccd9ac7fe6f"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/products/7",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Product Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "3|NfLzfLnq8Aoiecpqz3RPeHDvGgxr91aOeNLQjCiKcf959e6d",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "bmw qq model 122",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "structure_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "store_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "model_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "main_photo",
+											"type": "file",
+											"src": "postman-cloud:///1efe0d9f-1cb6-4ae0-b49c-a48076011052"
+										},
+										{
+											"key": "price",
+											"value": "1300",
+											"type": "text"
+										},
+										{
+											"key": "mileage",
+											"value": "24",
+											"type": "text"
+										},
+										{
+											"key": "year_of_construction",
+											"value": "2024",
+											"type": "text"
+										},
+										{
+											"key": "number_of_seats",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "drive_type",
+											"value": "front",
+											"description": "front,rear",
+											"type": "text"
+										},
+										{
+											"key": "fuel_type",
+											"value": "petrol",
+											"description": "petrol,diesel",
+											"type": "text"
+										},
+										{
+											"key": "cylinders",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "cylinder_capacity",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "gears",
+											"value": "manual",
+											"description": "manual,automatic",
+											"type": "text"
+										},
+										{
+											"key": "type",
+											"value": "used",
+											"description": "used,new",
+											"type": "text"
+										},
+										{
+											"key": "seat_type",
+											"value": "leather",
+											"description": "leather,cloth",
+											"type": "text"
+										},
+										{
+											"key": "sunroof",
+											"value": "1",
+											"description": "1 true or 0 false",
+											"type": "text"
+										},
+										{
+											"key": "color",
+											"value": "red",
+											"type": "text"
+										},
+										{
+											"key": "lights",
+											"value": "light",
+											"type": "text"
+										},
+										{
+											"key": "photos[1]",
+											"type": "file",
+											"src": "/C:/Users/mrame/OneDrive/الصور/Get Yourself Going with These Motivational Wallpapers.jfif"
+										},
+										{
+											"key": "photos[2]",
+											"type": "file",
+											"src": "postman-cloud:///1efd7612-4028-4840-86c3-dccd9ac7fe6f"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/products/photo/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"products",
+										"photo",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "offer",
+					"item": [
+						{
+							"name": "Create Offer",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "product_id",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2026-1-11",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2027-11-11",
+											"type": "text"
+										},
+										{
+											"key": "final_price",
+											"value": "15",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/offers",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"offers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Offer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "41|laravel_sanctum_o5JS2ZY36C2k5TLXVnUw9ko2Q83U0zzoIQ38EEXy7a4d1670",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "product_id",
+											"value": "16",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2024-1-15",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-11-11",
+											"type": "text"
+										},
+										{
+											"key": "final_price",
+											"value": "111",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/offers/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"offers",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Offer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "41|laravel_sanctum_o5JS2ZY36C2k5TLXVnUw9ko2Q83U0zzoIQ38EEXy7a4d1670",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "product_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2024-7-11",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-1-11",
+											"type": "text"
+										},
+										{
+											"key": "final_price",
+											"value": "111",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/offers/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"offers",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Offer",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "product_id",
+											"value": "16",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2024-1-15",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-11-11",
+											"type": "text"
+										},
+										{
+											"key": "final_price",
+											"value": "111",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/offers",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"offers"
+									],
+									"query": [
+										{
+											"key": "per_page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Offer",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "product_id",
+											"value": "16",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2024-1-15",
+											"type": "text"
+										},
+										{
+											"key": "end_time",
+											"value": "2025-11-11",
+											"type": "text"
+										},
+										{
+											"key": "final_price",
+											"value": "111",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/offers/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"offers",
+										"1"
+									],
+									"query": [
+										{
+											"key": "per_page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "Create Order",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "10|GatqCgPS6wxkD7ArrUHNHy7Y0waevDd2MrugMTaT7dea64fa",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "service_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "350",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-01-27",
+											"type": "text"
+										},
+										{
+											"key": "count_days",
+											"value": "300",
+											"type": "text"
+										},
+										{
+											"key": "store_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "active",
+											"value": "0",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/orders",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"orders"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Order",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "service_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "3501",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-01-29",
+											"type": "text"
+										},
+										{
+											"key": "count_days",
+											"value": "32",
+											"type": "text"
+										},
+										{
+											"key": "store_id",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/orders/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"orders",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Order",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "service_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "service_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "350",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-01-27",
+											"type": "text"
+										},
+										{
+											"key": "count_days",
+											"value": "300",
+											"type": "text"
+										},
+										{
+											"key": "store_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/orders/3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"orders",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Order",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "service_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "service_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "350",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-01-27",
+											"type": "text"
+										},
+										{
+											"key": "count_days",
+											"value": "300",
+											"type": "text"
+										},
+										{
+											"key": "store_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/orders/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"orders",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Orders",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "10|GatqCgPS6wxkD7ArrUHNHy7Y0waevDd2MrugMTaT7dea64fa",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "service_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "service_type_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "350",
+											"type": "text"
+										},
+										{
+											"key": "start_time",
+											"value": "2025-01-27",
+											"type": "text"
+										},
+										{
+											"key": "count_days",
+											"value": "300",
+											"type": "text"
+										},
+										{
+											"key": "store_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "active",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/orders?sort=count_days&order=desc",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "store_id",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "service_id",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "created_at",
+											"value": "2025-02-06",
+											"disabled": true
+										},
+										{
+											"key": "active",
+											"value": "0",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "count_days",
+											"description": "id,count_days,price"
+										},
+										{
+											"key": "order",
+											"value": "desc"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Services",
+					"item": [
+						{
+							"name": "get category services",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "2|6WaqSpc7dJrfEwCzjy4d88lQINeDiufqm3cezeELc5cd1aa9",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/services/categories",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"services",
+										"categories"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get  services",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/services",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"services"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get  service",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/services/3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"services",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create service",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "10|GatqCgPS6wxkD7ArrUHNHy7Y0waevDd2MrugMTaT7dea64fa",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										},
+										{
+											"key": "category_service_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "name_ar",
+											"value": "q",
+											"type": "text"
+										},
+										{
+											"key": "description_ar",
+											"value": "12",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/services",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"services"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update service",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "name1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/services/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"services",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete service",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "name1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/services/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"services",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "employee",
+					"item": [
+						{
+							"name": "employee",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										},
+										{
+											"key": "name_ar",
+											"value": "a",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "email@gmail.com52",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456789",
+											"type": "text"
+										},
+										{
+											"key": "role_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "0932023",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/employees",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"employees"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "employee",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "email@gmail.com5",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456789",
+											"type": "text"
+										},
+										{
+											"key": "role_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/employees/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"employees",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update employee",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name2",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "email@gmail.com5",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "role_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/employees/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"employees",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete employee",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name2",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "email@gmail.com5",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "role_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/employees/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"employees",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get  employees",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/employees",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"employees"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "admin@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/auth/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "refreshToken",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "7|laravel_sanctum_eMt9yyBUiVolzmjfKQanYnWdgXH3KEzxfxrYD32P26caf31f",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "email@gmail.com52",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/refreshToken",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"refreshToken"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get me",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "10|GatqCgPS6wxkD7ArrUHNHy7Y0waevDd2MrugMTaT7dea64fa",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "email@gmail.com52",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/user",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Statistics",
+					"item": [
+						{
+							"name": "Statistics",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{local}}/admin/statistics",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"statistics"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Banner",
+					"item": [
+						{
+							"name": "Create Banner",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1|GdPx3NU3TKhHUyAbApLW4i2bwjo8jfdzoGqRyFUF39b3a3c3",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/mrame/Downloads/ToTop.png"
+										},
+										{
+											"key": "active",
+											"value": "0",
+											"description": "0,1",
+											"type": "text"
+										},
+										{
+											"key": "photo_ar",
+											"type": "file",
+											"src": "/C:/Users/mrame/Downloads/6f73722d-7ac6-49ab-b338-6accb31265c1.jfif"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/banners",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"banners"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Banner",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/mrame/Downloads/top-header.png"
+										},
+										{
+											"key": "active",
+											"value": "1",
+											"description": "0,1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/banners/4",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"banners",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Banners",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/banners",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"banners"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "per_page",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Banner",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/banners/3",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"banners",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Banner",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/banners/4",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"banners",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Featuers",
+					"item": [
+						{
+							"name": "Create Featuers",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1|7aRbE09ZJp1DgzS2R8Ses4WtDpXmJpGYKW8Cgfcfc8a187fb",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										},
+										{
+											"key": "name_ar",
+											"value": "name_ar",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/Feature",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"Feature"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Featuers",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1|7aRbE09ZJp1DgzS2R8Ses4WtDpXmJpGYKW8Cgfcfc8a187fb",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "name1",
+											"type": "text"
+										},
+										{
+											"key": "name_ar",
+											"value": "name_ar1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/Feature/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"Feature",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Featuers",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1|7aRbE09ZJp1DgzS2R8Ses4WtDpXmJpGYKW8Cgfcfc8a187fb",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/Feature",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"Feature"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "per_page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "name33",
+											"disabled": true
+										},
+										{
+											"key": "name_ar",
+											"value": "name_ar13",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show Featuers",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1|7aRbE09ZJp1DgzS2R8Ses4WtDpXmJpGYKW8Cgfcfc8a187fb",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/Feature/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"Feature",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Featuers",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "1|7aRbE09ZJp1DgzS2R8Ses4WtDpXmJpGYKW8Cgfcfc8a187fb",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/Feature/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"Feature",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "FAQ",
+					"item": [
+						{
+							"name": "Create FAQ",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "question",
+											"value": "question",
+											"type": "text"
+										},
+										{
+											"key": "answer",
+											"value": "answer",
+											"type": "text"
+										},
+										{
+											"key": "question_ar",
+											"value": "ar",
+											"type": "text"
+										},
+										{
+											"key": "answer_ar",
+											"value": "ar",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/FAQ",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"FAQ"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update FAQ",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "question",
+											"value": "question12",
+											"type": "text"
+										},
+										{
+											"key": "answer",
+											"value": "answer12",
+											"type": "text"
+										},
+										{
+											"key": "question_ar",
+											"value": "ar1",
+											"type": "text"
+										},
+										{
+											"key": "answer_ar",
+											"value": "ar1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/FAQ/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"FAQ",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get FAQ",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/FAQ?page=1&per_page=1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"FAQ"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show FAQ",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/FAQ/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"FAQ",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete FAQ",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "logo",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "name",
+											"value": "brand",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/admin/FAQ/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"admin",
+										"FAQ",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "products",
+					"item": [
+						{
+							"name": "get filter",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base}}/getFilter",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"getFilter"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "search products",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/searchProduct?order=desc&sort=final_price",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"searchProduct"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "pmw",
+											"disabled": true
+										},
+										{
+											"key": "type",
+											"value": "used",
+											"description": "used,new",
+											"disabled": true
+										},
+										{
+											"key": "model_id",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "store_id",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "brand_id",
+											"value": "18",
+											"disabled": true
+										},
+										{
+											"key": "structure_id",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "MinPrice",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "MaxPrice",
+											"value": "100",
+											"disabled": true
+										},
+										{
+											"key": "minYear",
+											"value": "1980",
+											"disabled": true
+										},
+										{
+											"key": "maxYear",
+											"value": "2026",
+											"disabled": true
+										},
+										{
+											"key": "fuel_type",
+											"value": "petrol",
+											"description": "hybrid,electric,diesel,petrol",
+											"disabled": true
+										},
+										{
+											"key": "per_page",
+											"value": "120",
+											"disabled": true
+										},
+										{
+											"key": "colPrice",
+											"value": "dailyPrice",
+											"description": "monthlyPrice,weeklyPrice,dailyPrice",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "rent",
+											"description": "rent,buying",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "desc",
+											"description": "asc,desc"
+										},
+										{
+											"key": "sort",
+											"value": "final_price",
+											"description": "final_price,mileage,year"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "product details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{local}}/products/15",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"products",
+										"15"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "stores",
+					"item": [
+						{
+							"name": "search stores",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/searchStores?per_page=299&rent=1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"searchStores"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "name",
+											"disabled": true
+										},
+										{
+											"key": "address",
+											"value": "ad",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "per_page",
+											"value": "299"
+										},
+										{
+											"key": "rent",
+											"value": "1"
+										},
+										{
+											"key": "buying",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store details",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/store/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"store",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get Filter Store",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "name",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local}}/getFilterStore?col=name&value=name",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"getFilterStore"
+									],
+									"query": [
+										{
+											"key": "col",
+											"value": "name",
+											"description": "name,name_ar,address,address_ar"
+										},
+										{
+											"key": "value",
+											"value": "name"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "offer",
+					"item": [
+						{
+							"name": "offer index",
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base}}/offer?page=1&per_page=10",
+									"host": [
+										"{{base}}"
+									],
+									"path": [
+										"offer"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Home Page",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "name",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/homepage",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"homepage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FQA",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "name",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local}}/FQA",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"FQA"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "4|JmFqahy2uvQBwqsH9TIuS0EkJDgn2UevmBTzXtxR5118b488",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://127.0.0.1:8000/api",
+			"type": "string"
+		}
+	]
+}

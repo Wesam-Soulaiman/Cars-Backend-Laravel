@@ -1,0 +1,118 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Employee;
+use App\Models\Role;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
+class PermissionSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $permissions = [
+            // Stores
+            'stores.view',
+            'stores.create',
+            'stores.update',
+            'stores.delete',
+
+            // Brands
+            'brands.view',
+            'brands.create',
+            'brands.update',
+            'brands.delete',
+
+            // Models
+            'models.view',
+            'models.create',
+            'models.update',
+            'models.delete',
+
+            // Products
+            'products.view',
+            'products.create',
+            'products.update',
+            'products.delete',
+
+            // Offers
+            'offers.view',
+            'offers.create',
+            'offers.update',
+            'offers.delete',
+
+            // Services
+            'services.view',
+            'services.create',
+            'services.update',
+            'services.delete',
+            'services.categories.view',
+
+            // Orders
+            'orders.view',
+            'orders.create',
+            'orders.update',
+            'orders.delete',
+
+            // Roles
+            'roles.view',
+            'roles.create',
+            'roles.update',
+            'roles.delete',
+
+            // Employees
+            'employees.view',
+            'employees.create',
+            'employees.update',
+            'employees.delete',
+            // Banners
+            'banners.view',
+            'banners.create',
+            'banners.update',
+            'banners.delete',
+
+            // FAQ
+            'FAQ.view',
+            'FAQ.create',
+            'FAQ.update',
+            'FAQ.delete',
+            // Feature
+            'feature.view',
+            'feature.create',
+            'feature.update',
+            'feature.delete',
+
+            // Authentication / Dashboard
+            'dashboard.access',
+        ];
+
+        $permissionIds = [];
+
+        foreach ($permissions as $permission) {
+            $id = DB::table('permissions')->insertGetId([
+                'guard_name' => $permission,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            $permissionIds[] = $id;
+        }
+
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+
+        foreach ($permissionIds as $permissionId) {
+            DB::table('role_permissions')->insert([
+                'role_id' => $adminRole->id,
+                'permission_id' => $permissionId,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+        Employee::create(['name' => 'admin', 'role_id' => $adminRole->id, 'email' => 'admin@gmail.com', 'password' => Hash::make(12345678)]);
+    }
+}
