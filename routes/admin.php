@@ -48,6 +48,11 @@ use App\Actions\Admin\FuelType\FuelTypeDestroyAction;
 use App\Actions\Admin\FuelType\FuelTypeIndexAction;
 use App\Actions\Admin\FuelType\FuelTypeShowAction;
 use App\Actions\Admin\FuelType\FuelTypeUpdateAction;
+use App\Actions\Admin\Gear\GearCreateAction;
+use App\Actions\Admin\Gear\GearDestroyAction;
+use App\Actions\Admin\Gear\GearIndexAction;
+use App\Actions\Admin\Gear\GearShowAction;
+use App\Actions\Admin\Gear\GearUpdateAction;
 use App\Actions\Admin\Model\ModelCreateAction;
 use App\Actions\Admin\Model\ModelDestroyAction;
 use App\Actions\Admin\Model\ModelIndexAction;
@@ -181,6 +186,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', FuelTypeCreateAction::class)->middleware('permission:fuel_type.create');
         Route::post('/{fuelType:id}', FuelTypeUpdateAction::class)->middleware('permission:fuel_type.update');
         Route::delete('/{fuelType:id}', FuelTypeDestroyAction::class)->middleware('permission:fuel_type.delete');
+    });
+
+    // Gear
+    Route::prefix('gears')->group(function () {
+        Route::get('/', GearIndexAction::class)->middleware('permission:gear.view');
+        Route::get('/{gear:id}', GearShowAction::class)->middleware('permission:gear.view');
+        Route::post('/', GearCreateAction::class)->middleware('permission:gear.create');
+        Route::post('/{gear:id}', GearUpdateAction::class)->middleware('permission:gear.update');
+        Route::delete('/{gear:id}', GearDestroyAction::class)->middleware('permission:gear.delete');
     });
 
 

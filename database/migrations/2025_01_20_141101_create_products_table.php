@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('store_id')->constrained('stores')->cascadeOnDelete();
             $table->foreignId('model_id')->nullable()->constrained('models')->nullOnDelete();
             $table->foreignId('color_id')->nullable()->constrained('colors')->nullOnDelete();
+            $table->foreignId('fuel_type_id')->nullable()->constrained('fuel_types')->nullOnDelete();
+            $table->foreignId('gear_id')->nullable()->constrained('gears')->nullOnDelete();
             $table->integer('structure_id')->nullable();
             $table->string('main_photo');
             $table->decimal('price', 10, 2)->nullable();
@@ -26,11 +28,10 @@ return new class extends Migration
             $table->year('register_year');
             $table->integer('number_of_seats');
             $table->integer('drive_type');
-//            $table->integer('fuel_type');
             $table->integer('cylinders');
             $table->decimal('cylinder_capacity', 10, 2);
             $table->text('additional_features')->nullable();
-            $table->integer('gears');
+//            $table->integer('gears');
             $table->integer('type');
             $table->integer('seat_type');
             $table->boolean('sunroof')->default(ProductStatus::SUNROOF_NO);
