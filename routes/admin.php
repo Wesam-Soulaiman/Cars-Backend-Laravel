@@ -53,6 +53,11 @@ use App\Actions\Admin\Gear\GearDestroyAction;
 use App\Actions\Admin\Gear\GearIndexAction;
 use App\Actions\Admin\Gear\GearShowAction;
 use App\Actions\Admin\Gear\GearUpdateAction;
+use App\Actions\Admin\Light\LightCreateAction;
+use App\Actions\Admin\Light\LightDestroyAction;
+use App\Actions\Admin\Light\LightIndexAction;
+use App\Actions\Admin\Light\LightShowAction;
+use App\Actions\Admin\Light\LightUpdateAction;
 use App\Actions\Admin\Model\ModelCreateAction;
 use App\Actions\Admin\Model\ModelDestroyAction;
 use App\Actions\Admin\Model\ModelIndexAction;
@@ -195,6 +200,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', GearCreateAction::class)->middleware('permission:gear.create');
         Route::post('/{gear:id}', GearUpdateAction::class)->middleware('permission:gear.update');
         Route::delete('/{gear:id}', GearDestroyAction::class)->middleware('permission:gear.delete');
+    });
+
+
+    // Gear
+    Route::prefix('lights')->group(function () {
+        Route::get('/', LightIndexAction::class)->middleware('permission:light.view');
+        Route::get('/{light:id}', LightShowAction::class)->middleware('permission:light.view');
+        Route::post('/', LightCreateAction::class)->middleware('permission:light.create');
+        Route::post('/{light:id}', LightUpdateAction::class)->middleware('permission:light.update');
+        Route::delete('/{light:id}', LightDestroyAction::class)->middleware('permission:light.delete');
     });
 
 
