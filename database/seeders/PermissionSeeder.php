@@ -94,7 +94,11 @@ class PermissionSeeder extends Seeder
             'car_part_categories.update',
             'car_part_categories.delete',
 
-
+            // Car Part Category
+            'car_part.view',
+            'car_part.create',
+            'car_part.update',
+            'car_part.delete',
 
             // Authentication / Dashboard
             'dashboard.access',

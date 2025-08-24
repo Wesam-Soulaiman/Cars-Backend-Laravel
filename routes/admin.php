@@ -13,6 +13,11 @@ use App\Actions\Admin\Brand\BrandDestroyAction;
 use App\Actions\Admin\Brand\BrandIndexAction;
 use App\Actions\Admin\Brand\BrandShowAction;
 use App\Actions\Admin\Brand\BrandUpdateAction;
+use App\Actions\Admin\CarPart\CarPartCreateAction;
+use App\Actions\Admin\CarPart\CarPartDestroyAction;
+use App\Actions\Admin\CarPart\CarPartIndexAction;
+use App\Actions\Admin\CarPart\CarPartShowAction;
+use App\Actions\Admin\CarPart\CarPartUpdateAction;
 use App\Actions\Admin\CarPartCategory\CarPartCategoryCreateAction;
 use App\Actions\Admin\CarPartCategory\CarPartCategoryDestroyAction;
 use App\Actions\Admin\CarPartCategory\CarPartCategoryIndexAction;
@@ -132,12 +137,22 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{brand:id}', BrandDestroyAction::class)->middleware('permission:brands.delete');
     });
 
+    // car part category
     Route::prefix('car-part-categories')->group(function () {
         Route::get('/', CarPartCategoryIndexAction::class)->middleware('permission:car_part_categories.view');
         Route::get('/{carPartCategory:id}', CarPartCategoryShowAction::class)->middleware('permission:car_part_categories.view');
         Route::post('/', CarPartCategoryCreateAction::class)->middleware('permission:car_part_categories.create');
         Route::post('/{carPartCategory:id}', CarPartCategoryUpdateAction::class)->middleware('permission:car_part_categories.update');
         Route::delete('/{carPartCategory:id}', CarPartCategoryDestroyAction::class)->middleware('permission:car_part_categories.delete');
+    });
+
+    // car part
+    Route::prefix('car-part')->group(function () {
+        Route::get('/', CarPartIndexAction::class)->middleware('permission:car_part.view');
+        Route::get('/{carPart:id}', CarPartShowAction::class)->middleware('permission:car_part.view');
+        Route::post('/', CarPartCreateAction::class)->middleware('permission:car_part.create');
+        Route::post('/{carPart:id}', CarPartUpdateAction::class)->middleware('permission:car_part.update');
+        Route::delete('/{carPart:id}', CarPartDestroyAction::class)->middleware('permission:car_part.delete');
     });
 
     // models
