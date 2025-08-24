@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('brand_id')->nullable()->constrained('brands')->nullOnDelete();
             $table->foreignId('store_id')->constrained('stores')->cascadeOnDelete();
             $table->foreignId('model_id')->nullable()->constrained('models')->nullOnDelete();
+            $table->foreignId('color_id')->nullable()->constrained('colors')->nullOnDelete();
             $table->integer('structure_id')->nullable();
             $table->string('main_photo');
             $table->decimal('price', 10, 2)->nullable();
@@ -33,7 +34,6 @@ return new class extends Migration
             $table->integer('type');
             $table->integer('seat_type');
             $table->boolean('sunroof')->default(ProductStatus::SUNROOF_NO);
-            $table->string('color');
             $table->string('lights');
             $table->timestamps();
         });

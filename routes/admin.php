@@ -23,6 +23,11 @@ use App\Actions\Admin\CarPartCategory\CarPartCategoryDestroyAction;
 use App\Actions\Admin\CarPartCategory\CarPartCategoryIndexAction;
 use App\Actions\Admin\CarPartCategory\CarPartCategoryShowAction;
 use App\Actions\Admin\CarPartCategory\CarPartCategoryUpdateAction;
+use App\Actions\Admin\Color\ColorCreateAction;
+use App\Actions\Admin\Color\ColorDestroyAction;
+use App\Actions\Admin\Color\ColorIndexAction;
+use App\Actions\Admin\Color\ColorShowAction;
+use App\Actions\Admin\Color\ColorUpdateAction;
 use App\Actions\Admin\Employee\EmployeeCreateAction;
 use App\Actions\Admin\Employee\EmployeeDeleteAction;
 use App\Actions\Admin\Employee\EmployeeIndexAction;
@@ -153,6 +158,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', CarPartCreateAction::class)->middleware('permission:car_part.create');
         Route::post('/{carPart:id}', CarPartUpdateAction::class)->middleware('permission:car_part.update');
         Route::delete('/{carPart:id}', CarPartDestroyAction::class)->middleware('permission:car_part.delete');
+    });
+
+    // car part
+    Route::prefix('colors')->group(function () {
+        Route::get('/', ColorIndexAction::class)->middleware('permission:color.view');
+        Route::get('/{color:id}', ColorShowAction::class)->middleware('permission:color.view');
+        Route::post('/', ColorCreateAction::class)->middleware('permission:color.create');
+        Route::post('/{color:id}', ColorUpdateAction::class)->middleware('permission:color.update');
+        Route::delete('/{color:id}', ColorDestroyAction::class)->middleware('permission:color.delete');
     });
 
     // models
