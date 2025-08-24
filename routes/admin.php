@@ -13,6 +13,11 @@ use App\Actions\Admin\Brand\BrandDestroyAction;
 use App\Actions\Admin\Brand\BrandIndexAction;
 use App\Actions\Admin\Brand\BrandShowAction;
 use App\Actions\Admin\Brand\BrandUpdateAction;
+use App\Actions\Admin\CarPartCategory\CarPartCategoryCreateAction;
+use App\Actions\Admin\CarPartCategory\CarPartCategoryDestroyAction;
+use App\Actions\Admin\CarPartCategory\CarPartCategoryIndexAction;
+use App\Actions\Admin\CarPartCategory\CarPartCategoryShowAction;
+use App\Actions\Admin\CarPartCategory\CarPartCategoryUpdateAction;
 use App\Actions\Admin\Employee\EmployeeCreateAction;
 use App\Actions\Admin\Employee\EmployeeDeleteAction;
 use App\Actions\Admin\Employee\EmployeeIndexAction;
@@ -125,6 +130,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', BrandCreateAction::class)->middleware('permission:brands.create');
         Route::post('/{brand:id}', BrandUpdateAction::class)->middleware('permission:brands.update');
         Route::delete('/{brand:id}', BrandDestroyAction::class)->middleware('permission:brands.delete');
+    });
+
+    Route::prefix('car-part-categories')->group(function () {
+        Route::get('/', CarPartCategoryIndexAction::class)->middleware('permission:car_part_categories.view');
+        Route::get('/{carPartCategory:id}', CarPartCategoryShowAction::class)->middleware('permission:car_part_categories.view');
+        Route::post('/', CarPartCategoryCreateAction::class)->middleware('permission:car_part_categories.create');
+        Route::post('/{carPartCategory:id}', CarPartCategoryUpdateAction::class)->middleware('permission:car_part_categories.update');
+        Route::delete('/{carPartCategory:id}', CarPartCategoryDestroyAction::class)->middleware('permission:car_part_categories.delete');
     });
 
     // models

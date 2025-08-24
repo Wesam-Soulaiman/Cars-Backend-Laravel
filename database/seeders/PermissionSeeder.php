@@ -87,6 +87,15 @@ class PermissionSeeder extends Seeder
             'feature.update',
             'feature.delete',
 
+
+            // Car Part Category
+            'car_part_categories.view',
+            'car_part_categories.create',
+            'car_part_categories.update',
+            'car_part_categories.delete',
+
+
+
             // Authentication / Dashboard
             'dashboard.access',
         ];
@@ -103,7 +112,7 @@ class PermissionSeeder extends Seeder
             $permissionIds[] = $id;
         }
 
-        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $adminRole = Role::firstOrCreate(['name' => 'admin' , 'name_ar' =>'ادمن']);
 
         foreach ($permissionIds as $permissionId) {
             DB::table('role_permissions')->insert([
@@ -113,6 +122,6 @@ class PermissionSeeder extends Seeder
                 'updated_at' => now(),
             ]);
         }
-        Employee::create(['name' => 'admin', 'role_id' => $adminRole->id, 'email' => 'admin@gmail.com', 'password' => Hash::make(12345678)]);
+        Employee::create(['name' => 'admin','name_ar'=>'ادمن', 'role_id' => $adminRole->id, 'email' => 'admin@gmail.com','phone'=>'0987654321', 'password' => Hash::make(12345678)]);
     }
 }

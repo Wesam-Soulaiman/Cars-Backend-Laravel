@@ -14,7 +14,9 @@ class ServiceSeeder extends Seeder
     {
         Service::create([
             'name' => 'Search Result',
-            'description' => 'A Search-Result website .',
+            'name_ar' => 'نتائج البحث',
+            'description' => 'A Search-Result website.',
+            'description_ar' => 'موقع ويب لنتائج البحث.',
             'category_service_id' => 1,
             'active' => true,
         ]);
