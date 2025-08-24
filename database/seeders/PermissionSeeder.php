@@ -106,6 +106,12 @@ class PermissionSeeder extends Seeder
             'color.update',
             'color.delete',
 
+            // fuel type
+            'fuel_type.view',
+            'fuel_type.create',
+            'fuel_type.update',
+            'fuel_type.delete',
+
             // Authentication / Dashboard
             'dashboard.access',
         ];

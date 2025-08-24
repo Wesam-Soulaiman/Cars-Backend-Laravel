@@ -43,6 +43,11 @@ use App\Actions\Admin\Feature\FeatureDestroyAction;
 use App\Actions\Admin\Feature\FeatureIndexAction;
 use App\Actions\Admin\Feature\FeatureShowAction;
 use App\Actions\Admin\Feature\FeatureUpdateAction;
+use App\Actions\Admin\FuelType\FuelTypeCreateAction;
+use App\Actions\Admin\FuelType\FuelTypeDestroyAction;
+use App\Actions\Admin\FuelType\FuelTypeIndexAction;
+use App\Actions\Admin\FuelType\FuelTypeShowAction;
+use App\Actions\Admin\FuelType\FuelTypeUpdateAction;
 use App\Actions\Admin\Model\ModelCreateAction;
 use App\Actions\Admin\Model\ModelDestroyAction;
 use App\Actions\Admin\Model\ModelIndexAction;
@@ -168,6 +173,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/{color:id}', ColorUpdateAction::class)->middleware('permission:color.update');
         Route::delete('/{color:id}', ColorDestroyAction::class)->middleware('permission:color.delete');
     });
+
+    // Fuel Type
+    Route::prefix('fuel-types')->group(function () {
+        Route::get('/', FuelTypeIndexAction::class)->middleware('permission:fuel_type.view');
+        Route::get('/{fuelType:id}', FuelTypeShowAction::class)->middleware('permission:fuel_type.view');
+        Route::post('/', FuelTypeCreateAction::class)->middleware('permission:fuel_type.create');
+        Route::post('/{fuelType:id}', FuelTypeUpdateAction::class)->middleware('permission:fuel_type.update');
+        Route::delete('/{fuelType:id}', FuelTypeDestroyAction::class)->middleware('permission:fuel_type.delete');
+    });
+
 
     // models
     Route::prefix('models')->group(function () {

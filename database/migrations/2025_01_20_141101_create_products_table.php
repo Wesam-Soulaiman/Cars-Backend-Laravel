@@ -26,7 +26,7 @@ return new class extends Migration
             $table->year('register_year');
             $table->integer('number_of_seats');
             $table->integer('drive_type');
-            $table->integer('fuel_type');
+//            $table->integer('fuel_type');
             $table->integer('cylinders');
             $table->decimal('cylinder_capacity', 10, 2);
             $table->text('additional_features')->nullable();
