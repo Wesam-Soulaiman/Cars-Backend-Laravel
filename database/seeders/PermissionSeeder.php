@@ -124,6 +124,12 @@ class PermissionSeeder extends Seeder
             'light.update',
             'light.delete',
 
+            //structure
+            'structure.view',
+            'structure.create',
+            'structure.update',
+            'structure.delete',
+
             // Authentication / Dashboard
             'dashboard.access',
         ];

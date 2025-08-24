@@ -97,6 +97,11 @@ use App\Actions\Admin\Store\StoreDestroyAction;
 use App\Actions\Admin\Store\StoreIndexAction;
 use App\Actions\Admin\Store\StoreShowAction;
 use App\Actions\Admin\Store\StoreUpdateAction;
+use App\Actions\Admin\Structure\StructureCreateAction;
+use App\Actions\Admin\Structure\StructureDestroyAction;
+use App\Actions\Admin\Structure\StructureIndexAction;
+use App\Actions\Admin\Structure\StructureShowAction;
+use App\Actions\Admin\Structure\StructureUpdateAction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -203,13 +208,23 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
 
-    // Gear
+    // Light
     Route::prefix('lights')->group(function () {
         Route::get('/', LightIndexAction::class)->middleware('permission:light.view');
         Route::get('/{light:id}', LightShowAction::class)->middleware('permission:light.view');
         Route::post('/', LightCreateAction::class)->middleware('permission:light.create');
         Route::post('/{light:id}', LightUpdateAction::class)->middleware('permission:light.update');
         Route::delete('/{light:id}', LightDestroyAction::class)->middleware('permission:light.delete');
+    });
+
+
+    // Structure
+    Route::prefix('structures')->group(function () {
+        Route::get('/', StructureIndexAction::class)->middleware('permission:structure.view');
+        Route::get('/{structure:id}', StructureShowAction::class)->middleware('permission:structure.view');
+        Route::post('/', StructureCreateAction::class)->middleware('permission:structure.create');
+        Route::post('/{structure:id}', StructureUpdateAction::class)->middleware('permission:structure.update');
+        Route::delete('/{structure:id}', StructureDestroyAction::class)->middleware('permission:structure.delete');
     });
 
 
