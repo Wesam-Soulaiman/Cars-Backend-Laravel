@@ -130,6 +130,8 @@ class PermissionSeeder extends Seeder
             'structure.update',
             'structure.delete',
 
+
+            'rent_category.view',
             // Authentication / Dashboard
             'dashboard.access',
         ];

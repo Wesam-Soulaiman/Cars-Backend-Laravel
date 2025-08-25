@@ -79,6 +79,8 @@ use App\Actions\Admin\Products\ProductIndexAction;
 use App\Actions\Admin\Products\ProductPhotoDeleteAction;
 use App\Actions\Admin\Products\ProductShowAction;
 use App\Actions\Admin\Products\ProductUpdateAction;
+use App\Actions\Admin\RentCategory\RentCategoryIndexAction;
+use App\Actions\Admin\RentCategory\RentCategoryShowAction;
 use App\Actions\Admin\Role\RoleCreateAction;
 use App\Actions\Admin\Role\RoleDeleteAction;
 use App\Actions\Admin\Role\RoleIndexAction;
@@ -289,6 +291,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{employee:id}', EmployeeDeleteAction::class)->middleware('permission:employees.delete');
 
     });
+
+    // RENT CATEGORY
+    Route::prefix('rent-categories')->group(function () {
+        Route::get('/', RentCategoryIndexAction::class)->middleware('permission:rent_category.view');
+        Route::get('/{rentCategory:id}', RentCategoryShowAction::class)->middleware('permission:rent_category.view');
+    });
+
     Route::post('/refreshToken', RefreshTokenAction::class);
     Route::get('/statistics', StatisticsAction::class)->middleware('permission:dashboard.access');
 
