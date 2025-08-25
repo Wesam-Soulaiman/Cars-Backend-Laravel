@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category_services', function (Blueprint $table) {
+        Schema::create('rent_categories', function (Blueprint $table) {
             $table->id();
-            $table->enum('name', ['subscription', 'limit']);
+            $table->string('name');
+            $table->string('name_ar');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category_services');
+        Schema::dropIfExists('rent_categories');
     }
 };

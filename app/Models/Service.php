@@ -9,15 +9,10 @@ class Service extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'name_ar',
-        'description',
-        'description_ar',
-        'category_service_id',
-        'active',
+    protected $guarded = [
+        'id',
     ];
-
+    protected $casts = ['services' => 'array', 'has_top_result' => 'boolean'];
     public function category()
     {
         return $this->belongsTo(CategoryService::class, 'category_service_id', 'id');

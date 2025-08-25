@@ -10,15 +10,11 @@ class OrderFilter extends BaseFilter
         $this->store_id = null;
         $this->created_at = null;
         $this->active = null;
-
     }
 
     protected ?int $store_id;
-
-    protected ?int $active;
-
+    protected ?bool $active;
     protected ?int $service_id;
-
     protected ?string $created_at;
 
     public function getStoreId(): ?int
@@ -48,15 +44,19 @@ class OrderFilter extends BaseFilter
 
     public function setCreatedAt(?string $created_at): void
     {
+        // Validate date format (e.g., YYYY-MM-DD)
+        if ($created_at && !\Carbon\Carbon::hasFormat($created_at, 'Y-m-d')) {
+            throw new \InvalidArgumentException('Created at must be in YYYY-MM-DD format.');
+        }
         $this->created_at = $created_at;
     }
 
-    public function getActive(): ?int
+    public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    public function setActive(?int $active): void
+    public function setActive(?bool $active): void
     {
         $this->active = $active;
     }

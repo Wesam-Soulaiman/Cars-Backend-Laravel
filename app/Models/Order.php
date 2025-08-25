@@ -8,8 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['category_service_id', 'service_id', 'service_type_id', 'store_id', 'count_days', 'price', 'count_product', 'start_time', 'end_time', 'active'];
+    protected $casts = [
+        'active' => 'boolean',
+        'start_time' => 'date',
+        'end_time' => 'date',
+        'price' => 'decimal:2',
+    ];
+    protected $guarded = ['id'];
 
     protected $appends = ['real_active'];
 

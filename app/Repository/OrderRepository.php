@@ -25,16 +25,14 @@ class OrderRepository extends BaseRepositoryImplementation implements OrderInter
     public function addOrder($data)
     {
         $service = Service::find($data['service_id']);
-        $count_days = $data['count_days'];
+        $count_days = $service['count_days'];
         $start_time = Carbon::parse($data['start_time']);
         $end_time = $start_time->addDays($count_days)->format('Y-m-d');
         $order = [
-            'category_service_id' => $service->category_service_id,
             'service_id' => $service->id,
             'store_id' => $data['store_id'],
             'price' => $data['price'],
             'start_time' => $data['start_time'],
-            'count_days' => $count_days,
             'end_time' => $end_time,
             'active' => $data['active'],
         ];
@@ -46,16 +44,14 @@ class OrderRepository extends BaseRepositoryImplementation implements OrderInter
     public function updateOrder(Order $order, $data)
     {
         $service = Service::find($data['service_id'] ?? $order->service_id);
-        $count_days = $data['count_days'] ?? $order->count_days;
+        $count_days = $service['count_days'];
         $start_time = Carbon::parse($data['start_time'] ?? $order->start_time);
         $end_time = $start_time->addDays($count_days)->format('Y-m-d');
         $newOrder = [
-            'category_service_id' => $service->category_service_id,
             'service_id' => $service->id,
             'store_id' => $data['store_id'] ?? $order->store_id,
             'price' => $data['price'] ?? $order->price,
             'start_time' => $data['start_time'] ?? $order->start_time,
-            'count_days' => $count_days,
             'end_time' => $end_time,
             'active' => $data['active'] ?? $order->active,
 
@@ -80,60 +76,83 @@ class OrderRepository extends BaseRepositoryImplementation implements OrderInter
         return ApiResponseHelper::sendResponse(new Result($showOrder));
     }
 
+
     public function indexOrder(OrderFilter $filters)
     {
-        $this->with = ['service', 'store'];
+        $query = $this->newQuery()->with(['service', 'store']);
+
         $authStore = Auth::guard('store')->check();
-        if (! is_null($filters->getActive())) {
-            if ($filters->getActive()) {
-                $this->scopes['active'] = [];
-            } else {
-                $this->scopes['inactive'] = [];
-            }
-        }
-
-        if (! is_null($filters->getStoreId()) && ! $authStore) {
-            $this->where('store_id', $filters->getStoreId());
-        }
-
-        if (! is_null($filters->getServiceId())) {
-            $this->where('service_id', $filters->getServiceId());
-        }
-        if (! is_null($filters->getCreatedAt())) {
-            $date = \Carbon\Carbon::parse($filters->getCreatedAt())->toDateString();
-            $this->where('created_at', $date.'%', 'like');
-        }
         if ($authStore) {
-            $this->where('store_id', Auth::guard('store')->id());
+            $query->where('store_id', Auth::guard('store')->id());
+        } elseif (!is_null($filters->getStoreId())) {
+            $query->where('store_id', $filters->getStoreId());
         }
-        if (! is_null($filters->getOrder()) && ! is_null($filters->getOrderBy())) {
-            $this->orderBy($filters->orderBy, $filters->order);
+
+        if (!is_null($filters->getServiceId())) {
+            $query->where('service_id', $filters->getServiceId());
         }
-        $orders = $this->paginate($filters->per_page, ['*'], 'page', $filters->page);
+
+        if (!is_null($filters->getActive())) {
+            $query->where('active', $filters->getActive());
+        }
+
+        if (!is_null($filters->getCreatedAt())) {
+            $date = Carbon::parse($filters->getCreatedAt())->toDateString();
+            $query->whereDate('created_at', $date);
+        }
+
+        // Prioritize orders from services with has_top_result
+        $query->leftJoin('services', 'orders.service_id', '=', 'services.id')
+            ->orderByRaw('CASE WHEN services.has_top_result = 1 THEN 0 ELSE 1 END')
+            ->select('orders.*');
+
+        // Apply orderBy if provided
+        if (!is_null($filters->getOrder()) && !is_null($filters->getOrderBy())) {
+            $query->orderBy($filters->getOrderBy(), $filters->getOrder());
+        }
+
+        $orders = $query->paginate($filters->per_page ?? 15, ['orders.*'], 'page', $filters->page ?? 1);
+
         $pagination = [
             'total' => $orders->total(),
             'current_page' => $orders->currentPage(),
             'last_page' => $orders->lastPage(),
             'per_page' => $orders->perPage(),
         ];
-        $products = OrderResource::collection($orders->items());
+
         $data = [
-            'products' => $products,
-            'char' => $this->GetCountorderByMonth(),
+            'orders' => OrderResource::collection($orders->items()),
+            'chart' => $this->GetCountOrderByMonth(),
         ];
 
-        return ApiResponseHelper::sendResponseWithPagination(new Result($data, 'get orders successfully', $pagination));
+        return ApiResponseHelper::sendResponseWithPagination(
+            new Result($data, 'Get orders successfully', $pagination)
+        );
     }
+
 
     public function GetCountOrderByMonth()
     {
-        $query = Order::selectRaw('
-        DATE_FORMAT(start_time, "%Y-%m") as month,
-        DATE_FORMAT(start_time, "%M") as month_name,
-        COUNT(*) as order_count
-    ')
-            ->whereYear('start_time', date('Y'))
-            ->groupBy('month', 'month_name')
+        $query = Order::selectRaw("
+            strftime('%Y-%m', start_time) as month,
+            CASE strftime('%m', start_time)
+                WHEN '01' THEN 'January'
+                WHEN '02' THEN 'February'
+                WHEN '03' THEN 'March'
+                WHEN '04' THEN 'April'
+                WHEN '05' THEN 'May'
+                WHEN '06' THEN 'June'
+                WHEN '07' THEN 'July'
+                WHEN '08' THEN 'August'
+                WHEN '09' THEN 'September'
+                WHEN '10' THEN 'October'
+                WHEN '11' THEN 'November'
+                WHEN '12' THEN 'December'
+            END as month_name,
+            COUNT(*) as order_count
+        ")
+            ->whereRaw("strftime('%Y', start_time) = ?", [date('Y')])
+            ->groupByRaw("strftime('%Y-%m', start_time), month_name")
             ->orderBy('month');
 
         if (auth('store')->check()) {
@@ -143,6 +162,24 @@ class OrderRepository extends BaseRepositoryImplementation implements OrderInter
 
         return $query->get();
     }
+//    public function GetCountOrderByMonth()
+//    {
+//        $query = Order::selectRaw('
+//        DATE_FORMAT(start_time, "%Y-%m") as month,
+//        DATE_FORMAT(start_time, "%M") as month_name,
+//        COUNT(*) as order_count
+//    ')
+//            ->whereYear('start_time', date('Y'))
+//            ->groupBy('month', 'month_name')
+//            ->orderBy('month');
+//
+//        if (auth('store')->check()) {
+//            $storeId = auth('store')->id();
+//            $query->where('store_id', $storeId);
+//        }
+//
+//        return $query->get();
+//    }
 
     public function CountOrder()
     {

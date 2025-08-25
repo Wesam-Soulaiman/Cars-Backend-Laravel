@@ -60,7 +60,6 @@ class ServiceRepository extends BaseRepositoryImplementation implements ServiceI
         $this->with = ['category'];
         $showService = $this->getById($service->id);
         $showService = ServiceResource::make($showService);
-
         return ApiResponseHelper::sendResponse(new Result($showService));
     }
 }

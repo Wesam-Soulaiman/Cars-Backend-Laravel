@@ -31,7 +31,6 @@ class OrderRequest extends FormRequest
                 'store_id' => 'nullable|exists:stores,id',
                 'price' => 'nullable|numeric',
                 'start_time' => 'nullable|date',
-                'count_days' => 'nullable|numeric',
                 'active' => 'nullable|bool',
 
             ];
@@ -42,7 +41,6 @@ class OrderRequest extends FormRequest
             'store_id' => 'required|exists:stores,id',
             'price' => 'required|numeric',
             'start_time' => 'nullable|date',
-            'count_days' => 'nullable|numeric',
             'active' => 'nullable|bool',
 
         ];

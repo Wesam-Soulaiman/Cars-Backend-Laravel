@@ -18,12 +18,16 @@ class ServiceResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'name_ar' => $this->name_ar,
+            'category_service_id' => $this->category_service_id,
+            'category_service' => $this->categoryService ? $this->categoryService->name : null,
+            'has_top_result' => boolval($this->has_top_result),
+            'services' => $this->services,
             'description' => $this->description,
             'description_ar' => $this->description_ar,
-            'category_id' => $this->category->id,
-            'category' => $this->category->name,
-            'active' => boolval($this->active),
-
+            'count_product' => $this->count_product,
+            'count_days' => $this->count_days,
+            'created_at' => $this->created_at->toIso8601String(),
+            'updated_at' => $this->updated_at->toIso8601String(),
         ];
     }
 }

@@ -11,16 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('name_ar');
-            $table->text('description')->nullable();
-            $table->text('description_ar')->nullable();
-            $table->foreignId('category_service_id')->constrained('category_services');
-            $table->boolean('active')->default(true);
-            $table->timestamps();
-        });
+            Schema::create('services', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('name_ar');
+                $table->foreignId('category_service_id')->constrained('category_services');
+                $table->boolean('has_top_result')->default(false);
+                $table->json('services'); // e.g., ["sale", "rent", "parts"]                $table->text('description')->nullable();
+                $table->text('description')->nullable();
+                $table->text('description_ar')->nullable();
+                $table->integer('count_product')->nullable();
+                $table->integer('count_days')->nullable();
+                $table->timestamps();
+            });
     }
 
     /**

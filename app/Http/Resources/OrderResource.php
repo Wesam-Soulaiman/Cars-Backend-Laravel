@@ -17,20 +17,18 @@ class OrderResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'service_id' => $this->service?->id,
+            'service_id' => $this->service_id,
             'service_name' => $this->service?->name,
             'service_name_ar' => $this->service?->name_ar,
-            'store_id' => $this->store?->id,
+            'store_id' => $this->store_id,
             'store_name' => $this->store?->name,
             'store_name_ar' => $this->store?->name_ar,
             'price' => $this->price,
-            'count_days' => $this->count_days,
-            'start_time' => $this->start_time,
-            'end_time' => $this->end_time,
-            'day_left' => Carbon::parse($this->end_time)->isFuture() ? Carbon::parse($this->end_time)->diffInDays(Carbon::now()) : 0,
-            'active' => boolval($this->real_active),
+            'start_time' => $this->start_time?->toDateString(),
+            'end_time' => $this->end_time?->toDateString(),
+            'day_left' => $this->end_time && Carbon::parse($this->end_time)->isFuture() ? Carbon::parse($this->end_time)->diffInDays(Carbon::now()) : 0,
+            'active' => boolval($this->active),
             'created_at' => $this->created_at->toDateString(),
-
         ];
     }
 }

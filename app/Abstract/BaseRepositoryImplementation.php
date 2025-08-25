@@ -561,4 +561,18 @@ abstract class BaseRepositoryImplementation implements BaseRepositoryInterface
 
         return $model->decrement($column_name, $value);
     }
+
+
+    public function __call($method, $arguments)
+    {
+        $this->query = $this->query ?? $this->newQuery();
+        $this->query = $this->query->$method(...$arguments);
+        return $this;
+    }
+
+    // Handle static calls if needed
+    public static function __callStatic($method, $arguments)
+    {
+        return (new static)->$method(...$arguments);
+    }
 }

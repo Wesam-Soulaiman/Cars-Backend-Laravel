@@ -13,7 +13,7 @@ class CategoryServiceSeeder extends Seeder
     public function run(): void
     {
         CategoryService::create(['name' => 'subscription']);
-        CategoryService::create(['name' => 'top result']);
+        CategoryService::create(['name' => 'limit']);
 
     }
 }
