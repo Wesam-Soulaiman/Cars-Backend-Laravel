@@ -9,6 +9,9 @@ use App\ApiHelper\Result;
 use App\Filter\CarPartFilter;
 use App\Interfaces\CarPartInterface;
 use App\Models\CarPart;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CarPartRepository extends BaseRepositoryImplementation implements CarPartInterface
 {
@@ -19,15 +22,40 @@ class CarPartRepository extends BaseRepositoryImplementation implements CarPartI
 
     public function addCarPart($data)
     {
-        $carPart = $this->create($data);
+        $store = Auth::guard('store')->user();
+        $data['store_id'] = $store->id;
+        return DB::transaction(function () use ($data, $store) {
 
-        return ApiResponseHelper::sendResponse(new Result($carPart), ApiResponseCodes::CREATED);
+
+            $carPart = $this->create($data);
+
+            $activeOrder = \App\Models\Order::where('store_id', $store->id)
+                ->where('active', true)
+                ->where(function ($query) {
+                    $query->whereNull('end_time')
+                        ->orWhere('end_time', '>=', Carbon::now());
+                })
+                ->first();
+
+            if ($activeOrder && $activeOrder->remaining_count_product !== null) {
+                $activeOrder->decrement('remaining_count_product');
+            }
+
+            return ApiResponseHelper::sendResponse(new Result($carPart), ApiResponseCodes::CREATED);
+        });
+
     }
 
     public function updateCarPart(CarPart $carPart, $data)
     {
+//        if (!$carPart) {
+//            return ApiResponseHelper::sendResponse(
+//                new Result(null, 'Car part not found.'), 404);
+//
+//        }
+        $store = Auth::guard('store')->user();
+        $data['store_id'] = $store->id;
         $newCarPart = $this->updateById($carPart->id, $data);
-
         return ApiResponseHelper::sendResponse(new Result($newCarPart));
     }
 

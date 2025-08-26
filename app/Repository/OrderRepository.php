@@ -34,6 +34,7 @@ class OrderRepository extends BaseRepositoryImplementation implements OrderInter
             'price' => $data['price'],
             'start_time' => $data['start_time'],
             'end_time' => $end_time,
+            'remaining_count_product'=>$service->count_product,
             'active' => $data['active'],
         ];
         $order = $this->create($order);
@@ -54,7 +55,6 @@ class OrderRepository extends BaseRepositoryImplementation implements OrderInter
             'start_time' => $data['start_time'] ?? $order->start_time,
             'end_time' => $end_time,
             'active' => $data['active'] ?? $order->active,
-
         ];
         $newOrder = $this->updateById($order->id, $newOrder);
 

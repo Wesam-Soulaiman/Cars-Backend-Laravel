@@ -79,8 +79,8 @@ use App\Actions\Admin\Products\ProductIndexAction;
 use App\Actions\Admin\Products\ProductPhotoDeleteAction;
 use App\Actions\Admin\Products\ProductShowAction;
 use App\Actions\Admin\Products\ProductUpdateAction;
-use App\Actions\Admin\RentCategory\RentCategoryIndexAction;
-use App\Actions\Admin\RentCategory\RentCategoryShowAction;
+use App\Actions\Admin\Deal\DealIndexAction;
+use App\Actions\Admin\Deal\DealShowAction;
 use App\Actions\Admin\Role\RoleCreateAction;
 use App\Actions\Admin\Role\RoleDeleteAction;
 use App\Actions\Admin\Role\RoleIndexAction;
@@ -293,9 +293,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     // RENT CATEGORY
-    Route::prefix('rent-categories')->group(function () {
-        Route::get('/', RentCategoryIndexAction::class)->middleware('permission:rent_category.view');
-        Route::get('/{rentCategory:id}', RentCategoryShowAction::class)->middleware('permission:rent_category.view');
+    Route::prefix('deals')->group(function () {
+        Route::get('/', DealIndexAction::class)->middleware('permission:deal.view');
+        Route::get('/{deal:id}', DealShowAction::class)->middleware('permission:deal.view');
     });
 
     Route::post('/refreshToken', RefreshTokenAction::class);

@@ -6,25 +6,25 @@ use App\Abstract\BaseRepositoryImplementation;
 use App\ApiHelper\ApiResponseCodes;
 use App\ApiHelper\ApiResponseHelper;
 use App\ApiHelper\Result;
-use App\Filter\RentCategoryFilter;
-use App\Interfaces\RentCategoryInterface;
-use App\Models\RentCategory;
+use App\Filter\DealFilter;
+use App\Interfaces\DealInterface;
+use App\Models\Deal;
 
-class RentCategoryRepository extends BaseRepositoryImplementation implements RentCategoryInterface
+class DealRepository extends BaseRepositoryImplementation implements DealInterface
 {
     public function model()
     {
-        return RentCategory::class;
+        return Deal::class;
     }
 
 
-    public function showRentCategory(RentCategory $rentCategory)
+    public function showDeal(Deal $rentCategory)
     {
         $showRentCategory = $this->getById($rentCategory->id, ['id', 'name', 'name_ar']);
         return ApiResponseHelper::sendResponse(new Result($showRentCategory));
     }
 
-    public function indexRentCategory(RentCategoryFilter $filters)
+    public function indexDeal(DealFilter $filters)
     {
         if (! is_null($filters->getName())) {
             $this->where('name', '%'.$filters->getName().'%', 'like');
@@ -40,6 +40,6 @@ class RentCategoryRepository extends BaseRepositoryImplementation implements Ren
             'per_page' => $rentCategories->perPage(),
         ];
 
-        return ApiResponseHelper::sendResponseWithPagination(new Result($rentCategories->items(), 'get rent categories successfully', $pagination));
+        return ApiResponseHelper::sendResponseWithPagination(new Result($rentCategories->items(), 'get deal successfully', $pagination));
     }
 }

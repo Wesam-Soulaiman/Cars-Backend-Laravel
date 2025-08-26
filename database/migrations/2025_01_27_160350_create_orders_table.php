@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2)->default(0.00);
             $table->date('start_time')->nullable();
             $table->date('end_time')->nullable();
+            $table->integer('remaining_count_product')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

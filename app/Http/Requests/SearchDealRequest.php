@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Filter\RentCategoryFilter;
+use App\Filter\DealFilter;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SearchRentCategoryRequest extends FormRequest
+class SearchDealRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -43,9 +43,9 @@ class SearchRentCategoryRequest extends FormRequest
         throw new HttpResponseException($response);
     }
 
-    public function toFilter(): RentCategoryFilter
+    public function toFilter(): DealFilter
     {
-        $filter = new RentCategoryFilter;
+        $filter = new DealFilter;
         if ($this->input('name') !== null) {
             $filter->setName($this->input('name'));
         }

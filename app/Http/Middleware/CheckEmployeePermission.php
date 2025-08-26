@@ -34,6 +34,18 @@ class CheckEmployeePermission
                 'offers.update',
                 'offers.delete',
                 'orders.view',
+
+                'structure.view',
+                'light.view',
+                'gear.view',
+                'fuel_type.view',
+                'color.view',
+                'car_part_categories.view',
+                'car_part.view',
+                'car_part.create',
+                'car_part.update',
+                'car_part.delete',
+
             ];
             if (! in_array($permission, $allowedPermissions)) {
                 return ApiResponseHelper::sendMessageResponse(

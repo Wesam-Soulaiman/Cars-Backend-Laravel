@@ -13,9 +13,8 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'brand_id', 'store_id', 'model_id', 'structure_id', 'register_year', 'main_photo', 'price', 'mileage', 'year_of_construction', 'number_of_seats',
-        'drive_type', 'fuel_type', 'location', 'cylinders', 'cylinder_capacity', 'gears', 'type', 'seat_type', 'sunroof', 'color', 'lights',
+    protected $guarded = [
+        'id'
     ];
 
     public function setMainPhotoAttribute($photo)
@@ -58,6 +57,32 @@ class Product extends Model
     public function structure()
     {
         return $this->belongsTo(Structure::class);
+    }
+
+    public function deal()
+    {
+        return $this->belongsTo(Deal::class);
+    }
+
+
+    public function color()
+    {
+        return $this->belongsTo(Color::class);
+    }
+
+    public function fuelType()
+    {
+        return $this->belongsTo(FuelType::class);
+    }
+
+    public function gear()
+    {
+        return $this->belongsTo(Gear::class);
+    }
+
+    public function light()
+    {
+        return $this->belongsTo(Light::class);
     }
 
     public function activeOffer()

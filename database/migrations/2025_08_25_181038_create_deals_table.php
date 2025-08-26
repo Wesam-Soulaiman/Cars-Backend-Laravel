@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rent_categories', function (Blueprint $table) {
+        Schema::create('deals', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('name_ar');
+            $table->enum('name' , ['sell' , 'daily rent' , 'monthly rent' , 'yearly rent']);
+            $table->enum('name_ar' , ['بيع' , 'أجار يومي' , 'أجار شهري' , 'أجار سنوي']);
             $table->timestamps();
         });
     }

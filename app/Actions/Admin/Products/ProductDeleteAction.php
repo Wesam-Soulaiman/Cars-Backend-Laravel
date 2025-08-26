@@ -2,10 +2,11 @@
 
 namespace App\Actions\Admin\Products;
 
+use App\ApiHelper\ApiResponseCodes;
+use App\ApiHelper\ApiResponseHelper;
 use App\Models\Product;
 use App\Models\Store;
 use App\Repository\ProductRepository;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
 
 class ProductDeleteAction
@@ -17,7 +18,7 @@ class ProductDeleteAction
         $user = Auth::guard('store')->user();
 
         if ($user  instanceof Store && ! $user->can('delete', $product)) {
-            throw new AuthorizationException('This action is unauthorized.');
+            return ApiResponseHelper::sendMessageResponse(('This action is unauthorized.'),ApiResponseCodes::UNAUTHORIZED,false );
         }
 
         return $this->productRepository->deleteProduct($product);

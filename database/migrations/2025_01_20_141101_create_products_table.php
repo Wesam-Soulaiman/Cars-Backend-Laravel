@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreignId('fuel_type_id')->nullable()->constrained('fuel_types')->nullOnDelete();
             $table->foreignId('gear_id')->nullable()->constrained('gears')->nullOnDelete();
             $table->foreignId('light_id')->nullable()->constrained('lights')->nullOnDelete();
+            $table->foreignId('deal_id')->nullable()->constrained('deals')->nullOnDelete();
             $table->integer('structure_id')->nullable();
             $table->string('main_photo');
             $table->decimal('price', 10, 2)->nullable();
@@ -34,7 +35,6 @@ return new class extends Migration
             $table->text('additional_features')->nullable();
             $table->integer('type');
             $table->boolean('sunroof')->default(ProductStatus::SUNROOF_NO);
-            $table->string('');
             $table->timestamps();
         });
     }

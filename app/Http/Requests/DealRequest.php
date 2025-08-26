@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class RentCategoryRequest extends FormRequest
+class DealRequest extends FormRequest
 {
     public function authorize(): bool
     {

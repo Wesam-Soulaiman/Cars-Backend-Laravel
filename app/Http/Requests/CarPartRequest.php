@@ -25,7 +25,6 @@ class CarPartRequest extends FormRequest
             return [
                 'category_id' => 'nullable|integer|exists:car_part_categories,id',
                 'model_id' => 'nullable|integer|exists:models,id',
-                'store_id' => 'nullable|integer|exists:stores,id',
                 'price' => 'nullable|numeric|min:0',
                 'creation_country' => 'nullable|string|max:255',
             ];
@@ -34,7 +33,6 @@ class CarPartRequest extends FormRequest
         return [
             'category_id' => 'required|integer|exists:car_part_categories,id',
             'model_id' => 'required|integer|exists:models,id',
-            'store_id' => 'required|integer|exists:stores,id',
             'price' => 'required|numeric|min:0',
             'creation_country' => 'required|string|max:255',
         ];

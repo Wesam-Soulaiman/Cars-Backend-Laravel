@@ -12,7 +12,9 @@ use App\Http\Resources\ProductResource;
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
 use App\Models\ProductFeatures;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductRepository extends BaseRepositoryImplementation implements ProductInterface
 {
@@ -29,36 +31,58 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
 
     public function addProduct($data)
     {
-        $product = $this->create($data);
-        if (! empty($data['features'])) {
-            $features = [];
-            foreach ($data['features'] as $featureName) {
-                $features[] = [
-                    'feature_id' => $featureName,
-                    'product_id' => $product->id,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];
+        $store = Auth::guard('store')->user();
+
+        return DB::transaction(function () use ($data, $store) {
+            // Create the product
+            $productData = $data;
+            $productData['store_id'] = $store->id;
+            $product = $this->create($productData);
+
+            // Handle features
+            if (!empty($data['features'])) {
+                $features = [];
+                foreach ($data['features'] as $featureName) {
+                    $features[] = [
+                        'feature_id' => $featureName,
+                        'product_id' => $product->id,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }
+                ProductFeatures::insert($features);
             }
 
-            ProductFeatures::insert($features);
-        }
+            // Handle photos
+            if (!empty($data['photos'])) {
+                $this->productPhotosRepository->addProductPhotos($product->id, $data['photos']);
+            }
 
-        if (! empty($data['photos'])) {
-            $this->productPhotosRepository->addProductPhotos($product->id, $data['photos']);
+            // Decrement remaining_count_product in the active order
+            $activeOrder = \App\Models\Order::where('store_id', $store->id)
+                ->where('active', true)
+                ->where(function ($query) {
+                    $query->whereNull('end_time')
+                        ->orWhere('end_time', '>=', Carbon::now());
+                })
+                ->first();
 
-        }
+            if ($activeOrder && $activeOrder->remaining_count_product !== null) {
+                $activeOrder->decrement('remaining_count_product');
+            }
 
-        return ApiResponseHelper::sendResponse(new Result($product), ApiResponseCodes::CREATED);
+            return ApiResponseHelper::sendResponse(new Result($product), ApiResponseCodes::CREATED);
+        });
     }
 
     public function updateProduct(Product $product, $data)
     {
+
         if (isset($data['main_photo']) && $data['main_photo']) {
             deleteImage($product->main_photo);
         }
         ProductFeatures::where('product_id', $product->id)->delete();
-        if (! empty($data['features'])) {
+        if (!empty($data['features'])) {
             $features = [];
             foreach ($data['features'] as $featureName) {
                 $features[] = [
@@ -68,18 +92,15 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
                     'updated_at' => now(),
                 ];
             }
-
             ProductFeatures::insert($features);
         }
 
         $newProduct = $this->updateByIdWithNullableValues($product->id, $data);
-        if (! empty($data['photos'])) {
+        if (!empty($data['photos'])) {
             $this->productPhotosRepository->updateProductPhotos($product->id, $data['photos']);
-
         }
 
         return ApiResponseHelper::sendResponse(new Result($newProduct));
-
     }
 
     public function deleteProduct(Product $product)
@@ -88,7 +109,7 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
         $this->deleteById($product->id);
         deleteImage($product->main_photo);
 
-        return ApiResponseHelper::sendMessageResponse('delete product  successfully');
+        return ApiResponseHelper::sendMessageResponse('delete product successfully');
     }
 
     public function showProduct($id)
@@ -120,51 +141,49 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
             'productDetail' => $ProductDetail,
             'checkPrice' => $checkPrice,
             'ProductsSimilarPrice' => $ProductsSimilarPrice,
-
         ];
 
         return ApiResponseHelper::sendResponse(new Result($data, 'get details successfully'));
-
     }
 
     public function indexProduct(ProductFilter $filters)
     {
         $authStore = Auth::guard('store')->check();
         $this->with = ['brand', 'model'];
-        if (! is_null($filters->getMaxPrice())) {
+        if (!is_null($filters->getMaxPrice())) {
             $this->scopes['filterMaxPrice'] = [$filters->getMaxPrice()];
         }
-        if (! is_null($filters->getMinPrice())) {
+        if (!is_null($filters->getMinPrice())) {
             $this->scopes['filterMinPrice'] = [$filters->getMinPrice()];
         }
 
-        if (! is_null($filters->getBrandId())) {
+        if (!is_null($filters->getBrandId())) {
             $this->where('brand_id', $filters->getBrandId());
         }
-        if (! is_null($filters->getModelId())) {
+        if (!is_null($filters->getModelId())) {
             $this->where('model_id', $filters->getModelId());
         }
-        if (! is_null($filters->getId())) {
+        if (!is_null($filters->getId())) {
             $this->where('id', $filters->getId());
         }
-        if (! is_null($filters->getStructureId())) {
+        if (!is_null($filters->getStructureId())) {
             $this->where('structure_id', $filters->getStructureId());
         }
-        if (! is_null($filters->getFuelType())) {
+        if (!is_null($filters->getFuelType())) {
             $this->where('fuel_type', $filters->getFuelType());
         }
-        if (! is_null($filters->getStoreId()) && ! $authStore) {
+        if (!is_null($filters->getStoreId()) && !$authStore) {
             $this->where('products.store_id', $filters->getStoreId());
         }
 
-        if (! is_null($filters->getMinYear())) {
+        if (!is_null($filters->getMinYear())) {
             $this->where('year_of_construction', $filters->getMinYear(), '>=');
         }
 
-        if (! is_null($filters->getMaxYear())) {
+        if (!is_null($filters->getMaxYear())) {
             $this->where('year_of_construction', $filters->getMaxYear(), '<=');
         }
-        if (! is_null($filters->getType())) {
+        if (!is_null($filters->getType())) {
             $this->where('type', $filters->getType());
         }
         if ($authStore) {
@@ -185,47 +204,46 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
 
     public function SearchProducts(ProductFilter $filters)
     {
-
         $this->scopes = ['getProductAvailable' => []];
         $this->with = ['activeOffer', 'store'];
-        if (! is_null($filters->getMaxPrice())) {
+        if (!is_null($filters->getMaxPrice())) {
             $this->scopes['filterMaxPrice'] = [$filters->getMaxPrice()];
         }
-        if (! is_null($filters->getMinPrice())) {
+        if (!is_null($filters->getMinPrice())) {
             $this->scopes['filterMinPrice'] = [$filters->getMinPrice()];
         }
 
-        if (! is_null($filters->getBrandId())) {
+        if (!is_null($filters->getBrandId())) {
             $this->where('brand_id', $filters->getBrandId());
         }
-        if (! is_null($filters->getStructureId())) {
+        if (!is_null($filters->getStructureId())) {
             $this->where('structure_id', $filters->getStructureId());
         }
-        if (! is_null($filters->getFuelType())) {
+        if (!is_null($filters->getFuelType())) {
             $this->where('fuel_type', $filters->getFuelType());
         }
-        if (! is_null($filters->getStoreId())) {
+        if (!is_null($filters->getStoreId())) {
             $this->where('products.store_id', $filters->getStoreId());
         }
 
-        if (! is_null($filters->getModelId())) {
+        if (!is_null($filters->getModelId())) {
             $this->where('model_id', $filters->getModelId());
         }
-        if (! is_null($filters->getLights())) { // Added for lights
-            $this->where('lights', $filters->getLights());
+        if (!is_null($filters->getLights())) {
+            $this->where('light_id', $filters->getLights());
         }
-        if (! is_null($filters->getMinYear())) {
+        if (!is_null($filters->getMinYear())) {
             $this->where('year_of_construction', $filters->getMinYear(), '>=');
         }
 
-        if (! is_null($filters->getMaxYear())) {
+        if (!is_null($filters->getMaxYear())) {
             $this->where('year_of_construction', $filters->getMaxYear(), '<=');
         }
-        if (! is_null($filters->getType())) {
+        if (!is_null($filters->getType())) {
             $this->where('type', $filters->getType());
         }
-        if (! is_null($filters->getOrder()) && ! is_null($filters->getOrderBy())) {
-            $this->orderBy($filters->orderBy, $filters->order);
+        if (!is_null($filters->getOrder()) && !is_null($filters->getOrderBy())) {
+            $this->orderBy($filters->getOrderBy(), $filters->getOrder());
         }
         $products = $this->paginate($filters->per_page, ['*'], 'page', $filters->page);
         $pagination = [
@@ -237,7 +255,6 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
         $products = ProductResource::collection($products->items());
 
         return ApiResponseHelper::sendResponseWithPagination(new Result($products, 'get products successfully', $pagination));
-
     }
 
     public function GetOneProduct(Product $product)
@@ -248,7 +265,6 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
         $ProductDetail = ProductDetailsResource::make($showProduct);
 
         return ApiResponseHelper::sendResponse(new Result($ProductDetail, 'get details successfully'));
-
     }
 
     public function productSpecial()
@@ -257,7 +273,6 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
         $products = $this->limit(6)->get();
 
         return ProductResource::collection($products);
-
     }
 
     public function productCountAvailable()
@@ -278,6 +293,10 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
 
     public function getMonthlyProduct()
     {
-        return Product::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as store_count')->groupBy('month')->orderBy('month')->get();
+        return Product::selectRaw('DATE_FORMAT(created_at, "%Y-%m") as month, COUNT(*) as store_count')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
     }
+
 }

@@ -2,7 +2,7 @@
 
 namespace App\Filter;
 
-class RentCategoryFilter extends BaseFilter
+class DealFilter extends BaseFilter
 {
     public function __construct()
     {
