@@ -27,6 +27,7 @@ class CarPartRequest extends FormRequest
                 'model_id' => 'nullable|integer|exists:models,id',
                 'price' => 'nullable|numeric|min:0',
                 'creation_country' => 'nullable|string|max:255',
+                'main_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
             ];
         }
 
@@ -35,6 +36,7 @@ class CarPartRequest extends FormRequest
             'model_id' => 'required|integer|exists:models,id',
             'price' => 'required|numeric|min:0',
             'creation_country' => 'required|string|max:255',
+            'main_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
         ];
     }
 

@@ -2,6 +2,8 @@
 
 use App\Actions\Admin\FAQ\FAQIndexAction;
 use App\Actions\Admin\Store\GetFilterStoreAction;
+use App\Actions\Website\CarParts\CarPartSearchAction;
+use App\Actions\Website\CarParts\CarPartShowAction;
 use App\Actions\Website\HomePageAction;
 use App\Actions\Website\Offer\OfferIndexAction;
 use App\Actions\Website\SearchProduct\GetFiltersAction;
@@ -32,6 +34,13 @@ Route::group([], function () {
     Route::get('products/{id}', ProductShowAction::class);
 
 });
+
+Route::group([], function () {
+    Route::get('/searchCarPart', CarPartSearchAction::class);
+    Route::get('carParts/{id}', CarPartShowAction::class);
+
+});
+
 //  stores
 Route::group([], function () {
     Route::get('/getFilterStore', GetFilterStoreAction::class);

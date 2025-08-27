@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('store_id')->constrained('stores')->cascadeOnDelete();
             $table->decimal('price', 10, 2);
             $table->string('creation_country');
+            $table->string('main_photo');
             $table->timestamps();
         });
     }

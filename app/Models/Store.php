@@ -71,16 +71,31 @@ class Store extends Authenticatable
 
     public function scopeWithStoreTopResult($query)
     {
-        return $query->leftJoin('orders', function ($join) {
+        $random = Cache::remember('random_stores', 1800, function () {
+            return rand(1, 100);
+        });
+
+        return $query->join('orders', function ($join) {
             $join->on('orders.store_id', '=', 'stores.id')
-                ->whereDate('orders.start_time', '<=', now())
-                ->whereDate('orders.end_time', '>=', now())
-                ->whereIn('orders.category_service_id', [ServiceCategoryStatus::TOP_RESULT]);
-        })->select('stores.*', DB::raw('
-                 CASE WHEN orders.store_id IS NOT NULL AND orders.category_service_id = "'.ServiceCategoryStatus::TOP_RESULT.'" THEN 1
-                 ELSE 0
-            END as is_active_store
-        '))->whereNotNull('orders.store_id')->inRandomOrder()
+                ->where('orders.start_time', '<=', now())
+                ->where(function ($query) {
+                    $query->whereNull('orders.end_time')
+                        ->orWhere('orders.end_time', '>=', now());
+                })
+                ->where('orders.active', '=', 1);
+        })
+            ->join('services', function ($join) {
+                $join->on('orders.service_id', '=', 'services.id')
+                    ->where('services.has_top_result', '=', 1);
+            })
+            ->select(
+                'stores.*',
+                DB::raw('MAX(CASE WHEN services.has_top_result = 1 THEN 1 ELSE 0 END) as is_active_store')
+            )
+            ->whereNotNull('orders.store_id')
+            ->groupBy('stores.id')
+            ->orderByDesc('is_active_store')
+            ->orderByRaw('stores.id % ?', [$random])
             ->limit(6);
     }
 }

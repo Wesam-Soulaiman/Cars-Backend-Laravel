@@ -43,7 +43,7 @@ class ProductRequest extends FormRequest
                 'fuel_type_id' => 'nullable|exists:fuel_types,id',
                 'gear_id' => 'nullable|exists:gears,id',
                 'light_id' => 'nullable|exists:lights,id',
-                'main_photo' => 'nullable|string',
+                'main_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
                 'price' => 'nullable|numeric|min:0',
                 'mileage' => 'nullable|integer|min:0',
                 'year_of_construction' => 'nullable|integer|min:1900|max:'.(date('Y') + 1),

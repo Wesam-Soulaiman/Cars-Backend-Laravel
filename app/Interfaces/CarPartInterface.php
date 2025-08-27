@@ -21,4 +21,8 @@ interface CarPartInterface
 
     public function indexCarPart(CarPartFilter $filters);
 
+
+    public function SearchCarParts(CarPartFilter $filters);
+
+    public function getCarPartById($id);
 }

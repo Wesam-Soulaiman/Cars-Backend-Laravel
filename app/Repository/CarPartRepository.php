@@ -7,6 +7,7 @@ use App\ApiHelper\ApiResponseCodes;
 use App\ApiHelper\ApiResponseHelper;
 use App\ApiHelper\Result;
 use App\Filter\CarPartFilter;
+use App\Http\Resources\CarPartResource;
 use App\Interfaces\CarPartInterface;
 use App\Models\CarPart;
 use Carbon\Carbon;
@@ -55,6 +56,9 @@ class CarPartRepository extends BaseRepositoryImplementation implements CarPartI
 //        }
         $store = Auth::guard('store')->user();
         $data['store_id'] = $store->id;
+        if (isset($data['main_photo']) && $data['main_photo']) {
+            deleteImage($carPart->main_photo);
+        }
         $newCarPart = $this->updateById($carPart->id, $data);
         return ApiResponseHelper::sendResponse(new Result($newCarPart));
     }
@@ -70,6 +74,28 @@ class CarPartRepository extends BaseRepositoryImplementation implements CarPartI
         $showCarPart = $this->getById($carPart->id, ['id', 'category_id', 'model_id', 'store_id', 'price', 'creation_country']);
         return ApiResponseHelper::sendResponse(new Result($showCarPart));
     }
+
+
+    public function getCarPartById($id)
+    {
+        $carPart = CarPart::getCarPartAvailable()
+            ->with(['category', 'model', 'store'])
+            ->where('car_parts.id', $id)
+            ->first();
+//        return $carPart;
+
+        if (!$carPart) {
+            return ApiResponseHelper::sendResponse(
+                new Result([], 'Car part not found or not available.', 404),
+                404
+            );
+        }
+
+        return ApiResponseHelper::sendResponse(
+            new Result(new CarPartResource($carPart), 'Get car part details successfully')
+        );
+    }
+
 
     public function indexCarPart(CarPartFilter $filters)
     {
@@ -94,5 +120,59 @@ class CarPartRepository extends BaseRepositoryImplementation implements CarPartI
         ];
 
         return ApiResponseHelper::sendResponseWithPagination(new Result($carParts->items(), 'get car parts successfully', $pagination));
+    }
+
+
+
+    public function SearchCarParts(CarPartFilter $filters)
+    {
+
+        $query = CarPart::getCarPartAvailable()
+            ->with(['category', 'model', 'store']);
+
+        // Apply filters
+        if (!is_null($filters->getId())) {
+            $query->where('id', $filters->getId());
+        }
+        if (!is_null($filters->getCategoryId())) {
+            $query->where('category_id', $filters->getCategoryId());
+        }
+        if (!is_null($filters->getModelId())) {
+            $query->where('model_id', $filters->getModelId());
+        }
+        if (!is_null($filters->getStoreId())) {
+            $query->where('car_parts.store_id', $filters->getStoreId());
+        }
+        if (!is_null($filters->getMinPrice())) {
+            $query->where('price', '>=', $filters->getMinPrice());
+        }
+        if (!is_null($filters->getMaxPrice())) {
+            $query->where('price', '<=', $filters->getMaxPrice());
+        }
+        if (!is_null($filters->getCreationCountry())) {
+            $query->where('creation_country', 'like', '%' . $filters->getCreationCountry() . '%');
+        }
+
+        // Apply sorting
+        if (!is_null($filters->getOrderBy()) && !is_null($filters->getOrder())) {
+            $query->orderBy($filters->getOrderBy(), $filters->getOrder());
+        }
+
+        // Paginate results
+        $startTime = microtime(true);
+        $carParts = $query->paginate($filters->per_page, ['*'], 'page', $filters->page);
+
+        $pagination = [
+            'total_page' => $carParts->total(),
+            'current_page' => $carParts->currentPage(),
+            'last_page' => $carParts->lastPage(),
+            'per_page' => $carParts->perPage(),
+        ];
+
+        $carParts = CarPartResource::collection($carParts->items());
+
+        return ApiResponseHelper::sendResponseWithPagination(
+            new Result($carParts, 'Get car parts successfully', $pagination)
+        );
     }
 }

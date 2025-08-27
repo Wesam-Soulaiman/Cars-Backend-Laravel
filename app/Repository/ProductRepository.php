@@ -117,6 +117,8 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
         $percentagePrice = 1000;
         $this->with(['brand', 'model', 'store']);
         $product = $this->getById($id);
+//        return $product;
+
         $this->scopes = ['getProductAvailable' => []];
         $ProductPrice = $this->where('model_id', $product->model_id)
             ->where('brand_id', $product->brand_id)
@@ -204,57 +206,95 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
 
     public function SearchProducts(ProductFilter $filters)
     {
-        $this->scopes = ['getProductAvailable' => []];
-        $this->with = ['activeOffer', 'store'];
-        if (!is_null($filters->getMaxPrice())) {
-            $this->scopes['filterMaxPrice'] = [$filters->getMaxPrice()];
-        }
+
+        $query = Product::getProductAvailable()
+            ->with(['brand', 'model', 'store', 'color', 'fuel_type', 'gear', 'light', 'deal', 'structure', 'photos', 'activeOffer']);
+
+
+        // Apply price filters
         if (!is_null($filters->getMinPrice())) {
-            $this->scopes['filterMinPrice'] = [$filters->getMinPrice()];
+            $query->having('final_price', '>=', $filters->getMinPrice());
+        }
+        if (!is_null($filters->getMaxPrice())) {
+            $query->having('final_price', '<=', $filters->getMaxPrice());
         }
 
+        // Apply schema-based filters
         if (!is_null($filters->getBrandId())) {
-            $this->where('brand_id', $filters->getBrandId());
+            $query->where('brand_id', $filters->getBrandId());
         }
         if (!is_null($filters->getStructureId())) {
-            $this->where('structure_id', $filters->getStructureId());
+            $query->where('structure_id', $filters->getStructureId());
         }
-        if (!is_null($filters->getFuelType())) {
-            $this->where('fuel_type', $filters->getFuelType());
+        if (!is_null($filters->getFuelTypeId())) {
+            $query->where('fuel_type_id', $filters->getFuelTypeId());
         }
         if (!is_null($filters->getStoreId())) {
-            $this->where('products.store_id', $filters->getStoreId());
+            $query->where('products.store_id', $filters->getStoreId());
         }
-
         if (!is_null($filters->getModelId())) {
-            $this->where('model_id', $filters->getModelId());
+            $query->where('model_id', $filters->getModelId());
         }
-        if (!is_null($filters->getLights())) {
-            $this->where('light_id', $filters->getLights());
+        if (!is_null($filters->getLightId())) {
+            $query->where('light_id', $filters->getLightId());
         }
-        if (!is_null($filters->getMinYear())) {
-            $this->where('year_of_construction', $filters->getMinYear(), '>=');
+        if (!is_null($filters->getColorId())) {
+            $query->where('color_id', $filters->getColorId());
         }
-
-        if (!is_null($filters->getMaxYear())) {
-            $this->where('year_of_construction', $filters->getMaxYear(), '<=');
+        if (!is_null($filters->getDealId())) {
+            $query->where('deal_id', $filters->getDealId());
+        }
+        if (!is_null($filters->getCylinders())) {
+            $query->where('cylinders', $filters->getCylinders());
+        }
+        if (!is_null($filters->getCylinderCapacity())) {
+            $query->where('cylinder_capacity', $filters->getCylinderCapacity());
+        }
+        if (!is_null($filters->getDriveType())) {
+            $query->where('drive_type', $filters->getDriveType());
+        }
+        if (!is_null($filters->getNumberOfSeats())) {
+            $query->where('number_of_seats', $filters->getNumberOfSeats());
+        }
+        if (!is_null($filters->getSunroof())) {
+            $query->where('sunroof', $filters->getSunroof());
         }
         if (!is_null($filters->getType())) {
-            $this->where('type', $filters->getType());
+            $query->where('type', $filters->getType());
         }
+        if (!is_null($filters->getMinYear())) {
+            $query->where('year_of_construction', '>=', $filters->getMinYear());
+        }
+        if (!is_null($filters->getMaxYear())) {
+            $query->where('year_of_construction', '<=', $filters->getMaxYear());
+        }
+        if (!is_null($filters->getAdditionalFeatures())) {
+            $query->where('additional_features', 'like', '%' . $filters->getAdditionalFeatures() . '%');
+        }
+
+        // Apply sorting
         if (!is_null($filters->getOrder()) && !is_null($filters->getOrderBy())) {
-            $this->orderBy($filters->getOrderBy(), $filters->getOrder());
+            $query->orderBy($filters->getOrderBy(), $filters->getOrder());
         }
-        $products = $this->paginate($filters->per_page, ['*'], 'page', $filters->page);
+//        dd($query);
+
+        // Paginate results
+        $startTime = microtime(true);
+        $products = $query->paginate($filters->per_page, ['*'], 'page', $filters->page);
+
         $pagination = [
             'total_page' => $products->total(),
             'current_page' => $products->currentPage(),
             'last_page' => $products->lastPage(),
             'per_page' => $products->perPage(),
         ];
-        $products = ProductResource::collection($products->items());
 
-        return ApiResponseHelper::sendResponseWithPagination(new Result($products, 'get products successfully', $pagination));
+        $products = ProductResource::collection($products->items());
+//        return $products;
+
+        return ApiResponseHelper::sendResponseWithPagination(
+            new Result($products, 'Get products successfully', $pagination)
+        );
     }
 
     public function GetOneProduct(Product $product)

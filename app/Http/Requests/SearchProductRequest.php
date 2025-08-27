@@ -82,13 +82,13 @@ class SearchProductRequest extends FormRequest
             $filter->setStructureId($this->input('bodyType'));
         }
         if ($this->input('fuel_type') !== null) {
-            $filter->setFuelType($this->input('fuel_type'));
+            $filter->setFuelTypeId($this->input('fuel_type'));
         }
         if ($this->input('structure_id') !== null) { // Added for structure_id
             $filter->setStructureId($this->input('structure_id'));
         }
         if ($this->input('lights') !== null) { // Added for lights
-            $filter->setLights($this->input('lights'));
+            $filter->setLightId($this->input('lights'));
         }
         if ($this->input('MaxPrice') !== null) {
             $filter->setMaxPrice($this->input('MaxPrice'));

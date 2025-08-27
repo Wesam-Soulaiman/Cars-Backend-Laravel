@@ -70,7 +70,7 @@ class Product extends Model
         return $this->belongsTo(Color::class);
     }
 
-    public function fuelType()
+    public function fuel_type()
     {
         return $this->belongsTo(FuelType::class);
     }
@@ -106,14 +106,64 @@ class Product extends Model
             ->leftJoin('orders', function ($join) {
                 $join->on('orders.store_id', '=', 'products.store_id')
                     ->where('orders.start_time', '<=', now())
-                    ->where('orders.end_time', '>=', now())
-                    ->where('orders.active', '=', 1)
-                    ->whereIntegerInRaw('orders.category_service_id', [ServiceCategoryStatus::SUBSCRIPTION, ServiceCategoryStatus::TOP_RESULT]);
+                    ->where(function ($query) {
+                        $query->whereNull('orders.end_time')
+                            ->orWhere('orders.end_time', '>=', now());
+                    })
+                    ->where('orders.active', '=', 1);
+            })
+            ->join('services', function ($join) {
+                $join->on('orders.service_id', '=', 'services.id')
+                    ->where(function ($query) {
+                        $query->whereJsonContains('services.services', 'sell')
+                            ->orWhereJsonContains('services.services', 'rent');
+                    });
             })
             ->select(
                 'products.*',
                 DB::raw('COALESCE(offers.final_price, products.price) as final_price'),
-                DB::raw("MAX(CASE WHEN orders.store_id IS NOT NULL AND orders.category_service_id = '".ServiceCategoryStatus::TOP_RESULT."' THEN 1 ELSE 0 END) as is_active_store")
+                DB::raw("MAX(CASE WHEN services.has_top_result = 1 THEN 1 ELSE 0 END) as is_active_store")
+            )
+            ->whereNotNull('orders.store_id')
+            ->whereIntegerInRaw('services.category_service_id', [ServiceCategoryStatus::SUBSCRIPTION, ServiceCategoryStatus::TOP_RESULT])
+            ->groupBy('products.id')
+            ->orderByDesc('is_active_store')
+            ->orderByRaw('products.id % ?', [$random]);
+    }
+
+
+    public function scopeGetProductTopResult($query)
+    {
+        $random = Cache::remember('random_products_top', 1800, function () {
+            return rand(1, 100);
+        });
+
+        return $query->leftJoin('offers', function ($join) {
+            $join->on('products.id', '=', 'offers.product_id')
+                ->where('offers.start_time', '<=', now())
+                ->where('offers.end_time', '>=', now());
+        })
+            ->join('orders', function ($join) {
+                $join->on('orders.store_id', '=', 'products.store_id')
+                    ->where('orders.start_time', '<=', now())
+                    ->where(function ($query) {
+                        $query->whereNull('orders.end_time')
+                            ->orWhere('orders.end_time', '>=', now());
+                    })
+                    ->where('orders.active', '=', 1);
+            })
+            ->join('services', function ($join) {
+                $join->on('orders.service_id', '=', 'services.id')
+                    ->where('services.has_top_result', '=', 1)
+                    ->where(function ($query) {
+                        $query->whereJsonContains('services.services', 'sell')
+                            ->orWhereJsonContains('services.services', 'rent');
+                    });
+            })
+            ->select(
+                'products.*',
+                DB::raw('COALESCE(offers.final_price, products.price) as final_price'),
+                DB::raw('MAX(CASE WHEN services.has_top_result = 1 THEN 1 ELSE 0 END) as is_active_store')
             )
             ->whereNotNull('orders.store_id')
             ->groupBy('products.id')
@@ -121,45 +171,15 @@ class Product extends Model
             ->orderByRaw('products.id % ?', [$random]);
     }
 
-    public function scopeGetProductTopResult($query)
+    public function scopeFilterMinPrice($query, $minPrice)
     {
-        return $query->leftJoin('offers', function ($join) {
-            $join->on('products.id', '=', 'offers.product_id')
-                ->whereDate('offers.start_time', '<=', now())
-                ->whereDate('offers.end_time', '>=', now());
-        })
-            ->leftJoin('orders', function ($join) {
-                $join->on('orders.store_id', '=', 'products.store_id')
-                    ->whereDate('orders.start_time', '<=', now())
-                    ->whereDate('orders.end_time', '>=', now())
-                    ->whereIn('orders.category_service_id', [ServiceCategoryStatus::TOP_RESULT]);
-            })
-            ->select(
-                'products.*',
-                DB::raw('COALESCE(offers.final_price, products.price) as final_price'),
-                DB::raw('
-                CASE
-             WHEN orders.store_id IS NOT NULL AND orders.category_service_id = "'.ServiceCategoryStatus::TOP_RESULT.'" THEN 1
-                    ELSE 0
-                END as is_active_store
-            ')
-            )
-            ->whereNotNull('orders.store_id')->inRandomOrder();
+        return $query->having('final_price', '>=', $minPrice);
     }
 
     public function scopeFilterMaxPrice($query, $maxPrice)
     {
-        $query->having('final_price', '<=', $maxPrice);
-
+        return $query->having('final_price', '<=', $maxPrice);
     }
-
-    public function scopeFilterMinPrice($query, $minPrice)
-    {
-
-        $query->having('final_price', '>=', $minPrice);
-
-    }
-
     public function finalPrice(): Attribute
     {
         return Attribute::make(
