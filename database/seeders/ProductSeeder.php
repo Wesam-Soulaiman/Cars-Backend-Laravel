@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Product;
 use App\Statuses\ProductStatus;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -14,207 +15,103 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('products')->insert([
+        $products = [
             [
-                'brand_id' => 1,
-                'model_id' => 1,
-                'store_id' => 1,
-                'structure_id' => 1,
-                'main_photo' => 'bmw.jpg',
-                'price' => 24000.00,
-                'mileage' => 30,
+                'brand_id' => 1, // Assume Honda
+                'store_id' => 1, // Auto Store
+                'model_id' => 1, // Civic
+                'color_id' => 1, // Black
+                'fuel_type_id' => 1, // Petrol
+                'gear_id' => 2, // Automatic
+                'light_id' => 2, // LED
+                'deal_id' => 1, // sell
+                'structure_id' => 1, // Sedan
+                'main_photo' => 'https://example.com/photos/car1.jpg',
+                'price' => 25000.00,
+                'mileage' => 50000,
                 'year_of_construction' => 2020,
-                'register_year' => 2020,
-                'number_of_seats' => 5,
-                'drive_type' => ProductStatus::DRIVE_FRONT,
-                'fuel_type' => ProductStatus::FUEL_PETROL,
-                'cylinders' => 4,
-                'cylinder_capacity' => 2.0,
-                'additional_features' => 'Air Conditioning, Bluetooth, Navigation',
-                'gears' => 6, // Assuming manual = 6 gears
-                'type' => ProductStatus::TYPE_USED,
-                'seat_type' => ProductStatus::SEAT_CLOTH,
-                'sunroof' => ProductStatus::SUNROOF_NO,
-                'color' => 'red',
-                'lights' => 'LED',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'brand_id' => 1,
-                'model_id' => 2,
-                'store_id' => 1,
-                'structure_id' => 2,
-                'main_photo' => 'bmw.jpg',
-                'price' => 26500.00,
-                'mileage' => 29,
-                'year_of_construction' => 2021,
                 'register_year' => 2021,
                 'number_of_seats' => 5,
-                'drive_type' => ProductStatus::DRIVE_FRONT,
-                'fuel_type' => ProductStatus::FUEL_PETROL,
+                'drive_type' => 1, // FWD
                 'cylinders' => 4,
-                'cylinder_capacity' => 1.5,
-                'additional_features' => 'Leather Seats, Sunroof, Premium Audio',
-                'gears' => 8, // Assuming automatic = 8 gears
-                'type' => ProductStatus::TYPE_NEW,
-                'seat_type' => ProductStatus::SEAT_LEATHER,
-                'sunroof' => ProductStatus::SUNROOF_YES,
-                'color' => 'blue',
-                'lights' => 'Halogen',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'brand_id' => 2,
-                'model_id' => 3,
-                'store_id' => 1,
-                'structure_id' => 3,
-                'main_photo' => 'bmw.jpg',
-                'price' => 39990.00,
-                'mileage' => 130,
-                'year_of_construction' => 2021,
-                'register_year' => 2021,
-                'number_of_seats' => 5,
-                'drive_type' => ProductStatus::DRIVE_REAR,
-                'fuel_type' => ProductStatus::FUEL_PETROL,
-                'cylinders' => 2,
                 'cylinder_capacity' => 2.0,
-                'additional_features' => 'Autopilot, Glass Roof, Premium Interior',
-                'gears' => 1, // Electric vehicles often have single gear
-                'type' => ProductStatus::TYPE_NEW,
-                'seat_type' => ProductStatus::SEAT_LEATHER,
+                'additional_features' => 'Navigation, Bluetooth',
+                'type' => 1, // Standard
                 'sunroof' => ProductStatus::SUNROOF_YES,
-                'color' => 'white',
-                'lights' => 'LED',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
             ],
             [
-                'brand_id' => 3,
-                'model_id' => 4,
-                'store_id' => 1,
-                'structure_id' => 4,
-                'main_photo' => 'bmw.jpg',
-                'price' => 30000.00,
-                'mileage' => 28,
+                'brand_id' => 2, // Assume Toyota
+                'store_id' => 2, // Elite Auto
+                'model_id' => 2, // Corolla
+                'color_id' => 2, // White
+                'fuel_type_id' => 3, // Hybrid
+                'gear_id' => 2, // Automatic
+                'light_id' => 1, // Halogen
+                'deal_id' => 2, // daily rent
+                'structure_id' => 1, // Sedan
+                'main_photo' => 'https://example.com/photos/car2.jpg',
+                'price' => 100.00, // Daily rental price
+                'mileage' => 30000,
                 'year_of_construction' => 2022,
                 'register_year' => 2022,
                 'number_of_seats' => 5,
-                'drive_type' => ProductStatus::DRIVE_FRONT,
-                'fuel_type' => ProductStatus::FUEL_PETROL,
+                'drive_type' => 1, // FWD
                 'cylinders' => 4,
-                'cylinder_capacity' => 2.5,
-                'additional_features' => 'JBL Audio, Dual Zone Climate Control',
-                'gears' => 8,
-                'type' => ProductStatus::TYPE_NEW,
-                'seat_type' => ProductStatus::SEAT_LEATHER,
-                'sunroof' => ProductStatus::SUNROOF_YES,
-                'color' => 'black',
-                'lights' => 'Halogen',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                'cylinder_capacity' => 1.8,
+                'additional_features' => 'Backup Camera, Keyless Entry',
+                'type' => 2, // Rental
+                'sunroof' => ProductStatus::SUNROOF_NO,
             ],
             [
-                'brand_id' => 4,
-                'model_id' => 5,
-                'store_id' => 1,
-                'structure_id' => 5,
-                'main_photo' => 'bmw.jpg',
-                'price' => 28000.00,
-                'mileage' => 27,
+                'brand_id' => 3, // Assume Ford
+                'store_id' => 3, // Parts Depot
+                'model_id' => 3, // Mustang
+                'color_id' => 4, // Red
+                'fuel_type_id' => 1, // Petrol
+                'gear_id' => 1, // Manual
+                'light_id' => 3, // Xenon
+                'deal_id' => 1, // sell
+                'structure_id' => 2, // Coupe
+                'main_photo' => 'https://example.com/photos/car3.jpg',
+                'price' => 45000.00,
+                'mileage' => 20000,
                 'year_of_construction' => 2021,
                 'register_year' => 2021,
-                'number_of_seats' => 5,
-                'drive_type' => ProductStatus::DRIVE_FRONT,
-                'fuel_type' => ProductStatus::FUEL_PETROL,
-                'cylinders' => 4,
-                'cylinder_capacity' => 2.5,
-                'additional_features' => 'Keyless Entry, Rear View Camera',
-                'gears' => 8,
-                'type' => ProductStatus::TYPE_NEW,
-                'seat_type' => ProductStatus::SEAT_CLOTH,
-                'sunroof' => ProductStatus::SUNROOF_NO,
-                'color' => 'silver',
-                'lights' => 'LED',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'brand_id' => 5,
-                'model_id' => 6,
-                'store_id' => 1,
-                'structure_id' => 6,
-                'main_photo' => 'bmw.jpg',
-                'price' => 43000.00,
-                'mileage' => 20,
-                'year_of_construction' => 2022,
-                'register_year' => 2022,
                 'number_of_seats' => 4,
-                'drive_type' => ProductStatus::DRIVE_REAR,
-                'fuel_type' => ProductStatus::FUEL_PETROL,
+                'drive_type' => 2, // RWD
                 'cylinders' => 8,
                 'cylinder_capacity' => 5.0,
-                'additional_features' => 'Performance Package, Sport Exhaust',
-                'gears' => 6,
-                'type' => ProductStatus::TYPE_NEW,
-                'seat_type' => ProductStatus::SEAT_LEATHER,
-                'sunroof' => ProductStatus::SUNROOF_NO,
-                'color' => 'yellow',
-                'lights' => 'LED',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'brand_id' => 6,
-                'model_id' => 7,
-                'store_id' => 1,
-                'structure_id' => 7,
-                'main_photo' => 'bmw.jpg',
-                'price' => 48000.00,
-                'mileage' => 22,
-                'year_of_construction' => 2022,
-                'register_year' => 2022,
-                'number_of_seats' => 5,
-                'drive_type' => ProductStatus::DRIVE_REAR,
-                'fuel_type' => ProductStatus::FUEL_PETROL,
-                'cylinders' => 6,
-                'cylinder_capacity' => 3.6,
-                'additional_features' => 'Off-road Package, Tow Package',
-                'gears' => 6,
-                'type' => ProductStatus::TYPE_NEW,
-                'seat_type' => ProductStatus::SEAT_CLOTH,
+                'additional_features' => 'Sport Exhaust, Performance Package',
+                'type' => 1, // Standard
                 'sunroof' => ProductStatus::SUNROOF_YES,
-                'color' => 'green',
-                'lights' => 'Halogen',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
             ],
             [
-                'brand_id' => 7,
-                'model_id' => 8,
-                'store_id' => 1,
-                'structure_id' => 8,
-                'main_photo' => 'bmw.jpg',
-                'price' => 24500.00,
-                'mileage' => 29,
-                'year_of_construction' => 2021,
-                'register_year' => 2021,
+                'brand_id' => 1, // Honda
+                'store_id' => 1, // Auto Store
+                'model_id' => 1, // Civic
+                'color_id' => 5, // Blue
+                'fuel_type_id' => 2, // Diesel
+                'gear_id' => 1, // Manual
+                'light_id' => 2, // LED
+                'deal_id' => 3, // monthly rent
+                'structure_id' => 1, // Sedan
+                'main_photo' => 'https://example.com/photos/car4.jpg',
+                'price' => 2000.00, // Monthly rental price
+                'mileage' => 40000,
+                'year_of_construction' => 2019,
+                'register_year' => 2020,
                 'number_of_seats' => 5,
-                'drive_type' => ProductStatus::DRIVE_FRONT,
-                'fuel_type' => ProductStatus::FUEL_PETROL,
+                'drive_type' => 1, // FWD
                 'cylinders' => 4,
-                'cylinder_capacity' => 1.5,
-                'additional_features' => 'Apple CarPlay, Android Auto',
-                'gears' => 8,
-                'type' => ProductStatus::TYPE_NEW,
-                'seat_type' => ProductStatus::SEAT_CLOTH,
+                'cylinder_capacity' => 1.6,
+                'additional_features' => 'Cruise Control, Heated Seats',
+                'type' => 2, // Rental
                 'sunroof' => ProductStatus::SUNROOF_NO,
-                'color' => 'gray',
-                'lights' => 'LED',
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]
-        ]);
+            ],
+        ];
+
+        foreach ($products as $product) {
+            Product::create($product);
+        }
     }
 }

@@ -16,9 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([PermissionSeeder::class, CategoryServiceSeeder::class ,
-            BrandSeeder::class, StoreSeeder::class , ModelSeeder::class,
-            ServiceSeeder::class , ServiceTypeSeeder::class , ProductSeeder::class ]);
+
         // \App\Models\User::factory(10)->create();
         //        Store::factory(10)->create();
         //        Brand::factory(50)->create();
@@ -31,5 +29,31 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+
+        $this->call([
+            PermissionSeeder::class,
+            CategoryServiceSeeder::class,
+            ServiceSeeder::class,
+            BrandSeeder::class, // Assumed for products.brand_id
+            StructureSeeder::class,
+            StoreSeeder::class,
+            ModelSeeder::class,
+            ColorSeeder::class,
+            FuelTypeSeeder::class,
+            GearSeeder::class,
+            LightSeeder::class,
+            DealSeeder::class,
+            CarPartCategorySeeder::class,
+            CarPartSeeder::class,
+        ]);
+
+        // Call new seeders
+        $this->call([
+            ProductSeeder::class,
+            FeatureSeeder::class,
+            ProductFeatureSeeder::class,
+            OrderSeeder::class,
+        ]);
     }
 }
