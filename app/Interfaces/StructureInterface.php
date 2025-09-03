@@ -16,4 +16,6 @@ interface StructureInterface
     public function showStructure(Structure $structure);
 
     public function indexStructure(StructureFilter $filters);
+
+    public function allStructure();
 }

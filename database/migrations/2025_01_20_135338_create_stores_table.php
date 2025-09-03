@@ -23,11 +23,10 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
             $table->string('whatsapp_phone')->nullable();
-            $table->decimal('latitude', 10, 7)->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
             $table->boolean('active')->default(true);
             $table->boolean('premium')->default(false);
-            $table->enum('type', [StoreStatus::GALLERY, StoreStatus::OFFICE]);
+            $table->foreignId('store_type_id')->nullable()->constrained('store_types')->nullOnDelete();
+            $table->foreignId('governorate_id')->nullable()->constrained('governorates')->nullOnDelete();
             $table->timestamps();
         });
     }

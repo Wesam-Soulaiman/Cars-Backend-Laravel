@@ -28,11 +28,11 @@ class StoreSeeder extends Seeder
                         'photo' => 'stores/downtown.jpg',
                         'phone' => '+1234567890',
                         'whatsapp_phone' => '+1234567890',
-                        'latitude' => 40.712776,
-                        'longitude' => -74.005974,
                         'active' => true,
                         'premium' => true,
-                        'type' => StoreStatus::GALLERY,
+                        'store_type_id' => 2,
+                        'governorate_id'=>1,
+
                     ],
                     [
                         'name' => 'City Center Office',
@@ -44,11 +44,11 @@ class StoreSeeder extends Seeder
                         'photo' => 'stores/office1.jpg',
                         'phone' => '+0987654321',
                         'whatsapp_phone' => '+0987654321',
-                        'latitude' => 40.758899,
-                        'longitude' => -73.987319,
                         'active' => true,
                         'premium' => false,
-                        'type' => StoreStatus::OFFICE,
+                        'store_type_id' => 1,
+                        'governorate_id'=>2,
+
                     ],
                     [
                         'name' => 'Artisan Gallery',
@@ -60,11 +60,11 @@ class StoreSeeder extends Seeder
                         'photo' => 'stores/artisan.jpg',
                         'phone' => '+1122334455',
                         'whatsapp_phone' => '+1122334455',
-                        'latitude' => 40.750504,
-                        'longitude' => -73.993439,
                         'active' => true,
                         'premium' => true,
-                        'type' => StoreStatus::GALLERY,
+                        'store_type_id' => 3,
+                        'governorate_id'=>4,
+
                     ],
                     [
                         'name' => 'Business Solutions Office',
@@ -76,11 +76,11 @@ class StoreSeeder extends Seeder
                         'photo' => 'stores/business.jpg',
                         'phone' => '+5566778899',
                         'whatsapp_phone' => '+5566778899',
-                        'latitude' => 40.741444,
-                        'longitude' => -73.989953,
                         'active' => false, // Inactive store
                         'premium' => false,
-                        'type' => StoreStatus::OFFICE,
+                        'store_type_id' => 2,
+                        'governorate_id'=>4,
+
                     ],
                     [
                         'name' => 'Luxury Gallery',
@@ -92,11 +92,11 @@ class StoreSeeder extends Seeder
                         'photo' => 'stores/luxury.jpg',
                         'phone' => '+4455667788',
                         'whatsapp_phone' => '+4455667788',
-                        'latitude' => 40.768999,
-                        'longitude' => -73.981888,
                         'active' => true,
                         'premium' => true,
-                        'type' => StoreStatus::GALLERY,
+                        'store_type_id' => 1,
+                        'governorate_id'=>5,
+
                     ]
                 ];
 

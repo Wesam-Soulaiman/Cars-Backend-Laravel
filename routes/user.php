@@ -1,7 +1,11 @@
 <?php
 
 use App\Actions\Admin\FAQ\FAQIndexAction;
+use App\Actions\Admin\Governorate\GetGovernorateAction;
+use App\Actions\Admin\LegalDocument\LegalDocumentDownloadAction;
+use App\Actions\Admin\LegalDocument\LegalDocumentDownloadAllAction;
 use App\Actions\Admin\Store\GetFilterStoreAction;
+use App\Actions\Admin\StoreType\GetStoreTypeAction;
 use App\Actions\Website\CarParts\CarPartSearchAction;
 use App\Actions\Website\CarParts\CarPartShowAction;
 use App\Actions\Website\HomePageAction;
@@ -38,7 +42,6 @@ Route::group([], function () {
 Route::group([], function () {
     Route::get('/searchCarPart', CarPartSearchAction::class);
     Route::get('carParts/{id}', CarPartShowAction::class);
-
 });
 
 //  stores
@@ -46,8 +49,16 @@ Route::group([], function () {
     Route::get('/getFilterStore', GetFilterStoreAction::class);
     Route::get('/searchStores', StoreSearchAction::class);
     Route::get('store/{store:id}', StoreShowAction::class);
-
 });
+
+//  stores
+Route::group([], function () {
+    Route::get('/getGovernorate', GetGovernorateAction::class);
+    Route::get('/getStoreType', GetStoreTypeAction::class);
+    Route::get('/getLegalDocuments', LegalDocumentDownloadAllAction::class);
+    Route::get('/legal-documents/{legalDocument}/download', [LegalDocumentDownloadAction::class, '__invoke'])->name('legal-documents.download');
+});
+
 // offer
 Route::group([], function () {
     Route::get('/offer', OfferIndexAction::class);

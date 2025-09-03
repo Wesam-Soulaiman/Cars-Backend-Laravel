@@ -35,9 +35,9 @@ class ProductSeeder extends Seeder
                 'drive_type' => 1, // FWD
                 'cylinders' => 4,
                 'cylinder_capacity' => 2.0,
-                'additional_features' => 'Navigation, Bluetooth',
-                'type' => 1, // Standard
+                'used' => 0, // Standard
                 'sunroof' => ProductStatus::SUNROOF_YES,
+                'creation_country'=>'korea'
             ],
             [
                 'brand_id' => 2, // Assume Toyota
@@ -58,9 +58,9 @@ class ProductSeeder extends Seeder
                 'drive_type' => 1, // FWD
                 'cylinders' => 4,
                 'cylinder_capacity' => 1.8,
-                'additional_features' => 'Backup Camera, Keyless Entry',
-                'type' => 2, // Rental
+                'used' => 0, // Rental
                 'sunroof' => ProductStatus::SUNROOF_NO,
+                'creation_country'=>'russia'
             ],
             [
                 'brand_id' => 3, // Assume Ford
@@ -81,9 +81,9 @@ class ProductSeeder extends Seeder
                 'drive_type' => 2, // RWD
                 'cylinders' => 8,
                 'cylinder_capacity' => 5.0,
-                'additional_features' => 'Sport Exhaust, Performance Package',
-                'type' => 1, // Standard
+                'used' => 1, // Standard
                 'sunroof' => ProductStatus::SUNROOF_YES,
+                'creation_country'=>'korea'
             ],
             [
                 'brand_id' => 1, // Honda
@@ -104,9 +104,9 @@ class ProductSeeder extends Seeder
                 'drive_type' => 1, // FWD
                 'cylinders' => 4,
                 'cylinder_capacity' => 1.6,
-                'additional_features' => 'Cruise Control, Heated Seats',
-                'type' => 2, // Rental
+                'used' => 1, // Rental
                 'sunroof' => ProductStatus::SUNROOF_NO,
+                'creation_country'=>'korea'
             ],
         ];
 

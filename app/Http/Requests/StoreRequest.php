@@ -38,9 +38,9 @@ class StoreRequest extends FormRequest
                 'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
                 'phone' => 'nullable|string|max:20',
                 'whatsapp_phone' => 'nullable|string|max:20',
-                'latitude' => 'nullable|numeric|between:-90,90',
-                'longitude' => 'nullable|numeric|between:-180,180',
                 'type' => 'nullable|in:'.$validTypes,
+                'governorate_id'=>'nullable|integer|exists:governorates,id',
+                'store_type_id'=>'nullable|integer|exists:store_types,id',
             ];
 
         }
@@ -55,9 +55,9 @@ class StoreRequest extends FormRequest
             'photo' => 'image|mimes:jpg,jpeg,png|max:2048',
             'phone' => 'string|max:20',
             'whatsapp_phone' => 'string|max:20',
-            'latitude' => 'nullable|numeric|between:-90,90',
-            'longitude' => 'nullable|numeric|between:-180,180',
-            'type' => 'required|in:'.$validTypes,
+            'governorate_id'=>'required|integer|exists:governorates,id',
+            'store_type_id'=>'required|integer|exists:store_types,id',
+
         ];
     }
 

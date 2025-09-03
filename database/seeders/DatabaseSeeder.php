@@ -37,6 +37,8 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             BrandSeeder::class, // Assumed for products.brand_id
             StructureSeeder::class,
+            GovernorateSeeder::class,
+            StoreTypeSeeder::class,
             StoreSeeder::class,
             ModelSeeder::class,
             ColorSeeder::class,

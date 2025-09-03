@@ -130,6 +130,21 @@ class PermissionSeeder extends Seeder
             'structure.update',
             'structure.delete',
 
+            //Store Type
+            'store_type.view',
+            'store_type.create',
+            'store_type.update',
+            'store_type.delete',
+
+            //legal_document
+            'legal_document.view',
+            'legal_document.create',
+            'legal_document.update',
+            'legal_document.delete',
+
+
+            //governorates
+            'governorate.view',
 
             'rent_category.view',
             // Authentication / Dashboard

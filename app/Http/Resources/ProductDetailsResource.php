@@ -94,7 +94,7 @@ class ProductDetailsResource extends JsonResource
             'color' => $this->color,
             'cylinders' => $this->cylinders,
             'cylinder_capacity' => $this->cylinder_capacity,
-            'type' => $this->type,
+            'used' => $this->used,
             'sunroof' => boolval($this->sunroof),
             'additional_features' => $this->additional_features,
             'features' => FeatureResource::collection($this->features),

@@ -43,6 +43,17 @@ class Store extends Authenticatable
         return $this->hasMany(Product::class)->count();
     }
 
+    public function storeTypes()
+    {
+        return $this->belongsTo(StoreType::class, 'store_type_id', 'id');
+    }
+
+    public function governorates()
+    {
+        return $this->belongsTo(Governorate::class, 'governorate_id', 'id');
+    }
+
+
     public function scopeWithStoreAvailable($query)
     {
         $random = Cache::remember('random', 1800, function () {

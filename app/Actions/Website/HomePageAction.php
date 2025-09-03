@@ -8,10 +8,11 @@ use App\Repository\BannerRepository;
 use App\Repository\BrandRepository;
 use App\Repository\ProductRepository;
 use App\Repository\StoreRepository;
+use App\Repository\StructureRepository;
 
 class HomePageAction
 {
-    public function __construct(protected BrandRepository $brandRepository, protected ProductRepository $productRepository, protected StoreRepository $storeRepository, protected BannerRepository $bannerRepository) {}
+    public function __construct(protected BrandRepository $brandRepository, protected ProductRepository $productRepository, protected StoreRepository $storeRepository, protected BannerRepository $bannerRepository ,protected StructureRepository $structureRepository) {}
 
     public function __invoke()
     {
@@ -20,12 +21,14 @@ class HomePageAction
         $productSpecial = $this->productRepository->productSpecial();
         $productCountAvailable = $this->productRepository->productCountAvailable();
         $banner = $this->bannerRepository->allBanner();
+        $structures = $this->structureRepository->allStructure();
         $data = [
             'banner' => $banner,
             'productCountAvailable' => $productCountAvailable,
             'brandsWithModels' => $brandsWithModels,
             'storeSpecial' => $storeSpecial,
             'productSpecial' => $productSpecial,
+            'structures' => $structures,
         ];
 
         return ApiResponseHelper::sendResponse(new Result($data, 'get data successfully'));

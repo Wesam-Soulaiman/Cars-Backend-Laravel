@@ -7,6 +7,7 @@ use App\ApiHelper\ApiResponseCodes;
 use App\ApiHelper\ApiResponseHelper;
 use App\ApiHelper\Result;
 use App\Filter\StructureFilter;
+use App\Http\Resources\StructureResource;
 use App\Interfaces\StructureInterface;
 use App\Models\Structure;
 
@@ -60,5 +61,14 @@ class StructureRepository extends BaseRepositoryImplementation implements Struct
         ];
 
         return ApiResponseHelper::sendResponseWithPagination(new Result($structures->items(), 'get structures successfully', $pagination));
+    }
+
+
+    public function allStructure()
+    {
+        $Structures = $this->all();
+
+        return StructureResource::collection($Structures);
+
     }
 }

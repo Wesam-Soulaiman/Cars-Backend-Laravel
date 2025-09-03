@@ -48,7 +48,7 @@ class ProductResource extends JsonResource
             'fuel_type' => $this->fuel_type,
             'year_of_construction' => $this->year_of_construction,
             'gear' => $this->gear,
-            'type' => $this->type,
+            'used' => $this->used,
         ];
     }
 }

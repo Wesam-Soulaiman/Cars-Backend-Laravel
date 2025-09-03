@@ -32,8 +32,9 @@ return new class extends Migration
             $table->integer('drive_type');
             $table->integer('cylinders');
             $table->decimal('cylinder_capacity', 10, 2);
-            $table->text('additional_features')->nullable();
-            $table->integer('type');
+//            $table->text('additional_features')->nullable();
+            $table->string('creation_country');
+            $table->boolean('used');
             $table->boolean('sunroof')->default(ProductStatus::SUNROOF_NO);
             $table->timestamps();
         });

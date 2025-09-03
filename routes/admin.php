@@ -53,6 +53,14 @@ use App\Actions\Admin\Gear\GearDestroyAction;
 use App\Actions\Admin\Gear\GearIndexAction;
 use App\Actions\Admin\Gear\GearShowAction;
 use App\Actions\Admin\Gear\GearUpdateAction;
+use App\Actions\Admin\Governorate\GovernorateIndexAction;
+use App\Actions\Admin\Governorate\GovernorateShowAction;
+use App\Actions\Admin\LegalDocument\LegalDocumentCreateAction;
+use App\Actions\Admin\LegalDocument\LegalDocumentDestroyAction;
+use App\Actions\Admin\LegalDocument\LegalDocumentDownloadAction;
+use App\Actions\Admin\LegalDocument\LegalDocumentIndexAction;
+use App\Actions\Admin\LegalDocument\LegalDocumentShowAction;
+use App\Actions\Admin\LegalDocument\LegalDocumentUpdateAction;
 use App\Actions\Admin\Light\LightCreateAction;
 use App\Actions\Admin\Light\LightDestroyAction;
 use App\Actions\Admin\Light\LightIndexAction;
@@ -99,6 +107,11 @@ use App\Actions\Admin\Store\StoreDestroyAction;
 use App\Actions\Admin\Store\StoreIndexAction;
 use App\Actions\Admin\Store\StoreShowAction;
 use App\Actions\Admin\Store\StoreUpdateAction;
+use App\Actions\Admin\StoreType\StoreTypeCreateAction;
+use App\Actions\Admin\StoreType\StoreTypeDestroyAction;
+use App\Actions\Admin\StoreType\StoreTypeIndexAction;
+use App\Actions\Admin\StoreType\StoreTypeShowAction;
+use App\Actions\Admin\StoreType\StoreTypeUpdateAction;
 use App\Actions\Admin\Structure\StructureCreateAction;
 use App\Actions\Admin\Structure\StructureDestroyAction;
 use App\Actions\Admin\Structure\StructureIndexAction;
@@ -229,6 +242,20 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{structure:id}', StructureDestroyAction::class)->middleware('permission:structure.delete');
     });
 
+    // Store Type
+    Route::prefix('store-types')->group(function () {
+        Route::get('/', StoreTypeIndexAction::class)->middleware('permission:store_type.view');
+        Route::get('/{storeType:id}', StoreTypeShowAction::class)->middleware('permission:store_type.view');
+        Route::post('/', StoreTypeCreateAction::class)->middleware('permission:store_type.create');
+        Route::post('/{storeType:id}', StoreTypeUpdateAction::class)->middleware('permission:store_type.update');
+        Route::delete('/{storeType:id}', StoreTypeDestroyAction::class)->middleware('permission:store_type.delete');
+    });
+
+    //Governorate
+    Route::prefix('governorates')->group(function () {
+        Route::get('/', GovernorateIndexAction::class)->middleware('permission:governorate.view');
+        Route::get('/{governorate:id}', GovernorateShowAction::class)->middleware('permission:governorate.view');
+    });
 
     // models
     Route::prefix('models')->group(function () {
@@ -238,6 +265,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/{model:id}', ModelUpdateAction::class)->middleware('permission:models.update');
         Route::delete('/{model:id}', ModelDestroyAction::class)->middleware('permission:models.delete');
     });
+    // Legal Document
+    Route::prefix('legal-documents')->group(function () {
+        Route::get('/', LegalDocumentIndexAction::class)->middleware('permission:legal_document.view');
+        Route::get('/{legalDocument:id}', LegalDocumentShowAction::class)->middleware('permission:legal_document.view');
+        Route::post('/', LegalDocumentCreateAction::class)->middleware('permission:legal_document.create');
+        Route::put('/{legalDocument:id}', LegalDocumentUpdateAction::class)->middleware('permission:legal_document.update');
+        Route::delete('/{legalDocument:id}', LegalDocumentDestroyAction::class)->middleware('permission:legal_document.delete');
+
+    });
+    Route::get('/legal-documents/{legalDocument}/download', [LegalDocumentDownloadAction::class, '__invoke'])->name('legal-documents.download');
     // products
     Route::prefix('products')->group(function () {
         Route::get('/', ProductIndexAction::class)->middleware('permission:products.view');

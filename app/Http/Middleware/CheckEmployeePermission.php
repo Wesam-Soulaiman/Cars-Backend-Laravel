@@ -36,6 +36,8 @@ class CheckEmployeePermission
                 'orders.view',
 
                 'structure.view',
+                'store_type.view',
+                'governorate.view',
                 'light.view',
                 'gear.view',
                 'fuel_type.view',
