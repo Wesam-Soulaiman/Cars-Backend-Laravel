@@ -40,7 +40,7 @@ class StructureRepository extends BaseRepositoryImplementation implements Struct
 
     public function showStructure(Structure $structure)
     {
-        $showStructure = $this->getById($structure->id, ['id', 'name', 'name_ar']);
+        $showStructure = $this->getById($structure->id, ['id', 'name', 'name_ar' ,$this->main_photo ? url($this->main_photo) : null ]);
         return ApiResponseHelper::sendResponse(new Result($showStructure));
     }
 
@@ -52,7 +52,7 @@ class StructureRepository extends BaseRepositoryImplementation implements Struct
         if (! is_null($filters->getNameAr())) {
             $this->where('name_ar', '%'.$filters->getNameAr().'%', 'like');
         }
-        $structures = $this->paginate($filters->per_page, ['id', 'name', 'name_ar'], 'page', $filters->page);
+        $structures = $this->paginate($filters->per_page, ['id', 'name', 'name_ar' , $this->main_photo ? url($this->main_photo) : null], 'page', $filters->page);
         $pagination = [
             'total' => $structures->total(),
             'current_page' => $structures->currentPage(),

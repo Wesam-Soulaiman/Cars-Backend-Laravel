@@ -25,12 +25,14 @@ class StructureRequest extends FormRequest
             return [
                 'name' => 'nullable|string|max:255|unique:structures,name,'.$structureId,
                 'name_ar' => 'nullable|string|max:255|unique:structures,name_ar,'.$structureId,
+                'main_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
             ];
         }
 
         return [
             'name' => 'required|string|max:255|unique:structures,name',
             'name_ar' => 'required|string|max:255|unique:structures,name_ar',
+            'main_photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:3072',
         ];
     }
 
