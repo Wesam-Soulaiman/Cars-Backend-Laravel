@@ -25,8 +25,21 @@ return new class extends Migration
             $table->string('whatsapp_phone')->nullable();
             $table->boolean('active')->default(true);
             $table->boolean('premium')->default(false);
-            $table->foreignId('store_type_id')->nullable()->constrained('store_types')->nullOnDelete();
-            $table->foreignId('governorate_id')->nullable()->constrained('governorates')->nullOnDelete();
+            $table->unsignedBigInteger('store_type_id');
+            $table->unsignedBigInteger('governorate_id');
+
+
+
+//            $table->foreignId('store_type_id')->references('id')
+//                ->on('store_types')->nullOnDelete();
+//
+//
+//            $table->foreignId('governorate_id')
+//                ->references('id')
+//                ->on('governorates')
+//                ->cascadeOnDelete();
+
+
             $table->timestamps();
         });
     }
