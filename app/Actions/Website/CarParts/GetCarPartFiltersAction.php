@@ -20,9 +20,9 @@ class GetCarPartFiltersAction
     public function __invoke()
     {
         // Fetch related model data
-        $categories = $this->categoryRepository->all(['id', 'name']);
-        $models = $this->modelRepository->all(['id', 'name', 'brand_id']);
-        $stores = $this->storeRepository->all(['id', 'name', 'name_ar']);
+        $categories = $this->categoryRepository->all();
+        $models = $this->modelRepository->all();
+        $stores = $this->storeRepository->all();
 
         // Fetch distinct creation countries
         $creationCountries = CarPart::distinct()->pluck('creation_country')->filter()->values();
