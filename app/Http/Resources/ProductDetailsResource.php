@@ -79,7 +79,7 @@ class ProductDetailsResource extends JsonResource
             'light' => $this->whenLoaded('light', fn () => $this->light),
             'deal' => $this->whenLoaded('deal', fn () => $this->deal),
             'structure_id' => $this->structure_id,
-            'main_photo' => $this->main_photo,
+            'main_photo' => $this->main_photo ? url($this->main_photo) : null,
             'price' => $this->price,
             'mileage' => $this->mileage,
             'year_of_construction' => $this->year_of_construction,
@@ -92,7 +92,9 @@ class ProductDetailsResource extends JsonResource
             'used' => $this->used,
             'sunroof' => $this->sunroof,
             'features' => $this->whenLoaded('features', fn () => $this->features),
-            'photos' => $this->whenLoaded('photos', fn () => $this->photos),
+//            'photos' => $this->whenLoaded('photos', fn () => $this->photos),
+            'photos' => $this->photos ? $this->photos->map(fn ($photo) => ['id' => $photo->id, 'photo' => url($photo->photo)])->all() : [],
+
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

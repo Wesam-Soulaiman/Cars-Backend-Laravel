@@ -45,7 +45,7 @@ class ProductResource extends JsonResource
             'light' => $this->whenLoaded('light', fn () => $this->light),
             'deal' => $this->whenLoaded('deal', fn () => $this->deal),
             'structure_id' => $this->structure_id,
-            'main_photo' => $this->main_photo,
+            'main_photo' => $this->main_photo ? url($this->main_photo) : null,
             'price' => $this->price,
             'mileage' => $this->mileage,
             'year_of_construction' => $this->year_of_construction,

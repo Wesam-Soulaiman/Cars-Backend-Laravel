@@ -14,6 +14,7 @@ use App\Repository\GearRepository;
 use App\Repository\LightRepository;
 use App\Repository\DealRepository;
 use App\Models\Product;
+use App\Repository\StructureRepository;
 use Illuminate\Support\Facades\DB;
 class GetFiltersAction
 {
@@ -36,7 +37,10 @@ class GetFiltersAction
         protected FuelTypeRepository $fuelTypeRepository,
         protected GearRepository $gearRepository,
         protected LightRepository $lightRepository,
-        protected DealRepository $dealRepository
+        protected DealRepository $dealRepository,
+        protected StructureRepository $structureRepository,
+
+
     ) {}
 
     public function __invoke()
@@ -46,12 +50,12 @@ class GetFiltersAction
         $stores = $this->storeRepository->all(['id', 'name', 'name_ar']);
         $colors = $this->colorRepository->all(['id', 'name']);
         $fuelTypes = $this->fuelTypeRepository->all(['id', 'name']);
-        $gears = $this->gearRepository->all(['id', 'name']);
-        $lights = $this->lightRepository->all(['id', 'name']);
-        $deals = $this->dealRepository->all(['id', 'name']);
+        $gears = $this->gearRepository->all(['id', 'name', 'name_ar']);
+        $lights = $this->lightRepository->all(['id', 'name', 'name_ar']);
+        $deals = $this->dealRepository->all(['id', 'name', 'name_ar']);
+        $structures = $this->structureRepository->all(['id', 'name', 'name_ar' ]);
 
         // Fetch distinct values for non-foreign key fields
-        $structureIds = Product::distinct()->pluck('structure_id')->filter()->values();
         $numberOfSeats = Product::distinct()->pluck('number_of_seats')->filter()->values();
         $driveTypes = Product::distinct()->pluck('drive_type')->filter()->values();
         $cylinders = Product::distinct()->pluck('cylinders')->filter()->values();
@@ -90,7 +94,7 @@ class GetFiltersAction
             'gears' => $gears,
             'lights' => $lights,
             'deals' => $deals,
-            'structureIds' => $structureIds,
+            'structures' => $structures,
             'numberOfSeats' => $numberOfSeats,
             'driveTypes' => $driveTypes,
             'cylinders' => $cylinders,
