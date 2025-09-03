@@ -8,6 +8,7 @@ use App\Actions\Admin\Store\GetFilterStoreAction;
 use App\Actions\Admin\StoreType\GetStoreTypeAction;
 use App\Actions\Website\CarParts\CarPartSearchAction;
 use App\Actions\Website\CarParts\CarPartShowAction;
+use App\Actions\Website\CarParts\GetCarPartFiltersAction;
 use App\Actions\Website\HomePageAction;
 use App\Actions\Website\Offer\OfferIndexAction;
 use App\Actions\Website\SearchProduct\GetFiltersAction;
@@ -34,7 +35,7 @@ Route::group([], function () {
 //  products
 Route::group([], function () {
     Route::get('/getFilter', GetFiltersAction::class);
-    Route::get('/searchProduct', ProductSearchAction::class);
+    Route::get('/searchProduct', \App\Actions\Admin\Products\ProductIndexAction::class);
     Route::get('products/{id}', ProductShowAction::class);
 
 });
@@ -42,6 +43,8 @@ Route::group([], function () {
 Route::group([], function () {
     Route::get('/searchCarPart', CarPartSearchAction::class);
     Route::get('carParts/{id}', CarPartShowAction::class);
+    Route::get('/getFilterCarPart', GetCarPartFiltersAction::class);
+
 });
 
 //  stores

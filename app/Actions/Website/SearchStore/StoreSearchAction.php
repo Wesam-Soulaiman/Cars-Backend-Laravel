@@ -9,8 +9,8 @@ class StoreSearchAction
 {
     public function __construct(protected StoreRepository $storeRepository) {}
 
-    public function __invoke(SearchStoreRequest $searchStoreRequest)
+    public function __invoke(SearchStoreRequest $request)
     {
-        return $this->storeRepository->searchStore($searchStoreRequest->toFilter());
+        return $this->storeRepository->indexStore($request->toFilter());
     }
 }

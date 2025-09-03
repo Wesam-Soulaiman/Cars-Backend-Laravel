@@ -25,24 +25,34 @@ class SearchProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'nullable|integer',
-            'name' => 'nullable|string|max:255',
-            'type' => 'nullable|numeric',
-            'brand_id' => 'nullable|exists:brands,id',
-            'model_id' => 'nullable|exists:models,id',
-            'store_id' => 'nullable|exists:stores,id',
-            'bodyType' => 'nullable|numeric',
-            'fuel_type' => 'nullable|numeric',
-            'structure_id' => 'nullable|integer', // Added for structure_id
-            'lights' => 'nullable|string|max:255', // Added for lights
-            'MaxPrice' => 'nullable|numeric|min:0',
-            'MinPrice' => 'nullable|numeric|min:0',
-            'minYear' => 'nullable',
-            'maxYear' => 'nullable',
-            'order' => 'required_with:sort|in:asc,desc',
-            'sort' => 'required_with:order|string|in:id,final_price,mileage,year',
-            'page' => 'nullable',
-            'per_page' => 'nullable',
+            'brand_id' => 'nullable|integer|exists:brands,id',
+            'store_id' => 'nullable|integer|exists:stores,id',
+            'model_id' => 'nullable|integer|exists:models,id',
+            'color_id' => 'nullable|integer|exists:colors,id',
+            'fuel_type_id' => 'nullable|integer|exists:fuel_types,id',
+            'gear_id' => 'nullable|integer|exists:gears,id',
+            'light_id' => 'nullable|integer|exists:lights,id',
+            'deal_id' => 'nullable|integer|exists:deals,id',
+            'structure_id' => 'nullable|integer',
+            'minPrice' => 'nullable|numeric|min:0',
+            'maxPrice' => 'nullable|numeric|min:0',
+            'mileage' => 'nullable|integer|min:0',
+            'minYear' => 'nullable|integer|min:1900|max:'.date('Y'),
+            'maxYear' => 'nullable|integer|min:1900|max:'.date('Y'),
+            'minRegisterYear' => 'nullable|integer|min:1900|max:'.date('Y'),
+            'maxRegisterYear' => 'nullable|integer|min:1900|max:'.date('Y'),
+            'number_of_seats' => 'nullable|integer|min:1',
+            'drive_type' => 'nullable|integer',
+            'cylinders' => 'nullable|integer|min:1',
+            'cylinder_capacity' => 'nullable|numeric|min:0',
+            'creation_country' => 'nullable|string|max:255',
+            'used' => 'nullable|boolean',
+            'sunroof' => 'nullable|boolean',
+            'type' => 'nullable|string',
+            'order' => 'nullable|string|in:asc,desc',
+            'orderBy' => 'nullable|string|in:id,price,year_of_construction,register_year,mileage',
+            'page' => 'nullable|integer|min:1',
+            'per_page' => 'nullable|integer|min:1',
         ];
     }
 
@@ -59,16 +69,7 @@ class SearchProductRequest extends FormRequest
 
     public function toFilter(): ProductFilter
     {
-        $filter = new ProductFilter;
-        if ($this->input('id') !== null) {
-            $filter->setId($this->input('id'));
-        }
-        if ($this->input('name') !== null) {
-            $filter->setName($this->input('name'));
-        }
-        if ($this->input('type') !== null) {
-            $filter->setType($this->input('type'));
-        }
+        $filter = new ProductFilter();
         if ($this->input('brand_id') !== null) {
             $filter->setBrandId($this->input('brand_id'));
         }
@@ -78,23 +79,32 @@ class SearchProductRequest extends FormRequest
         if ($this->input('model_id') !== null) {
             $filter->setModelId($this->input('model_id'));
         }
-        if ($this->input('bodyType') !== null) {
-            $filter->setStructureId($this->input('bodyType'));
+        if ($this->input('color_id') !== null) {
+            $filter->setColorId($this->input('color_id'));
         }
-        if ($this->input('fuel_type') !== null) {
-            $filter->setFuelTypeId($this->input('fuel_type'));
+        if ($this->input('fuel_type_id') !== null) {
+            $filter->setFuelTypeId($this->input('fuel_type_id'));
         }
-        if ($this->input('structure_id') !== null) { // Added for structure_id
+        if ($this->input('gear_id') !== null) {
+            $filter->setGearId($this->input('gear_id'));
+        }
+        if ($this->input('light_id') !== null) {
+            $filter->setLightId($this->input('light_id'));
+        }
+        if ($this->input('deal_id') !== null) {
+            $filter->setDealId($this->input('deal_id'));
+        }
+        if ($this->input('structure_id') !== null) {
             $filter->setStructureId($this->input('structure_id'));
         }
-        if ($this->input('lights') !== null) { // Added for lights
-            $filter->setLightId($this->input('lights'));
+        if ($this->input('minPrice') !== null) {
+            $filter->setMinPrice($this->input('minPrice'));
         }
-        if ($this->input('MaxPrice') !== null) {
-            $filter->setMaxPrice($this->input('MaxPrice'));
+        if ($this->input('maxPrice') !== null) {
+            $filter->setMaxPrice($this->input('maxPrice'));
         }
-        if ($this->input('MinPrice') !== null) {
-            $filter->setMinPrice($this->input('MinPrice'));
+        if ($this->input('mileage') !== null) {
+            $filter->setMileage($this->input('mileage'));
         }
         if ($this->input('minYear') !== null) {
             $filter->setMinYear($this->input('minYear'));
@@ -102,17 +112,47 @@ class SearchProductRequest extends FormRequest
         if ($this->input('maxYear') !== null) {
             $filter->setMaxYear($this->input('maxYear'));
         }
+        if ($this->input('minRegisterYear') !== null) {
+            $filter->setMinRegisterYear($this->input('minRegisterYear'));
+        }
+        if ($this->input('maxRegisterYear') !== null) {
+            $filter->setMaxRegisterYear($this->input('maxRegisterYear'));
+        }
+        if ($this->input('number_of_seats') !== null) {
+            $filter->setNumberOfSeats($this->input('number_of_seats'));
+        }
+        if ($this->input('drive_type') !== null) {
+            $filter->setDriveType($this->input('drive_type'));
+        }
+        if ($this->input('cylinders') !== null) {
+            $filter->setCylinders($this->input('cylinders'));
+        }
+        if ($this->input('cylinder_capacity') !== null) {
+            $filter->setCylinderCapacity($this->input('cylinder_capacity'));
+        }
+        if ($this->input('creation_country') !== null) {
+            $filter->setCreationCountry($this->input('creation_country'));
+        }
+        if ($this->input('used') !== null) {
+            $filter->setUsed($this->input('used'));
+        }
+        if ($this->input('sunroof') !== null) {
+            $filter->setSunroof($this->input('sunroof'));
+        }
+        if ($this->input('type') !== null) {
+            $filter->setType($this->input('type'));
+        }
+        if ($this->input('order') !== null) {
+            $filter->setOrder($this->input('order'));
+        }
+        if ($this->input('orderBy') !== null) {
+            $filter->setOrderBy($this->input('orderBy'));
+        }
         if ($this->input('page') !== null) {
             $filter->setPage($this->input('page'));
         }
         if ($this->input('per_page') !== null) {
             $filter->setPerPage($this->input('per_page'));
-        }
-        if ($this->input('order') !== null) {
-            $filter->setOrder($this->input('order'));
-        }
-        if ($this->input('sort') !== null) {
-            $filter->setOrderBy($this->input('sort'));
         }
 
         return $filter;

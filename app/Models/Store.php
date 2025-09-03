@@ -60,19 +60,26 @@ class Store extends Authenticatable
             return rand(1, 100);
         });
 
-        return $query->leftJoin('orders', function ($join) {
+        return $query->join('orders', function ($join) {
             $join->on('orders.store_id', '=', 'stores.id')
                 ->where('orders.start_time', '<=', now())
-                ->where('orders.end_time', '>=', now())
-                ->where('orders.active', '=', 1)
-                ->whereIntegerInRaw('orders.category_service_id', [
-                    ServiceCategoryStatus::TOP_RESULT,
-                    ServiceCategoryStatus::SUBSCRIPTION,
-                ]);
+                ->where(function ($query) {
+                    $query->whereNull('orders.end_time')
+                        ->orWhere('orders.end_time', '>=', now());
+                })
+                ->where('orders.active', '=', 1);
         })
+            ->join('services', function ($join) {
+                $join->on('orders.service_id', '=', 'services.id')
+                    ->where(function ($query) {
+                        $query->whereJsonContains('services.services', 'sell')
+                            ->orWhereJsonContains('services.services', 'rent')
+                            ->orWhereJsonContains('services.services', 'parts');
+                    });
+            })
             ->select(
                 'stores.*',
-                DB::raw("MAX(CASE WHEN orders.store_id IS NOT NULL AND orders.category_service_id = '".ServiceCategoryStatus::TOP_RESULT."' THEN 1 ELSE 0 END) as is_active_store")
+                DB::raw("MAX(CASE WHEN services.has_top_result = 1 THEN 1 ELSE 0 END) as is_active_store")
             )
             ->whereNotNull('orders.store_id')
             ->groupBy('stores.id')

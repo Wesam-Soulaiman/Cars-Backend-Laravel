@@ -148,42 +148,131 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
         return ApiResponseHelper::sendResponse(new Result($data, 'get details successfully'));
     }
 
+//    public function indexProduct(ProductFilter $filters)
+//    {
+//        $authStore = Auth::guard('store')->check();
+//        $this->with = ['brand', 'model'];
+//        if (!is_null($filters->getMaxPrice())) {
+//            $this->scopes['filterMaxPrice'] = [$filters->getMaxPrice()];
+//        }
+//        if (!is_null($filters->getMinPrice())) {
+//            $this->scopes['filterMinPrice'] = [$filters->getMinPrice()];
+//        }
+//
+//        if (!is_null($filters->getBrandId())) {
+//            $this->where('brand_id', $filters->getBrandId());
+//        }
+//        if (!is_null($filters->getModelId())) {
+//            $this->where('model_id', $filters->getModelId());
+//        }
+//        if (!is_null($filters->getId())) {
+//            $this->where('id', $filters->getId());
+//        }
+//        if (!is_null($filters->getStructureId())) {
+//            $this->where('structure_id', $filters->getStructureId());
+//        }
+//        if (!is_null($filters->getFuelType())) {
+//            $this->where('fuel_type', $filters->getFuelType());
+//        }
+//        if (!is_null($filters->getStoreId()) && !$authStore) {
+//            $this->where('products.store_id', $filters->getStoreId());
+//        }
+//
+//        if (!is_null($filters->getMinYear())) {
+//            $this->where('year_of_construction', $filters->getMinYear(), '>=');
+//        }
+//
+//        if (!is_null($filters->getMaxYear())) {
+//            $this->where('year_of_construction', $filters->getMaxYear(), '<=');
+//        }
+//        if (!is_null($filters->getType())) {
+//            $this->where('type', $filters->getType());
+//        }
+//        if ($authStore) {
+//            $this->where('store_id', Auth::guard('store')->id());
+//        }
+//        $this->orderBy('id', 'DESC');
+//        $products = $this->paginate($filters->per_page, ['*'], 'page', $filters->page);
+//        $pagination = [
+//            'total_page' => $products->total(),
+//            'current_page' => $products->currentPage(),
+//            'last_page' => $products->lastPage(),
+//            'per_page' => $products->perPage(),
+//        ];
+//        $products = ProductResource::collection($products->items());
+//
+//        return ApiResponseHelper::sendResponseWithPagination(new Result($products, 'get products successfully', $pagination));
+//    }
+
     public function indexProduct(ProductFilter $filters)
     {
         $authStore = Auth::guard('store')->check();
-        $this->with = ['brand', 'model'];
+        $this->with = ['brand', 'model', 'store', 'color', 'fuel_type', 'gear', 'light', 'deal'];
         if (!is_null($filters->getMaxPrice())) {
-            $this->scopes['filterMaxPrice'] = [$filters->getMaxPrice()];
+            $this->where('price', $filters->getMaxPrice(), '<=');
         }
         if (!is_null($filters->getMinPrice())) {
-            $this->scopes['filterMinPrice'] = [$filters->getMinPrice()];
+            $this->where('price', $filters->getMinPrice(), '>=');
         }
-
         if (!is_null($filters->getBrandId())) {
             $this->where('brand_id', $filters->getBrandId());
         }
         if (!is_null($filters->getModelId())) {
             $this->where('model_id', $filters->getModelId());
         }
-        if (!is_null($filters->getId())) {
-            $this->where('id', $filters->getId());
-        }
         if (!is_null($filters->getStructureId())) {
             $this->where('structure_id', $filters->getStructureId());
         }
-        if (!is_null($filters->getFuelType())) {
-            $this->where('fuel_type', $filters->getFuelType());
+        if (!is_null($filters->getFuelTypeId())) {
+            $this->where('fuel_type_id', $filters->getFuelTypeId());
         }
         if (!is_null($filters->getStoreId()) && !$authStore) {
-            $this->where('products.store_id', $filters->getStoreId());
+            $this->where('store_id', $filters->getStoreId());
         }
-
+        if (!is_null($filters->getColorId())) {
+            $this->where('color_id', $filters->getColorId());
+        }
+        if (!is_null($filters->getGearId())) {
+            $this->where('gear_id', $filters->getGearId());
+        }
+        if (!is_null($filters->getLightId())) {
+            $this->where('light_id', $filters->getLightId());
+        }
+        if (!is_null($filters->getDealId())) {
+            $this->where('deal_id', $filters->getDealId());
+        }
+        if (!is_null($filters->getCylinders())) {
+            $this->where('cylinders', $filters->getCylinders());
+        }
+        if (!is_null($filters->getCylinderCapacity())) {
+            $this->where('cylinder_capacity', $filters->getCylinderCapacity());
+        }
+        if (!is_null($filters->getDriveType())) {
+            $this->where('drive_type', $filters->getDriveType());
+        }
+        if (!is_null($filters->getNumberOfSeats())) {
+            $this->where('number_of_seats', $filters->getNumberOfSeats());
+        }
+        if (!is_null($filters->getSunroof())) {
+            $this->where('sunroof', $filters->getSunroof());
+        }
         if (!is_null($filters->getMinYear())) {
             $this->where('year_of_construction', $filters->getMinYear(), '>=');
         }
-
         if (!is_null($filters->getMaxYear())) {
             $this->where('year_of_construction', $filters->getMaxYear(), '<=');
+        }
+        if (!is_null($filters->getMinRegisterYear())) {
+            $this->where('register_year', $filters->getMinRegisterYear(), '>=');
+        }
+        if (!is_null($filters->getMaxRegisterYear())) {
+            $this->where('register_year', $filters->getMaxRegisterYear(), '<=');
+        }
+        if (!is_null($filters->getCreationCountry())) {
+            $this->where('creation_country', $filters->getCreationCountry());
+        }
+        if (!is_null($filters->getUsed())) {
+            $this->where('used', $filters->getUsed());
         }
         if (!is_null($filters->getType())) {
             $this->where('type', $filters->getType());
@@ -191,7 +280,9 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
         if ($authStore) {
             $this->where('store_id', Auth::guard('store')->id());
         }
-        $this->orderBy('id', 'DESC');
+        if (!is_null($filters->getOrder()) && !is_null($filters->getOrderBy())) {
+            $this->orderBy($filters->getOrderBy(), $filters->getOrder());
+        }
         $products = $this->paginate($filters->per_page, ['*'], 'page', $filters->page);
         $pagination = [
             'total_page' => $products->total(),

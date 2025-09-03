@@ -41,16 +41,18 @@ class StoreRepository extends BaseRepositoryImplementation implements StoreInter
 
     }
 
-    public function searchStore(StoreFilter $filters)
+    public function searchStore(StoreFilter $filter)
     {
+//        dd($filter->getAddress());
         $this->scopes = ['withStoreAvailable' => []];
-        if (! is_null($filters->getName())) {
-            $this->where('name', '%'.$filters->getName().'%', 'like');
+        if (! is_null($filter->getName())) {
+            $this->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($filter->getName()) . '%'])
+                ->orWhereRaw('LOWER(name_ar) LIKE ?', ['%' . strtolower($filter->getName()) . '%']);
         }
-        if (! is_null($filters->getAddress())) {
-            $this->where('address', '%'.$filters->getAddress().'%', 'like');
+        if (! is_null($filter->getGovernorateId())) {
+            $this->where('governorate_id',$filter->getGovernorateId());
         }
-        $products = $this->paginate($filters->per_page, ['*'], 'page', $filters->page);
+        $products = $this->paginate($filter->per_page, ['*'], 'page', $filter->page);
         $pagination = [
             'total_page' => $products->total(),
             'current_page' => $products->currentPage(),
@@ -93,19 +95,18 @@ class StoreRepository extends BaseRepositoryImplementation implements StoreInter
 
     public function indexStore(StoreFilter $filters)
     {
+        $this->newQuery()->eagerLoad();
+
+        if (! is_null($filters->getGovernorateId())) {
+            $this->where('governorate_id', $filters->getGovernorateId());
+        }
         if (! is_null($filters->getName())) {
-            $this->where('name', '%'.$filters->getName().'%', 'like');
+             $this->query->where(function ($query) use ($filters) {
+                $query->where('name', 'like', '%'.$filters->getName().'%')
+                    ->orWhere('name_ar', 'like', '%'.$filters->getName().'%');
+            });
         }
-        if (! is_null($filters->getNameAr())) {
-            $this->where('name_ar', '%'.$filters->getNameAr().'%', 'like');
-        }
-        if (! is_null($filters->getId())) {
-            $this->where('id', $filters->getId());
-        }
-        if (! is_null($filters->getAddress())) {
-            $this->where('address', '%'.$filters->getAddress().'%', 'like');
-        }
-        $this->orderBy('id', 'DESC');
+//        $this->orderBy('id', 'DESC');
         $stores = $this->paginate($filters->per_page, ['*'], 'page', $filters->page);
         $pagination = [
             'total' => $stores->total(),
@@ -117,6 +118,7 @@ class StoreRepository extends BaseRepositoryImplementation implements StoreInter
 
         return ApiResponseHelper::sendResponseWithPagination(new Result($stores, 'get store successfully', $pagination));
     }
+
 
     public function getColStore(ColStoreFilter $filters)
     {

@@ -9,9 +9,6 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 class SearchStoreRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
@@ -25,13 +22,10 @@ class SearchStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'nullable',
-            'name' => 'nullable|string|max:255',
-            'name_ar' => 'nullable|string|max:255',
-            'address' => 'nullable|string|max:255',
-            'page' => 'nullable',
-            'per_page' => 'nullable',
-
+            'name' => 'nullable|string',
+            'governorate_id' => 'nullable|integer|exists:governorates,id',
+            'page' => 'nullable|integer|min:1',
+            'per_page' => 'nullable|integer|min:1',
         ];
     }
 
@@ -52,14 +46,8 @@ class SearchStoreRequest extends FormRequest
         if ($this->input('name') !== null) {
             $filter->setName($this->input('name'));
         }
-        if ($this->input('name_ar') !== null) {
-            $filter->setNameAr($this->input('name_ar'));
-        }
-        if ($this->input('id') !== null) {
-            $filter->setId($this->input('id'));
-        }
-        if ($this->input('address') !== null) {
-            $filter->setAddress($this->input('address'));
+        if ($this->input('governorate_id') !== null) {
+            $filter->setGovernorateId($this->input('governorate_id'));
         }
         if ($this->input('page') !== null) {
             $filter->setPage($this->input('page'));
