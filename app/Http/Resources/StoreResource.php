@@ -25,8 +25,8 @@ class StoreResource extends JsonResource
             'phone' => $this->phone,
             'photo' => url($this->photo),
             'count_products' => $this->Countproducts(),
-            'store_type'=>$this->storeTypes,
-            'governorate'=>$this->governorates,
+            'store_type'=>$this->storeType,
+            'governorate'=>$this->governorate,
         ];
     }
 }

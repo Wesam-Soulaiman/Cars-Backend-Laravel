@@ -7,6 +7,7 @@ use App\ApiHelper\ApiResponseCodes;
 use App\ApiHelper\ApiResponseHelper;
 use App\ApiHelper\Result;
 use App\Filter\FeatureFilter;
+use App\Http\Resources\BrandResource;
 use App\Interfaces\BrandInterface;
 use App\Models\Brand;
 use Illuminate\Support\Facades\DB;
@@ -45,9 +46,9 @@ class BrandRepository extends BaseRepositoryImplementation implements BrandInter
 
     public function showBrand(Brand $brand)
     {
-        $showBrand = $this->getById($brand->id, ['id', 'name_ar', 'name', DB::raw('CONCAT("'.url('/').'", logo) as logo')]);
+        $showBrand = $this->getById($brand->id, ['id', 'name_ar', 'name' ,'logo' ]);
 
-        return ApiResponseHelper::sendResponse(new Result($showBrand));
+        return ApiResponseHelper::sendResponse(new Result(BrandResource::make($showBrand) , 'get banners successfully',));
     }
 
     public function indexBrand(FeatureFilter $filters)
@@ -58,7 +59,7 @@ class BrandRepository extends BaseRepositoryImplementation implements BrandInter
         if (! is_null($filters->getNameAr())) {
             $this->where('name_ar', '%'.$filters->getNameAr().'%', 'like');
         }
-        $brands = $this->paginate($filters->per_page, ['id', 'name_ar', 'name', DB::raw('CONCAT("'.url('/').'", logo) as logo')], 'page', $filters->page);
+        $brands = $this->paginate($filters->per_page, ['id', 'name_ar', 'name', 'logo'], 'page', $filters->page);
         $pagination = [
             'total' => $brands->total(),
             'current_page' => $brands->currentPage(),
@@ -66,7 +67,7 @@ class BrandRepository extends BaseRepositoryImplementation implements BrandInter
             'per_page' => $brands->perPage(),
         ];
 
-        return ApiResponseHelper::sendResponseWithPagination(new Result($brands->items(), 'get banners successfully', $pagination));
+        return ApiResponseHelper::sendResponseWithPagination(new Result(BrandResource::collection($brands->items()), 'get banners successfully', $pagination));
     }
 
     public function GetBrandWithModels()
