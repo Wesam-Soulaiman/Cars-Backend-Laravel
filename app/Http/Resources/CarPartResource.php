@@ -19,6 +19,8 @@ class CarPartResource extends JsonResource
             'category' => $this->category,
             'model' => $this->model,
             'store' => $this->store,
+            'store_type' => $this->store->storeTypes,
+            'governorate' => $this->store->governorates,
             'price' => intval($this->price),
             'creation_country' => $this->creation_country,
             'main_photo' => $this->main_photo ? url($this->main_photo) : null,
