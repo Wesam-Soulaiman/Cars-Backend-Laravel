@@ -38,6 +38,11 @@ class Store extends Authenticatable
         return $this->hasMany(Product::class);
     }
 
+    public function car_parts()
+    {
+        return $this->hasMany(CarPart::class);
+    }
+
     public function Countproducts()
     {
         return $this->hasMany(Product::class)->count();

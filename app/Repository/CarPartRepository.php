@@ -175,4 +175,14 @@ class CarPartRepository extends BaseRepositoryImplementation implements CarPartI
             new Result($carParts, 'Get car parts successfully', $pagination)
         );
     }
+
+
+    public function CountCarPart()
+    {
+        $auth = Auth::guard('store')->check();
+        if ($auth) {
+            return Auth::user()->car_parts->count();
+        }
+        return $this->count();
+    }
 }

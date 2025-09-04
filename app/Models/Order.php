@@ -43,6 +43,14 @@ class Order extends Model
 
     }
 
+    public function scopeActiveOrder($query)
+    {
+        return $query->where('start_time', '<=', now())
+            ->where('end_time', '>=', now())
+            ->where('active', '=', 1);
+
+    }
+
     public function scopeInActive($query)
     {
         return $query->where(function ($q) {

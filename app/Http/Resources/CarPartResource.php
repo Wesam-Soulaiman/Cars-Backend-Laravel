@@ -18,11 +18,14 @@ class CarPartResource extends JsonResource
             'id' => $this->id,
             'category' => $this->category,
             'model' => $this->model,
-            'store' => $this->store,
-            'store_type' => $this->store->storeType,
-            'governorate' => $this->store->governorate,
+//            'store_type' => $this->store->storeType,
+//            'governorate' => $this->store->governorate,
             'price' => intval($this->price),
             'creation_country' => $this->creation_country,
-            'main_photo' => $this->main_photo ? url($this->main_photo) : null,
-        ];    }
+            'main_photo' => $this->main_photo ? url($this->main_photo) : '',
+//            'count_products' => $this->store->Countproducts(),
+            'store' => StoreResource::make($this->store),
+
+        ];
+    }
 }

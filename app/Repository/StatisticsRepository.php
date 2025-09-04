@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class StatisticsRepository implements StatisticsInterface
 {
-    public function __construct(protected ProductRepository $productRepository, protected StoreRepository $storeRepository, protected EmployeeRepository $employeeRepository, protected OfferRepository $offerRepository, protected OrderRepository $orderRepository) {}
+    public function __construct(protected CarPartRepository $carPartRepository ,  protected ProductRepository $productRepository, protected StoreRepository $storeRepository, protected EmployeeRepository $employeeRepository, protected OfferRepository $offerRepository, protected OrderRepository $orderRepository) {}
 
     public function Statistics()
     {
         $countProduct = $this->productRepository->productCount();
+        $countCarPart = $this->carPartRepository->CountCarPart();
         $CountOrder = $this->orderRepository->CountOrder();
         $countOffer = $this->offerRepository->CountOffer();
         if (Auth::guard('store')->check()) {
@@ -21,7 +22,7 @@ class StatisticsRepository implements StatisticsInterface
                 'countProduct' => $countProduct,
                 'countOffer' => $countOffer,
                 'CountOrder' => $CountOrder,
-
+                'countCarPart'=> $countCarPart,
             ];
 
             return ApiResponseHelper::sendResponse(new Result($data));
@@ -40,9 +41,10 @@ class StatisticsRepository implements StatisticsInterface
         $SubscribedStoresCount = $this->orderRepository->SubscribedStoresCount();
         $getServicesCount = $this->orderRepository->getServicesCount();
         $monthlyOrders = $this->orderRepository->getmonthlyOrders();
-
+        $countCarPart = $this->carPartRepository->CountCarPart();
         $data = [
             'countProduct' => $countProduct,
+            'countCarPart'=> $countCarPart,
             'countActiveProduct' => $countActiveProduct,
             'countOffer' => $countOffer,
             'CountActiveOffer' => $CountActiveOffer,

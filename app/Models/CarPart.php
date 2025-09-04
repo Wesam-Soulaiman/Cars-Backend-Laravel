@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Statuses\ServiceCategoryStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
