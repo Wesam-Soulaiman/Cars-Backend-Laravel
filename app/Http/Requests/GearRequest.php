@@ -20,7 +20,7 @@ class GearRequest extends FormRequest
      */
     public function rules(): array
     {
-        $gearId = $this->route('gears')?->id;
+        $gearId = $this->route('gear')?->id;
         if ($gearId) {
             return [
                 'name' => 'nullable|string|max:255|unique:gears,name,'.$gearId,

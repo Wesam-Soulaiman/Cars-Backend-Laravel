@@ -67,6 +67,7 @@ class StoreRepository extends BaseRepositoryImplementation implements StoreInter
 
     public function updateStore(Store $store, $data)
     {
+//        return $data;
         $newStore = $this->updateById($store->id, $data);
         if (isset($data['photo']) && $data['photo']) {
             deleteImage($store->photo);

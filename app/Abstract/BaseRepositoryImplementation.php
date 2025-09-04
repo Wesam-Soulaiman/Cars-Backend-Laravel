@@ -323,9 +323,19 @@ abstract class BaseRepositoryImplementation implements BaseRepositoryInterface
 
         $model = $this->getById($id);
 
+        // Filter out null values to prevent overwriting with null
         $data = array_filter($data, fn ($value) => ! is_null($value));
 
+        // Ensure data is not empty before updating
+        if (empty($data)) {
+            return $model; // No changes to apply
+        }
+
+        // Update the model with the filtered data
         $model->update($data);
+
+        // Refresh the model to get the updated attributes
+        $model->refresh();
 
         return $model;
     }

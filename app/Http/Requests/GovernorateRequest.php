@@ -20,7 +20,7 @@ class GovernorateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $governorateId = $this->route('governorates')?->id;
+        $governorateId = $this->route('governorate')?->id;
         if ($governorateId) {
             return [
                 'name' => 'nullable|string|max:255|unique:governorates,name,'.$governorateId,

@@ -20,7 +20,7 @@ class CarPartCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        $brandId = $this->route('car-parts-categories')?->id;
+        $brandId = $this->route('carPartCategory')?->id;
         if ($brandId) {
             return [
                 'name' => 'nullable|string|max:255|unique:brands,name,'.$brandId,

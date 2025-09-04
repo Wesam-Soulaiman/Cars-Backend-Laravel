@@ -20,7 +20,7 @@ class LightRequest extends FormRequest
      */
     public function rules(): array
     {
-        $lightId = $this->route('lights')?->id;
+        $lightId = $this->route('light')?->id;
         if ($lightId) {
             return [
                 'name' => 'nullable|string|max:255|unique:lights,name,'.$lightId,

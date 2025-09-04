@@ -20,7 +20,7 @@ class DealRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rentCategoryId = $this->route('rent-categories')?->id;
+        $rentCategoryId = $this->route('deal')?->id;
         if ($rentCategoryId) {
             return [
                 'name' => 'nullable|string|max:255|unique:rent_categories,name,'.$rentCategoryId,

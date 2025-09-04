@@ -25,7 +25,6 @@ class StoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        $validTypes = implode(',', [StoreStatus::OFFICE, StoreStatus::GALLERY]);
         $storeId = $this->route('store')?->id;
         if ($storeId) {
             return [
@@ -38,7 +37,6 @@ class StoreRequest extends FormRequest
                 'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
                 'phone' => 'nullable|string|max:20',
                 'whatsapp_phone' => 'nullable|string|max:20',
-                'type' => 'nullable|in:'.$validTypes,
                 'governorate_id'=>'nullable|integer|exists:governorates,id',
                 'store_type_id'=>'nullable|integer|exists:store_types,id',
             ];

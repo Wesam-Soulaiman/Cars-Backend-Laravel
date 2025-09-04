@@ -20,7 +20,7 @@ class StructureRequest extends FormRequest
      */
     public function rules(): array
     {
-        $structureId = $this->route('structures')?->id;
+        $structureId = $this->route('structure')?->id;
         if ($structureId) {
             return [
                 'name' => 'nullable|string|max:255|unique:structures,name,'.$structureId,

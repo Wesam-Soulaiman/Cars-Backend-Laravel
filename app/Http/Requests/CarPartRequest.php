@@ -20,7 +20,7 @@ class CarPartRequest extends FormRequest
      */
     public function rules(): array
     {
-        $carPartId = $this->route('car-part')?->id;
+        $carPartId = $this->route('carPart')?->id;
         if ($carPartId) {
             return [
                 'category_id' => 'nullable|integer|exists:car_part_categories,id',

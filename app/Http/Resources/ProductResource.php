@@ -36,6 +36,7 @@ class ProductResource extends JsonResource
 //        ];
         return [
             'id' => $this->id,
+            'name' => $this->brand?->name.' '.$this->model?->name,
             'brand' => $this->whenLoaded('brand', fn () => $this->brand),
             'store' => $this->whenLoaded('store', fn () => $this->store),
             'model' => $this->whenLoaded('model', fn () => $this->model),

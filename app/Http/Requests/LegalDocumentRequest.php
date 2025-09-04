@@ -20,7 +20,7 @@ class LegalDocumentRequest extends FormRequest
      */
     public function rules(): array
     {
-        $legalDocumentId = $this->route('legal-documents')?->id;
+        $legalDocumentId = $this->route('legalDocument')?->id;
         if ($legalDocumentId) {
             return [
                 'type' => 'nullable|string|in:user_agreement,terms_conditions',

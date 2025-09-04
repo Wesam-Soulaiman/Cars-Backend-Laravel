@@ -20,7 +20,7 @@ class FuelTypeRequest extends FormRequest
      */
     public function rules(): array
     {
-        $fuelTypeId = $this->route('fuel-types')?->id;
+        $fuelTypeId = $this->route('fuelType')?->id;
         if ($fuelTypeId) {
             return [
                 'name' => 'nullable|string|max:255|unique:fuel_types,name,'.$fuelTypeId,

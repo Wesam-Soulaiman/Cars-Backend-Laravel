@@ -20,7 +20,7 @@ class StoreTypeRequest extends FormRequest
      */
     public function rules(): array
     {
-        $storeTypeId = $this->route('store-types')?->id;
+        $storeTypeId = $this->route('storeType')?->id;
         if ($storeTypeId) {
             return [
                 'name' => 'nullable|string|max:255|unique:store_types,name,'.$storeTypeId,

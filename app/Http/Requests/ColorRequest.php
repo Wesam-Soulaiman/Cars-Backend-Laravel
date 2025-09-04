@@ -20,7 +20,7 @@ class ColorRequest extends FormRequest
      */
     public function rules(): array
     {
-        $colorId = $this->route('colors')?->id;
+        $colorId = $this->route('color')?->id;
         if ($colorId) {
             return [
                 'name' => 'nullable|string|max:255|unique:colors,name,'.$colorId,
