@@ -100,7 +100,6 @@ class OrderRepository extends BaseRepositoryImplementation implements OrderInter
             $date = Carbon::parse($filters->getCreatedAt())->toDateString();
             $query->whereDate('created_at', $date);
         }
-
         // Prioritize orders from services with has_top_result
         $query->leftJoin('services', 'orders.service_id', '=', 'services.id')
             ->orderByRaw('CASE WHEN services.has_top_result = 1 THEN 0 ELSE 1 END')
@@ -133,26 +132,28 @@ class OrderRepository extends BaseRepositoryImplementation implements OrderInter
 
     public function GetCountOrderByMonth()
     {
+//        Log::info('OrderRepository::GetCountOrderByMonth started');
+
         $query = Order::selectRaw("
-            strftime('%Y-%m', start_time) as month,
-            CASE strftime('%m', start_time)
-                WHEN '01' THEN 'January'
-                WHEN '02' THEN 'February'
-                WHEN '03' THEN 'March'
-                WHEN '04' THEN 'April'
-                WHEN '05' THEN 'May'
-                WHEN '06' THEN 'June'
-                WHEN '07' THEN 'July'
-                WHEN '08' THEN 'August'
-                WHEN '09' THEN 'September'
-                WHEN '10' THEN 'October'
-                WHEN '11' THEN 'November'
-                WHEN '12' THEN 'December'
+            DATE_FORMAT(start_time, '%Y-%m') as month,
+            CASE MONTH(start_time)
+                WHEN 1 THEN 'January'
+                WHEN 2 THEN 'February'
+                WHEN 3 THEN 'March'
+                WHEN 4 THEN 'April'
+                WHEN 5 THEN 'May'
+                WHEN 6 THEN 'June'
+                WHEN 7 THEN 'July'
+                WHEN 8 THEN 'August'
+                WHEN 9 THEN 'September'
+                WHEN 10 THEN 'October'
+                WHEN 11 THEN 'November'
+                WHEN 12 THEN 'December'
             END as month_name,
             COUNT(*) as order_count
         ")
-            ->whereRaw("strftime('%Y', start_time) = ?", [date('Y')])
-            ->groupByRaw("strftime('%Y-%m', start_time), month_name")
+            ->whereYear('start_time', date('Y'))
+            ->groupByRaw("DATE_FORMAT(start_time, '%Y-%m'), month_name")
             ->orderBy('month');
 
         if (auth('store')->check()) {
@@ -160,8 +161,44 @@ class OrderRepository extends BaseRepositoryImplementation implements OrderInter
             $query->where('store_id', $storeId);
         }
 
-        return $query->get();
+        $results = $query->get();
+
+//        Log::info('OrderRepository::GetCountOrderByMonth completed', ['results' => $results]);
+
+        return $results;
     }
+
+//    public function GetCountOrderByMonth()
+//    {
+//        $query = Order::selectRaw("
+//            strftime('%Y-%m', start_time) as month,
+//            CASE strftime('%m', start_time)
+//                WHEN '01' THEN 'January'
+//                WHEN '02' THEN 'February'
+//                WHEN '03' THEN 'March'
+//                WHEN '04' THEN 'April'
+//                WHEN '05' THEN 'May'
+//                WHEN '06' THEN 'June'
+//                WHEN '07' THEN 'July'
+//                WHEN '08' THEN 'August'
+//                WHEN '09' THEN 'September'
+//                WHEN '10' THEN 'October'
+//                WHEN '11' THEN 'November'
+//                WHEN '12' THEN 'December'
+//            END as month_name,
+//            COUNT(*) as order_count
+//        ")
+//            ->whereRaw("strftime('%Y', start_time) = ?", [date('Y')])
+//            ->groupByRaw("strftime('%Y-%m', start_time), month_name")
+//            ->orderBy('month');
+//
+//        if (auth('store')->check()) {
+//            $storeId = auth('store')->id();
+//            $query->where('store_id', $storeId);
+//        }
+//
+//        return $query->get();
+//    }
 //    public function GetCountOrderByMonth()
 //    {
 //        $query = Order::selectRaw('
