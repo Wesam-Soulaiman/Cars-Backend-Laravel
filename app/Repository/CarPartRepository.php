@@ -71,15 +71,15 @@ class CarPartRepository extends BaseRepositoryImplementation implements CarPartI
 
     public function showCarPart(CarPart $carPart)
     {
-        $showCarPart = $this->getById($carPart->id, ['id', 'category_id', 'model_id', 'store_id', 'price', 'creation_country']);
-        return ApiResponseHelper::sendResponse(new Result($showCarPart));
+        $showCarPart = $this->getById($carPart->id);
+        return ApiResponseHelper::sendResponse(new Result(CarPartResource::make($showCarPart)));
     }
 
 
     public function getCarPartById($id)
     {
         $carPart = CarPart::getCarPartAvailable()
-            ->with(['category', 'model', 'store'])
+            ->with(['category', 'model', 'store' , 'brand'])
             ->where('car_parts.id', $id)
             ->first();
 //        return $carPart;
@@ -105,13 +105,18 @@ class CarPartRepository extends BaseRepositoryImplementation implements CarPartI
         if (! is_null($filters->getModelId())) {
             $this->where('model_id', $filters->getModelId());
         }
+
+        if (!is_null($filters->getBrandId())) {
+            $this->where('brand_id', $filters->getBrandId());
+        }
+
         if (! is_null($filters->getStoreId())) {
             $this->where('store_id', $filters->getStoreId());
         }
         if (! is_null($filters->getCreationCountry())) {
             $this->where('creation_country', '%'.$filters->getCreationCountry().'%', 'like');
         }
-        $carParts = $this->paginate($filters->per_page, ['id', 'category_id', 'model_id', 'store_id', 'price', 'creation_country'], 'page', $filters->page);
+        $carParts = $this->paginate($filters->per_page, ['id', 'category_id', 'model_id','brand_id' ,  'store_id', 'price', 'creation_country'], 'page', $filters->page);
         $pagination = [
             'total' => $carParts->total(),
             'current_page' => $carParts->currentPage(),
@@ -119,7 +124,7 @@ class CarPartRepository extends BaseRepositoryImplementation implements CarPartI
             'per_page' => $carParts->perPage(),
         ];
 
-        return ApiResponseHelper::sendResponseWithPagination(new Result($carParts->items(), 'get car parts successfully', $pagination));
+        return ApiResponseHelper::sendResponseWithPagination(new Result(CarPartResource::collection($carParts->items()), 'get car parts successfully', $pagination));
     }
 
 
@@ -140,6 +145,11 @@ class CarPartRepository extends BaseRepositoryImplementation implements CarPartI
         if (!is_null($filters->getModelId())) {
             $query->where('model_id', $filters->getModelId());
         }
+
+        if (!is_null($filters->getBrandId())) {
+            $query->where('brand_id', $filters->getBrandId());
+        }
+
         if (!is_null($filters->getStoreId())) {
             $query->where('car_parts.store_id', $filters->getStoreId());
         }

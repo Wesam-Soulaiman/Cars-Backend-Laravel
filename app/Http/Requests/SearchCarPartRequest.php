@@ -27,6 +27,7 @@ class SearchCarPartRequest extends FormRequest
         return [
             'category_id' => 'nullable|integer|exists:car_part_categories,id',
             'model_id' => 'nullable|integer|exists:models,id',
+            'brand_id' => 'nullable|integer|exists:brands,id',
             'store_id' => 'nullable|integer|exists:stores,id',
             'creation_country' => 'nullable|string',
             'page' => 'nullable|integer|min:1',
@@ -54,6 +55,11 @@ class SearchCarPartRequest extends FormRequest
         if ($this->input('model_id') !== null) {
             $filter->setModelId($this->input('model_id'));
         }
+
+        if ($this->input('brand_id') !== null) {
+            $filter->setBrandId($this->input('brand_id'));
+        }
+
         if ($this->input('store_id') !== null) {
             $filter->setStoreId($this->input('store_id'));
         }

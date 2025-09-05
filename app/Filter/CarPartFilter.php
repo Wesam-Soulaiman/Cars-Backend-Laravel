@@ -9,6 +9,7 @@ class CarPartFilter extends BaseFilter
         $this->id = null;
         $this->category_id = null;
         $this->model_id = null;
+        $this->brand_id = null;
         $this->store_id = null;
         $this->minPrice = null;
         $this->maxPrice = null;
@@ -20,6 +21,7 @@ class CarPartFilter extends BaseFilter
     protected ?int $id;
     protected ?int $category_id;
     protected ?int $model_id;
+    protected ?int $brand_id;
     protected ?int $store_id;
     protected ?float $minPrice;
     protected ?float $maxPrice;
@@ -35,6 +37,9 @@ class CarPartFilter extends BaseFilter
 
     public function getModelId(): ?int { return $this->model_id; }
     public function setModelId(?int $model_id): void { $this->model_id = $model_id; }
+
+    public function getBrandId(): ?int { return $this->brand_id; }
+    public function setBrandId(?int $brand_id): void { $this->brand_id = $brand_id; }
 
     public function getStoreId(): ?int { return $this->store_id; }
     public function setStoreId(?int $store_id): void { $this->store_id = $store_id; }

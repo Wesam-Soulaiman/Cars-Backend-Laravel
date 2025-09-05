@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained('car_part_categories')->cascadeOnDelete();
             $table->foreignId('model_id')->constrained('models')->cascadeOnDelete();
+            $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
             $table->foreignId('store_id')->constrained('stores')->cascadeOnDelete();
             $table->decimal('price', 10, 2);
             $table->string('creation_country');

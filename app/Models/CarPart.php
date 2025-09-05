@@ -56,6 +56,11 @@ class CarPart extends Model
         return $this->belongsTo(Model::class , 'model_id' , 'id');
     }
 
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class , 'brand_id' , 'id');
+    }
+
     public function store()
     {
         return $this->belongsTo(Store::class);

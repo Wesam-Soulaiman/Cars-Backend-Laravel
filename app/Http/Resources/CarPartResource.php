@@ -18,6 +18,7 @@ class CarPartResource extends JsonResource
             'id' => $this->id,
             'category' => $this->category,
             'model' => $this->model,
+            'brand'=> BrandResource::make($this->brand),
 //            'store_type' => $this->store->storeType,
 //            'governorate' => $this->store->governorate,
             'price' => intval($this->price),
