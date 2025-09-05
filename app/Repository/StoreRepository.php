@@ -43,12 +43,15 @@ class StoreRepository extends BaseRepositoryImplementation implements StoreInter
 
     public function searchStore(StoreFilter $filter)
     {
-//        dd($filter->getAddress());
-        $this->scopes = ['withStoreAvailable' => []];
+
+        $this->newQuery()->eagerLoad(); // Initialize the query
+
         if (! is_null($filter->getName())) {
-            $this->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($filter->getName()) . '%'])
-                ->orWhereRaw('LOWER(name_ar) LIKE ?', ['%' . strtolower($filter->getName()) . '%']);
+            $this->where('name', '%'.$filter->getName().'%', 'like');
+            $this->orWhere('name_ar', '%'.$filter->getName().'%', 'like');
+
         }
+
         if (! is_null($filter->getGovernorateId())) {
             $this->where('governorate_id',$filter->getGovernorateId());
         }
@@ -102,10 +105,9 @@ class StoreRepository extends BaseRepositoryImplementation implements StoreInter
             $this->where('governorate_id', $filters->getGovernorateId());
         }
         if (! is_null($filters->getName())) {
-             $this->query->where(function ($query) use ($filters) {
-                $query->where('name', 'like', '%'.$filters->getName().'%')
-                    ->orWhere('name_ar', 'like', '%'.$filters->getName().'%');
-            });
+            $this->where('name', '%'.$filters->getName().'%', 'like');
+            $this->orWhere('name_ar', '%'.$filters->getName().'%', 'like');
+
         }
 //        $this->orderBy('id', 'DESC');
         $stores = $this->paginate($filters->per_page, ['*'], 'page', $filters->page);

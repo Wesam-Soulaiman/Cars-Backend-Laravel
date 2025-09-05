@@ -21,10 +21,12 @@ class ProductPolicy
      * @param array $productData
      * @return bool
      */
-    public function create(Store $store, array $productData = []): bool
+    public function create($store, array $productData = []): bool
     {
 
-
+        if ($store instanceof Employee && $store->role->name == 'admin') {
+            return true;
+        }
         // Find an active order for the store
         $activeOrder = Order::where('store_id', $store->id)
             ->where('active', true)

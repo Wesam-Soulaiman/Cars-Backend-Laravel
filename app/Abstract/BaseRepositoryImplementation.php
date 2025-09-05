@@ -395,12 +395,17 @@ abstract class BaseRepositoryImplementation implements BaseRepositoryInterface
 //    }
     public function where($column, $value, $operator = '=')
     {
-        $this->wheres[] = compact('column', 'value', 'operator');
+        $this->wheres[] = compact('column', 'operator', 'value');
 
         return $this;
     }
 
+    public function orWhere($column, $value, $operator = '=')
+    {
+        $this->wheres[] = ['column' => $column, 'operator' => $operator, 'value' => $value, 'boolean' => 'or'];
 
+        return $this;
+    }
 
     /**
      * Add a simple where in clause to the query.
@@ -466,10 +471,33 @@ abstract class BaseRepositoryImplementation implements BaseRepositoryInterface
      *
      * @return $this
      */
+//    protected function setClauses()
+//    {
+//        foreach ($this->wheres as $where) {
+//            $this->query->where($where['column'], $where['operator'], $where['value']);
+//        }
+//
+//        foreach ($this->whereIns as $whereIn) {
+//            $this->query->whereIn($whereIn['column'], $whereIn['values']);
+//        }
+//
+//        foreach ($this->orderBys as $orders) {
+//            $this->query->orderBy($orders['column'], $orders['direction']);
+//        }
+//
+//        if (isset($this->take) and ! is_null($this->take)) {
+//            $this->query->take($this->take);
+//        }
+//
+//        return $this;
+//    }
+
+
     protected function setClauses()
     {
         foreach ($this->wheres as $where) {
-            $this->query->where($where['column'], $where['operator'], $where['value']);
+            $boolean = isset($where['boolean']) && $where['boolean'] === 'or' ? 'or' : 'and';
+            $this->query->where($where['column'], $where['operator'], $where['value'], $boolean);
         }
 
         foreach ($this->whereIns as $whereIn) {
@@ -480,13 +508,12 @@ abstract class BaseRepositoryImplementation implements BaseRepositoryInterface
             $this->query->orderBy($orders['column'], $orders['direction']);
         }
 
-        if (isset($this->take) and ! is_null($this->take)) {
+        if (isset($this->take) && !is_null($this->take)) {
             $this->query->take($this->take);
         }
 
         return $this;
     }
-
     /**
      * Set query scopes.
      *
@@ -578,6 +605,8 @@ abstract class BaseRepositoryImplementation implements BaseRepositoryInterface
 
         return $model->decrement($column_name, $value);
     }
+
+
 
 
     public function __call($method, $arguments)

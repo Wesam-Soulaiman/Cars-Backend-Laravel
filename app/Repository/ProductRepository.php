@@ -12,6 +12,7 @@ use App\Http\Resources\ProductResource;
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
 use App\Models\ProductFeatures;
+use App\Models\Store;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +32,15 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
 
     public function addProduct($data)
     {
+//        $store = Auth::guard('store')->user();
+
         $store = Auth::guard('store')->user();
+        if ($store){
+            $data['store_id'] = $store->id;
+        }else{
+            $store = Store::findOrFail($data['store_id']);
+        }
+
 
         return DB::transaction(function () use ($data, $store) {
             // Create the product
@@ -77,6 +86,9 @@ class ProductRepository extends BaseRepositoryImplementation implements ProductI
 
     public function updateProduct(Product $product, $data)
     {
+
+
+
 
         if (isset($data['main_photo']) && $data['main_photo']) {
             deleteImage($product->main_photo);

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Statuses\ServiceCategoryStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
@@ -12,10 +12,33 @@ class CarPart extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+//    protected $guarded = ['id'];
+    protected $fillable = [
+        'category_id',
+'model_id',
+'brand_id',
+'store_id',
+'price',
+'creation_country',
+'main_photo',
+    ];
 
+    public function setMainPhotoAttribute($photo)
+    {
 
-
+        if (filter_var($photo, FILTER_VALIDATE_URL)) {
+            // If it's a valid URL, assign it directly
+            $this->attributes['main_photo'] = $photo;
+        } elseif ($photo instanceof UploadedFile) {
+            // If it's an uploaded file, store it
+            $newImageName = uniqid() . '_' . 'main_photo_car_part' . '.' . $photo->extension();
+            $photo->move(public_path('asset/carPart'), $newImageName);
+            $this->attributes['main_photo'] = '/asset/carPart/' . $newImageName;
+        } else {
+            // If it's a string (e.g., local path), assign it directly
+            $this->attributes['main_photo'] = $photo;
+        }
+    }
     public function scopeGetCarPartAvailable($query)
     {
         $random = Cache::remember('random_car_parts', 1800, function () {
@@ -48,7 +71,7 @@ class CarPart extends Model
 
     public function category()
     {
-        return $this->belongsTo(CarPartCategory::class, 'category_id');
+        return $this->belongsTo(CarPartCategory::class, 'category_id' , 'id');
     }
 
     public function model()
@@ -67,21 +90,6 @@ class CarPart extends Model
     }
 
 
-    public function setMainPhotoAttribute($photo)
-    {
-
-        if (filter_var($photo, FILTER_VALIDATE_URL)) {
-            // If it's a valid URL, assign it directly
-            $this->attributes['main_photo'] = $photo;
-        } elseif ($photo instanceof UploadedFile) {
-            // If it's an uploaded file, store it
-            $newImageName = uniqid().'_'.'main_photo_car_part'.'.'.$photo->extension();
-            $photo->move(public_path('asset/carPart'), $newImageName);
-            $this->attributes['main_photo'] = '/asset/carPart/'.$newImageName;
-        } else {
-            // If it's a string (e.g., local path), assign it directly
-            $this->attributes['main_photo'] = $photo;
-        }
 
 
 
@@ -94,6 +102,6 @@ class CarPart extends Model
 //            $photo->move(public_path('asset/carPart'), $newImageName);
 //            $this->attributes['main_photo'] = '/asset/carPart/'.$newImageName;
 //        }
-    }
+//    }
 
 }

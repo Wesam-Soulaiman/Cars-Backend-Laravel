@@ -11,6 +11,6 @@ class StoreSearchAction
 
     public function __invoke(SearchStoreRequest $request)
     {
-        return $this->storeRepository->indexStore($request->toFilter());
+        return $this->storeRepository->searchStore($request->toFilter());
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Store;
 use Carbon\Carbon;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class CarPartPolicy
 {
@@ -19,8 +20,12 @@ class CarPartPolicy
      * @param Store $store
      * @return bool
      */
-    public function create(Store $store)
+    public function create($store)
     {
+
+        if ($store instanceof Employee && $store->role->name == 'admin') {
+            return true;
+        }
 //        dd($store);
 
         $activeOrder = Order::where('store_id', $store->id)
@@ -57,6 +62,10 @@ class CarPartPolicy
     public function update($store, CarPart $product): bool
     {
 
+        if ($store instanceof Employee && $store->role->name == 'admin') {
+            return true;
+        }
+
         if ($store instanceof Employee && $store->role()->name == 'admin') {
             return true;
         }elseif($store instanceof Store){
@@ -92,12 +101,15 @@ class CarPartPolicy
         return false;
     }
 
-    public function delete(Store $store, CarPart $product): bool
+    public function delete($store, CarPart $product): bool
     {
         if ($store instanceof Employee && $store->role->name == 'admin') {
             return true;
         }
-        elseif($store instanceof Store) {
+//        if (Auth::guard('admin')->check()) {
+//            return true;
+//        }
+        if($store instanceof Store) {
             return $store->id === $product->store_id;
         }
         return false;

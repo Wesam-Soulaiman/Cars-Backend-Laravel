@@ -29,8 +29,10 @@ class CarPartRequest extends FormRequest
                 'price' => 'nullable|numeric|min:0',
                 'creation_country' => 'nullable|string|max:255',
                 'main_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
+                'store_id' => 'nullable|integer|exists:stores,id',
             ];
         }
+//        $this->dd();
 
         return [
             'category_id' => 'required|integer|exists:car_part_categories,id',
@@ -39,6 +41,7 @@ class CarPartRequest extends FormRequest
             'price' => 'required|numeric|min:0',
             'creation_country' => 'required|string|max:255',
             'main_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:3072',
+            'store_id' => 'nullable|integer|exists:stores,id',
         ];
     }
 

@@ -55,9 +55,8 @@ class BrandRepository extends BaseRepositoryImplementation implements BrandInter
     {
         if (! is_null($filters->getName())) {
             $this->where('name', '%'.$filters->getName().'%', 'like');
-        }
-        if (! is_null($filters->getNameAr())) {
-            $this->where('name_ar', '%'.$filters->getNameAr().'%', 'like');
+            $this->orWhere('name_ar', '%'.$filters->getName().'%', 'like');
+
         }
         $brands = $this->paginate($filters->per_page, ['id', 'name_ar', 'name', 'logo'], 'page', $filters->page);
         $pagination = [

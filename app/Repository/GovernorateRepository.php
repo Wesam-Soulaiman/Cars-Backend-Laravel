@@ -27,24 +27,12 @@ class GovernorateRepository extends BaseRepositoryImplementation implements Gove
 
     public function indexGovernorate(GovernorateFilter $filters)
     {
-////        dd($filters->getName());
-//        if (!is_null($filters->getName())) {
-//            $this->query->where(function ($query) use ($filters) {
-//                $query->where('name', 'like', '%' . $filters->getName() . '%')
-//                    ->orWhere('name_ar', 'like', '%' . $filters->getName() . '%');
-//            });
-//        }
-
         if (! is_null($filters->getName())) {
-            $this->where('name', '%'.$filters->getName().'%', 'like')->get();
+            $this->where('name', '%'.$filters->getName().'%', 'like');
+            $this->orWhere('name_ar', '%'.$filters->getName().'%', 'like');
+
         }
 
-//        if (! is_null($filters->getName())) {
-//            $this->where('name', 'like', '%'.$filters->getName().'%')->get();
-//        }
-        if (! is_null($filters->getNameAr())) {
-            $this->where('name_ar', '%'.$filters->getNameAr().'%', 'like');
-        }
 
         $governorates = $this->paginate($filters->per_page, ['id', 'name', 'name_ar'], 'page', $filters->page);
         $pagination = [

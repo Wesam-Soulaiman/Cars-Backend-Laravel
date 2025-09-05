@@ -48,9 +48,8 @@ class StructureRepository extends BaseRepositoryImplementation implements Struct
     {
         if (! is_null($filters->getName())) {
             $this->where('name', '%'.$filters->getName().'%', 'like');
-        }
-        if (! is_null($filters->getNameAr())) {
-            $this->where('name_ar', '%'.$filters->getNameAr().'%', 'like');
+            $this->orWhere('name_ar', '%'.$filters->getName().'%', 'like');
+
         }
         $structures = $this->paginate($filters->per_page, ['id', 'name', 'name_ar' , $this->main_photo ? url($this->main_photo) : null], 'page', $filters->page);
         $pagination = [

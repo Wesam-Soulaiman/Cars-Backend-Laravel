@@ -47,9 +47,7 @@ class ColorRepository extends BaseRepositoryImplementation implements ColorInter
     {
         if (! is_null($filters->getName())) {
             $this->where('name', '%'.$filters->getName().'%', 'like');
-        }
-        if (! is_null($filters->getNameAr())) {
-            $this->where('name_ar', '%'.$filters->getNameAr().'%', 'like');
+            $this->orWhere('name_ar', '%'.$filters->getName().'%', 'like');
         }
         $colors = $this->paginate($filters->per_page, ['id', 'name', 'name_ar'], 'page', $filters->page);
         $pagination = [
