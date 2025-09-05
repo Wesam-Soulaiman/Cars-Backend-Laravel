@@ -64,14 +64,31 @@ class CarPart extends Model
 
     public function setMainPhotoAttribute($photo)
     {
+
         if (filter_var($photo, FILTER_VALIDATE_URL)) {
-            // If it's a URL, just assign it
+            // If it's a valid URL, assign it directly
             $this->attributes['main_photo'] = $photo;
-        } elseif ($photo) {
+        } elseif ($photo instanceof UploadedFile) {
+            // If it's an uploaded file, store it
             $newImageName = uniqid().'_'.'main_photo_car_part'.'.'.$photo->extension();
             $photo->move(public_path('asset/carPart'), $newImageName);
             $this->attributes['main_photo'] = '/asset/carPart/'.$newImageName;
+        } else {
+            // If it's a string (e.g., local path), assign it directly
+            $this->attributes['main_photo'] = $photo;
         }
+
+
+
+
+//        if (filter_var($photo, FILTER_VALIDATE_URL)) {
+//            // If it's a URL, just assign it
+//            $this->attributes['main_photo'] = $photo;
+//        } elseif ($photo) {
+//            $newImageName = uniqid().'_'.'main_photo_car_part'.'.'.$photo->extension();
+//            $photo->move(public_path('asset/carPart'), $newImageName);
+//            $this->attributes['main_photo'] = '/asset/carPart/'.$newImageName;
+//        }
     }
 
 }

@@ -13,21 +13,21 @@ class BrandSeeder extends Seeder
     public function run(): void
     {
         $brands = [
-            ['name' => 'Honda', 'name_ar' => 'هوندا', 'logo' => 'brand-honda.jpg'],
-            ['name' => 'Tesla', 'name_ar' => 'تيسلا', 'logo' => 'brand-tesla.jpg'],
-            ['name' => 'Toyota', 'name_ar' => 'تويوتا', 'logo' => 'brand-toyota.jpg'],
-            ['name' => 'Nissan', 'name_ar' => 'نيسان', 'logo' => 'brand-nissan.jpg'],
-            ['name' => 'Ford', 'name_ar' => 'فورد', 'logo' => 'brand-ford.jpg'],
-            ['name' => 'Jeep', 'name_ar' => 'جيب', 'logo' => 'brand-jeep.jpg'],
-            ['name' => 'Chevrolet', 'name_ar' => 'شفروليه', 'logo' => 'brand-chevrolet.jpg'],
-            ['name' => 'Audi', 'name_ar' => 'أودي', 'logo' => 'brand-audi.jpg'],
-            ['name' => 'BMW', 'name_ar' => 'بي إم دبليو', 'logo' => 'brand-bmw.jpg'],
-            ['name' => 'Mercedes-Benz', 'name_ar' => 'مرسيدس بنز', 'logo' => 'brand-mercedes.jpg'],
-            ['name' => 'Hyundai', 'name_ar' => 'هيونداي', 'logo' => 'brand-hyundai.jpg'],
-            ['name' => 'Kia', 'name_ar' => 'كيا', 'logo' => 'brand-kia.jpg'],
-            ['name' => 'Volkswagen', 'name_ar' => 'فولكس فاجن', 'logo' => 'brand-volkswagen.jpg'],
-            ['name' => 'Mitsubishi', 'name_ar' => 'ميتسوبيشي', 'logo' => 'brand-mitsubishi.jpg'],
-            ['name' => 'Lexus', 'name_ar' => 'لكزس', 'logo' => 'brand-lexus.jpg'],
+            ['name' => 'Honda', 'name_ar' => 'هوندا', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Tesla', 'name_ar' => 'تيسلا', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Toyota', 'name_ar' => 'تويوتا', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Nissan', 'name_ar' => 'نيسان', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Ford', 'name_ar' => 'فورد', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Jeep', 'name_ar' => 'جيب', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Chevrolet', 'name_ar' => 'شفروليه', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Audi', 'name_ar' => 'أودي', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'BMW', 'name_ar' => 'بي إم دبليو', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Mercedes-Benz', 'name_ar' => 'مرسيدس بنز', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Hyundai', 'name_ar' => 'هيونداي', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Kia', 'name_ar' => 'كيا', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Volkswagen', 'name_ar' => 'فولكس فاجن', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Mitsubishi', 'name_ar' => 'ميتسوبيشي', 'logo' => '/asset/brand/pmw.jpg'],
+            ['name' => 'Lexus', 'name_ar' => 'لكزس', 'logo' => '/asset/brand/pmw.jpg'],
         ];
 
         foreach ($brands as $brand) {

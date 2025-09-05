@@ -20,7 +20,7 @@ class CarPartSeeder extends Seeder
                 'store_id' => 1, // Assume Auto Store
                 'price' => 1500.00,
                 'creation_country' => 'Japan',
-                'main_photo' => 'https://example.com/photos/engine1.jpg',
+                'main_photo' => '/asset/carPart/bmw_eng.jpg',
             ],
             [
                 'category_id' => 2, // Brakes
@@ -28,7 +28,7 @@ class CarPartSeeder extends Seeder
                 'store_id' => 1,
                 'price' => 200.00,
                 'creation_country' => 'Germany',
-                'main_photo' => 'https://example.com/photos/brakes1.jpg',
+                'main_photo' => '/asset/carPart/bmw_eng.jpg',
             ],
             [
                 'category_id' => 3, // Suspension
@@ -36,7 +36,7 @@ class CarPartSeeder extends Seeder
                 'store_id' => 2, // Assume Elite Auto
                 'price' => 350.00,
                 'creation_country' => 'USA',
-                'main_photo' => 'https://example.com/photos/suspension1.jpg',
+                'main_photo' => '/asset/carPart/bmw_eng.jpg',
             ],
             [
                 'category_id' => 4, // Transmission
@@ -44,7 +44,7 @@ class CarPartSeeder extends Seeder
                 'store_id' => 2,
                 'price' => 1200.00,
                 'creation_country' => 'Japan',
-                'main_photo' => 'https://example.com/photos/transmission1.jpg',
+                'main_photo' => '/asset/carPart/bmw_eng.jpg',
             ],
             [
                 'category_id' => 5, // Exhaust
@@ -52,7 +52,7 @@ class CarPartSeeder extends Seeder
                 'store_id' => 3, // Assume Parts Depot
                 'price' => 500.00,
                 'creation_country' => 'China',
-                'main_photo' => 'https://example.com/photos/exhaust1.jpg',
+                'main_photo' => '/asset/carPart/bmw_eng.jpg',
             ],
         ];
 

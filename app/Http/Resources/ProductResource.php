@@ -37,7 +37,7 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->brand?->name.' '.$this->model?->name,
-            'brand' =>  $this->brand,
+            'brand' =>  BrandResource::make($this->brand),
 //            'store' =>  $this->store,
             'store' => StoreResource::make($this->store),
             'model' =>  $this->model,

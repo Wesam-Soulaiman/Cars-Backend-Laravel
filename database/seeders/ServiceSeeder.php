@@ -19,7 +19,7 @@ class ServiceSeeder extends Seeder
             'description_ar' => 'موقع ويب لنتائج البحث.',
             'category_service_id' => 1, // subscription
             'has_top_result' => true,
-            'services' => ['sale', 'rent', 'parts'],
+            'services' => ['sell', 'rent', 'parts'],
             'count_product' => 10,
             'count_days' => 30,
         ]);
@@ -31,7 +31,7 @@ class ServiceSeeder extends Seeder
             'description_ar' => 'خدمة مميزة لبيع السيارات مع قائمة ذات أولوية.',
             'category_service_id' => 1, // subscription
             'has_top_result' => true,
-            'services' => ['sale'],
+            'services' => ['sell'],
             'count_product' => 20,
             'count_days' => 60,
         ]);
@@ -67,7 +67,7 @@ class ServiceSeeder extends Seeder
             'description_ar' => 'خدمة النخبة لبيع وتأجير السيارات مع أولوية النتائج العليا.',
             'category_service_id' => 1, // subscription
             'has_top_result' => true,
-            'services' => ['sale', 'rent'],
+            'services' => ['sell', 'rent'],
             'count_product' => 25,
             'count_days' => 45,
         ]);

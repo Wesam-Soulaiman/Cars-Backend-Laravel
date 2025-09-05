@@ -70,16 +70,18 @@ class ProductDetailsResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'brand' =>  $this->brand,
-            'store' =>  $this->store,
+            'brand' =>  BrandResource::make($this->brand),
+//            'store' =>  $this->store,
+            'store' => StoreResource::make($this->store),
+
             'model' =>  $this->model,
             'color' =>  $this->color,
-            'fuel_type' =>  $this->fuelType,
+            'fuel_type' =>  $this->fuel_type,
             'gear' => $this->gear,
             'light' =>  $this->light,
             'deal' =>  $this->deal,
-            'structure_id' => $this->structure_id,
-            'main_photo' => $this->main_photo ? url($this->main_photo) : null,
+            'structure' => StructureResource::make($this->structure),
+            'main_photo' => $this->main_photo ? url($this->main_photo) : '',
             'price' => $this->price,
             'mileage' => $this->mileage,
             'year_of_construction' => $this->year_of_construction,

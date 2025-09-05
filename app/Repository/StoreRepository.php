@@ -110,7 +110,7 @@ class StoreRepository extends BaseRepositoryImplementation implements StoreInter
 //        $this->orderBy('id', 'DESC');
         $stores = $this->paginate($filters->per_page, ['*'], 'page', $filters->page);
         $pagination = [
-            'total' => $stores->total(),
+            'total_page' => $stores->total(),
             'current_page' => $stores->currentPage(),
             'last_page' => $stores->lastPage(),
             'per_page' => $stores->perPage(),

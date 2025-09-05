@@ -56,6 +56,7 @@ class DatabaseSeeder extends Seeder
             FeatureSeeder::class,
             ProductFeatureSeeder::class,
             OrderSeeder::class,
+            ProductPhotoSeeder::class,
         ]);
     }
 }

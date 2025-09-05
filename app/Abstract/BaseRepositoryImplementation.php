@@ -388,12 +388,19 @@ abstract class BaseRepositoryImplementation implements BaseRepositoryInterface
      * @param  string  $operator
      * @return $this
      */
+//    public function where($column, $operator, $value)
+//    {
+//        $this->wheres[] = compact('column', 'operator', 'value');
+//        return $this;
+//    }
     public function where($column, $value, $operator = '=')
     {
         $this->wheres[] = compact('column', 'value', 'operator');
 
         return $this;
     }
+
+
 
     /**
      * Add a simple where in clause to the query.

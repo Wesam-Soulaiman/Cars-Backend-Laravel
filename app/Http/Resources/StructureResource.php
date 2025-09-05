@@ -18,7 +18,7 @@ class StructureResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'name_ar' => $this->name_ar,
-            'main_photo' => $this->main_photo ? url($this->main_photo) : null,
+            'main_photo' => $this->main_photo ? url($this->main_photo) : '',
         ];
     }
 }

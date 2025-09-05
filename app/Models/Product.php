@@ -17,15 +17,36 @@ class Product extends Model
         'id'
     ];
 
+//    public function setMainPhotoAttribute($photo)
+//    {
+//        if (filter_var($photo, FILTER_VALIDATE_URL)) {
+//            // If it's a URL, just assign it
+//            $this->attributes['main_photo'] = $photo;
+//        } elseif ($photo) {
+//            $newImageName = uniqid().'_'.'main_photo_product'.'.'.$photo->extension();
+//            $photo->move(public_path('asset/product'), $newImageName);
+//            $this->attributes['main_photo'] = '/asset/product/'.$newImageName;
+//        }
+//    }
+
     public function setMainPhotoAttribute($photo)
     {
+//        if (is_null($photo)) {
+//            $this->attributes['main_photo'] = null;
+//            return;
+//        }
+
         if (filter_var($photo, FILTER_VALIDATE_URL)) {
-            // If it's a URL, just assign it
+            // If it's a valid URL, assign it directly
             $this->attributes['main_photo'] = $photo;
-        } elseif ($photo) {
-            $newImageName = uniqid().'_'.'main_photo_product'.'.'.$photo->extension();
+        } elseif ($photo instanceof UploadedFile) {
+            // If it's an uploaded file, store it
+            $newImageName = uniqid() . '_' . 'main_photo_product' . '.' . $photo->extension();
             $photo->move(public_path('asset/product'), $newImageName);
-            $this->attributes['main_photo'] = '/asset/product/'.$newImageName;
+            $this->attributes['main_photo'] = '/asset/product/' . $newImageName;
+        } else {
+            // If it's a string (e.g., local path), assign it directly
+            $this->attributes['main_photo'] = $photo;
         }
     }
 

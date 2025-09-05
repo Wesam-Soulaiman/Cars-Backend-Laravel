@@ -26,7 +26,7 @@ class ProductSeeder extends Seeder
                 'light_id' => 2, // LED
                 'deal_id' => 1, // sell
                 'structure_id' => 1, // Sedan
-                'main_photo' => 'https://example.com/photos/car1.jpg',
+                'main_photo' => '/asset/product/BMW.jpg',
                 'price' => 25000.00,
                 'mileage' => 50000,
                 'year_of_construction' => 2020,
@@ -49,7 +49,7 @@ class ProductSeeder extends Seeder
                 'light_id' => 1, // Halogen
                 'deal_id' => 2, // daily rent
                 'structure_id' => 1, // Sedan
-                'main_photo' => 'https://example.com/photos/car2.jpg',
+                'main_photo' => '/asset/product/BMW.jpg',
                 'price' => 100.00, // Daily rental price
                 'mileage' => 30000,
                 'year_of_construction' => 2022,
@@ -72,7 +72,7 @@ class ProductSeeder extends Seeder
                 'light_id' => 3, // Xenon
                 'deal_id' => 1, // sell
                 'structure_id' => 2, // Coupe
-                'main_photo' => 'https://example.com/photos/car3.jpg',
+                'main_photo' => '/asset/product/BMW.jpg',
                 'price' => 45000.00,
                 'mileage' => 20000,
                 'year_of_construction' => 2021,
@@ -95,7 +95,7 @@ class ProductSeeder extends Seeder
                 'light_id' => 2, // LED
                 'deal_id' => 3, // monthly rent
                 'structure_id' => 1, // Sedan
-                'main_photo' => 'https://example.com/photos/car4.jpg',
+                'main_photo' => '/asset/product/BMW.jpg',
                 'price' => 2000.00, // Monthly rental price
                 'mileage' => 40000,
                 'year_of_construction' => 2019,
