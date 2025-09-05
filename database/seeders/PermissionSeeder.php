@@ -142,7 +142,7 @@ class PermissionSeeder extends Seeder
             'legal_document.update',
             'legal_document.delete',
 
-
+            'deal.view',
             //governorates
             'governorate.view',
 
