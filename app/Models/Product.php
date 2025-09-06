@@ -107,6 +107,11 @@ class Product extends Model
         return $this->belongsTo(Light::class);
     }
 
+    public function offer()
+    {
+        return $this->hasMany(Offer::class );
+    }
+
     public function activeOffer()
     {
         return $this->hasOne(Offer::class)

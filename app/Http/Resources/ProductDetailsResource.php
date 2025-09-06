@@ -94,6 +94,8 @@ class ProductDetailsResource extends JsonResource
             'used' => $this->used,
             'sunroof' => $this->sunroof,
             'features' => FeatureResource::collection($this->features),
+            'offer'=>  OfferResource::make($this->activeOffer) ,
+
 //            'features' =>  $this->features,
 //            'photos' => $this->whenLoaded('photos', fn () => $this->photos),
 //            'photos' => $this->photos ? $this->photos->map(fn ($photo) => ['id' => $photo->id, 'photo' => url($photo->photo)])->all() : [],

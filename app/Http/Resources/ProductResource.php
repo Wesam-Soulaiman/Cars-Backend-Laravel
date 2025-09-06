@@ -60,6 +60,7 @@ class ProductResource extends JsonResource
             'used' => $this->used,
             'sunroof' => $this->sunroof,
             'features' => FeatureResource::collection($this->features),
+            'offer'=>  OfferResource::make($this->activeOffer) ,
 //            'features' => $this->features,
 //            'photos' =>  $this->photos,
             'photos'=>$this->Photos->map(fn ($photo) => ['id' => $photo->id, 'photo' => url($photo->photo)])->all(),
