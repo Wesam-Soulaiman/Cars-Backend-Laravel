@@ -25,12 +25,15 @@ class ColorRequest extends FormRequest
             return [
                 'name' => 'nullable|string|max:255|unique:colors,name,'.$colorId,
                 'name_ar' => 'nullable|string|max:255|unique:colors,name_ar,'.$colorId,
+                'hex' => 'nullable|string|max:255',
             ];
         }
 
         return [
             'name' => 'required|string|max:255|unique:colors,name',
             'name_ar' => 'required|string|max:255|unique:colors,name_ar',
+            'hex' => 'required|string|max:255',
+
         ];
     }
 

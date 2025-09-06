@@ -37,6 +37,7 @@ class ProductForOfferResource extends JsonResource
             'creation_country' => $this->creation_country,
             'used' => $this->used,
             'sunroof' => $this->sunroof,
+            'hex' => $this->hex,
             'features' => FeatureResource::collection($this->features),
             'photos'=>$this->Photos->map(fn ($photo) => ['id' => $photo->id, 'photo' => url($photo->photo)])->all(),
             'created_at' => $this->created_at,

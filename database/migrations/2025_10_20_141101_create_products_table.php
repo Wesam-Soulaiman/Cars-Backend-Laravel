@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('creation_country');
             $table->boolean('used');
             $table->boolean('sunroof')->default(ProductStatus::SUNROOF_NO);
+            $table->string('hex')->nullable();
             $table->timestamps();
         });
     }

@@ -60,6 +60,8 @@ class ProductRequest extends FormRequest
                 'features.*' => 'integer|exists:features,id',
                 'photos' => 'nullable|array',
                 'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:3072',
+                'hex' => 'nullable|string|max:255',
+
             ];
             if (! $AuthStore) {
                 $rules['store_id'] = 'nullable|exists:stores,id';
@@ -93,6 +95,8 @@ class ProductRequest extends FormRequest
         'features.*' => 'integer|exists:features,id',
         'photos' => 'nullable|array',
         'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:3072',
+        'hex' => 'required|string|max:255',
+
     ];
         if (! $AuthStore) {
             $rules['store_id'] = 'required|exists:stores,id';

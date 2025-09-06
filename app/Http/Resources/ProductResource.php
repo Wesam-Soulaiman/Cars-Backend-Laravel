@@ -59,6 +59,7 @@ class ProductResource extends JsonResource
             'creation_country' => $this->creation_country,
             'used' => $this->used,
             'sunroof' => $this->sunroof,
+            'hex' => $this->hex,
             'features' => FeatureResource::collection($this->features),
             'offer'=>  OfferResource::make($this->activeOffer) ,
 //            'features' => $this->features,

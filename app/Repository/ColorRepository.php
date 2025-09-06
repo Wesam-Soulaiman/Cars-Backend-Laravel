@@ -39,7 +39,7 @@ class ColorRepository extends BaseRepositoryImplementation implements ColorInter
 
     public function showColor(Color $color)
     {
-        $showColor = $this->getById($color->id, ['id', 'name', 'name_ar']);
+        $showColor = $this->getById($color->id, ['id', 'name', 'name_ar' , 'hex']);
         return ApiResponseHelper::sendResponse(new Result($showColor));
     }
 
@@ -49,7 +49,7 @@ class ColorRepository extends BaseRepositoryImplementation implements ColorInter
             $this->where('name', '%'.$filters->getName().'%', 'like');
             $this->orWhere('name_ar', '%'.$filters->getName().'%', 'like');
         }
-        $colors = $this->paginate($filters->per_page, ['id', 'name', 'name_ar'], 'page', $filters->page);
+        $colors = $this->paginate($filters->per_page, ['id', 'name', 'name_ar' , 'hex'], 'page', $filters->page);
         $pagination = [
             'total' => $colors->total(),
             'current_page' => $colors->currentPage(),
