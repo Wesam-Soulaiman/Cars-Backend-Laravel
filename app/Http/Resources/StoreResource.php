@@ -26,7 +26,11 @@ class StoreResource extends JsonResource
             'photo' => url($this->photo),
             'count_products' => $this->Countproducts(),
             'store_type'=>$this->storeType,
-            'governorate'=>$this->governorate,
+            'governorate'=>GovernorateResource::make($this->governorate),
+//            'products'=>$this->products,
+//            'car_parts'=>$this->car_parts,
+//            'products' => ProductResource::collection($this->products),
+//            'car_parts' => CarPartResource::collection($this->car_parts),
         ];
     }
 }

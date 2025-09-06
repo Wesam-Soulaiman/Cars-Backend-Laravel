@@ -8,6 +8,8 @@ use App\ApiHelper\ApiResponseHelper;
 use App\ApiHelper\Result;
 use App\Filter\ColStoreFilter;
 use App\Filter\StoreFilter;
+use App\Http\Resources\CarPartResource;
+use App\Http\Resources\ProductResource;
 use App\Http\Resources\StoreResource;
 use App\Interfaces\StoreInterface;
 use App\Models\Store;
@@ -94,6 +96,25 @@ class StoreRepository extends BaseRepositoryImplementation implements StoreInter
         $newStore = StoreResource::make($newStore);
 
         return ApiResponseHelper::sendResponse(new Result($newStore, 'get store successfully'));
+
+    }
+
+
+    public function getStoreProduct(Store $store)
+    {
+        $newStore = $this->getById($store->id);
+        $products = ProductResource::collection($newStore->products);
+
+        return ApiResponseHelper::sendResponse(new Result($products, 'get store successfully'));
+
+    }
+
+    public function getStoreParts(Store $store)
+    {
+        $newStore = $this->getById($store->id);
+        $products = CarPartResource::collection($newStore->car_parts);
+
+        return ApiResponseHelper::sendResponse(new Result($products, 'get store successfully'));
 
     }
 
