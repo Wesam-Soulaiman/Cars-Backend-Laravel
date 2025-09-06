@@ -15,6 +15,7 @@ use App\Actions\Website\SearchProduct\GetFiltersAction;
 use App\Actions\Website\SearchProduct\ProductSearchAction;
 use App\Actions\Website\SearchProduct\ProductShowAction;
 use App\Actions\Website\SearchStore\StoreCarPartAction;
+use App\Actions\Website\SearchStore\StoreSearchAction;
 use App\Actions\Website\SearchStore\StoreShowAction;
 use Illuminate\Support\Facades\Route;
 
@@ -50,7 +51,7 @@ Route::group([], function () {
 //  stores
 Route::group([], function () {
     Route::get('/getFilterStore', GetFilterStoreAction::class);
-    Route::get('/searchStores', StoreCarPartAction::class);
+    Route::get('/searchStores', StoreSearchAction::class);
     Route::get('store/{store:id}', StoreShowAction::class);
     Route::get('product/store/{store:id}', \App\Actions\Website\SearchStore\StoreProductAction::class);
     Route::get('car-part/store/{store:id}', StoreCarPartAction::class);
