@@ -46,7 +46,7 @@ class ProductResource extends JsonResource
             'gear' =>  $this->gear,
             'light' =>  $this->light,
             'deal' =>  $this->deal,
-            'structure_id' => $this->structure_id,
+            'structure' => StructureResource::make($this->structure),
             'main_photo' => $this->main_photo ? url($this->main_photo) : null,
             'price' => $this->price,
             'mileage' => $this->mileage,

@@ -51,7 +51,7 @@ class StructureRepository extends BaseRepositoryImplementation implements Struct
             $this->orWhere('name_ar', '%'.$filters->getName().'%', 'like');
 
         }
-        $structures = $this->paginate($filters->per_page, ['id', 'name', 'name_ar' , $this->main_photo ? url($this->main_photo) : null], 'page', $filters->page);
+        $structures = $this->paginate($filters->per_page, ['id', 'name', 'name_ar' ,'main_photo'], 'page', $filters->page);
         $pagination = [
             'total' => $structures->total(),
             'current_page' => $structures->currentPage(),
@@ -59,7 +59,7 @@ class StructureRepository extends BaseRepositoryImplementation implements Struct
             'per_page' => $structures->perPage(),
         ];
 
-        return ApiResponseHelper::sendResponseWithPagination(new Result($structures->items(), 'get structures successfully', $pagination));
+        return ApiResponseHelper::sendResponseWithPagination(new Result(StructureResource::collection($structures->items()), 'get structures successfully', $pagination));
     }
 
 

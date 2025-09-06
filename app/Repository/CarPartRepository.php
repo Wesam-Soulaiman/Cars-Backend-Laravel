@@ -47,7 +47,7 @@ class CarPartRepository extends BaseRepositoryImplementation implements CarPartI
                 $activeOrder->decrement('remaining_count_product');
             }
 
-            return ApiResponseHelper::sendResponse(new Result($carPart), ApiResponseCodes::CREATED);
+            return ApiResponseHelper::sendResponse(new Result(CarPartResource::make($carPart)), ApiResponseCodes::CREATED);
         });
 
     }
