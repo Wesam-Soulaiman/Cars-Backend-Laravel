@@ -13,102 +13,204 @@ class ProductSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+//    public function run(): void
+//    {
+//        $products = [
+//            [
+//                'brand_id' => 1, // Assume Honda
+//                'store_id' => 1, // Auto Store
+//                'model_id' => 1, // Civic
+//                'color_id' => 1, // Black
+//                'fuel_type_id' => 1, // Petrol
+//                'gear_id' => 2, // Automatic
+//                'light_id' => 2, // LED
+//                'deal_id' => 1, // sell
+//                'structure_id' => 1, // Sedan
+//                'main_photo' => '/asset/product/BMW.jpg',
+//                'price' => 25000.00,
+//                'mileage' => 50000,
+//                'year_of_construction' => 2020,
+//                'register_year' => 2021,
+//                'number_of_seats' => 5,
+//                'drive_type' => 1, // FWD
+//                'cylinders' => 4,
+//                'cylinder_capacity' => 2.0,
+//                'used' => 0, // Standard
+//                'sunroof' => ProductStatus::SUNROOF_YES,
+//                'creation_country'=>'korea'
+//            ],
+//            [
+//                'brand_id' => 2, // Assume Toyota
+//                'store_id' => 2, // Elite Auto
+//                'model_id' => 2, // Corolla
+//                'color_id' => 2, // White
+//                'fuel_type_id' => 3, // Hybrid
+//                'gear_id' => 2, // Automatic
+//                'light_id' => 1, // Halogen
+//                'deal_id' => 2, // daily rent
+//                'structure_id' => 1, // Sedan
+//                'main_photo' => '/asset/product/BMW.jpg',
+//                'price' => 100.00, // Daily rental price
+//                'mileage' => 30000,
+//                'year_of_construction' => 2022,
+//                'register_year' => 2022,
+//                'number_of_seats' => 5,
+//                'drive_type' => 1, // FWD
+//                'cylinders' => 4,
+//                'cylinder_capacity' => 1.8,
+//                'used' => 0, // Rental
+//                'sunroof' => ProductStatus::SUNROOF_NO,
+//                'creation_country'=>'russia'
+//            ],
+//            [
+//                'brand_id' => 3, // Assume Ford
+//                'store_id' => 3, // Parts Depot
+//                'model_id' => 3, // Mustang
+//                'color_id' => 4, // Red
+//                'fuel_type_id' => 1, // Petrol
+//                'gear_id' => 1, // Manual
+//                'light_id' => 3, // Xenon
+//                'deal_id' => 1, // sell
+//                'structure_id' => 2, // Coupe
+//                'main_photo' => '/asset/product/BMW.jpg',
+//                'price' => 45000.00,
+//                'mileage' => 20000,
+//                'year_of_construction' => 2021,
+//                'register_year' => 2021,
+//                'number_of_seats' => 4,
+//                'drive_type' => 2, // RWD
+//                'cylinders' => 8,
+//                'cylinder_capacity' => 5.0,
+//                'used' => 1, // Standard
+//                'sunroof' => ProductStatus::SUNROOF_YES,
+//                'creation_country'=>'korea'
+//            ],
+//            [
+//                'brand_id' => 1, // Honda
+//                'store_id' => 1, // Auto Store
+//                'model_id' => 1, // Civic
+//                'color_id' => 5, // Blue
+//                'fuel_type_id' => 2, // Diesel
+//                'gear_id' => 1, // Manual
+//                'light_id' => 2, // LED
+//                'deal_id' => 3, // monthly rent
+//                'structure_id' => 1, // Sedan
+//                'main_photo' => '/asset/product/BMW.jpg',
+//                'price' => 2000.00, // Monthly rental price
+//                'mileage' => 40000,
+//                'year_of_construction' => 2019,
+//                'register_year' => 2020,
+//                'number_of_seats' => 5,
+//                'drive_type' => 1, // FWD
+//                'cylinders' => 4,
+//                'cylinder_capacity' => 1.6,
+//                'used' => 1, // Rental
+//                'sunroof' => ProductStatus::SUNROOF_NO,
+//                'creation_country'=>'korea'
+//            ],
+//        ];
+
     public function run(): void
     {
         $products = [
             [
-                'brand_id' => 1, // Assume Honda
-                'store_id' => 1, // Auto Store
-                'model_id' => 1, // Civic
+                'brand_id' => 1,
+                'store_id' => 1,
+                'model_id' => 1,
                 'color_id' => 1, // Black
-                'fuel_type_id' => 1, // Petrol
-                'gear_id' => 2, // Automatic
-                'light_id' => 2, // LED
-                'deal_id' => 1, // sell
-                'structure_id' => 1, // Sedan
+                'hex' => '#000000',
+                'fuel_type_id' => 1,
+                'gear_id' => 2,
+                'light_id' => 2,
+                'deal_id' => 1,
+                'structure_id' => 1,
                 'main_photo' => '/asset/product/BMW.jpg',
                 'price' => 25000.00,
                 'mileage' => 50000,
                 'year_of_construction' => 2020,
                 'register_year' => 2021,
                 'number_of_seats' => 5,
-                'drive_type' => 1, // FWD
+                'drive_type' => 1,
                 'cylinders' => 4,
                 'cylinder_capacity' => 2.0,
-                'used' => 0, // Standard
+                'used' => 0,
                 'sunroof' => ProductStatus::SUNROOF_YES,
                 'creation_country'=>'korea'
             ],
             [
-                'brand_id' => 2, // Assume Toyota
-                'store_id' => 2, // Elite Auto
-                'model_id' => 2, // Corolla
+                'brand_id' => 2,
+                'store_id' => 2,
+                'model_id' => 2,
                 'color_id' => 2, // White
-                'fuel_type_id' => 3, // Hybrid
-                'gear_id' => 2, // Automatic
-                'light_id' => 1, // Halogen
-                'deal_id' => 2, // daily rent
-                'structure_id' => 1, // Sedan
+                'hex' => '#FFFFFF',
+                'fuel_type_id' => 3,
+                'gear_id' => 2,
+                'light_id' => 1,
+                'deal_id' => 2,
+                'structure_id' => 1,
                 'main_photo' => '/asset/product/BMW.jpg',
-                'price' => 100.00, // Daily rental price
+                'price' => 100.00,
                 'mileage' => 30000,
                 'year_of_construction' => 2022,
                 'register_year' => 2022,
                 'number_of_seats' => 5,
-                'drive_type' => 1, // FWD
+                'drive_type' => 1,
                 'cylinders' => 4,
                 'cylinder_capacity' => 1.8,
-                'used' => 0, // Rental
+                'used' => 0,
                 'sunroof' => ProductStatus::SUNROOF_NO,
                 'creation_country'=>'russia'
             ],
             [
-                'brand_id' => 3, // Assume Ford
-                'store_id' => 3, // Parts Depot
-                'model_id' => 3, // Mustang
+                'brand_id' => 3,
+                'store_id' => 3,
+                'model_id' => 3,
                 'color_id' => 4, // Red
-                'fuel_type_id' => 1, // Petrol
-                'gear_id' => 1, // Manual
-                'light_id' => 3, // Xenon
-                'deal_id' => 1, // sell
-                'structure_id' => 2, // Coupe
+                'hex' => '#FF0000',
+                'fuel_type_id' => 1,
+                'gear_id' => 1,
+                'light_id' => 3,
+                'deal_id' => 1,
+                'structure_id' => 2,
                 'main_photo' => '/asset/product/BMW.jpg',
                 'price' => 45000.00,
                 'mileage' => 20000,
                 'year_of_construction' => 2021,
                 'register_year' => 2021,
                 'number_of_seats' => 4,
-                'drive_type' => 2, // RWD
+                'drive_type' => 2,
                 'cylinders' => 8,
                 'cylinder_capacity' => 5.0,
-                'used' => 1, // Standard
+                'used' => 1,
                 'sunroof' => ProductStatus::SUNROOF_YES,
                 'creation_country'=>'korea'
             ],
             [
-                'brand_id' => 1, // Honda
-                'store_id' => 1, // Auto Store
-                'model_id' => 1, // Civic
+                'brand_id' => 1,
+                'store_id' => 1,
+                'model_id' => 1,
                 'color_id' => 5, // Blue
-                'fuel_type_id' => 2, // Diesel
-                'gear_id' => 1, // Manual
-                'light_id' => 2, // LED
-                'deal_id' => 3, // monthly rent
-                'structure_id' => 1, // Sedan
+                'hex' => '#0000FF',
+                'fuel_type_id' => 2,
+                'gear_id' => 1,
+                'light_id' => 2,
+                'deal_id' => 3,
+                'structure_id' => 1,
                 'main_photo' => '/asset/product/BMW.jpg',
-                'price' => 2000.00, // Monthly rental price
+                'price' => 2000.00,
                 'mileage' => 40000,
                 'year_of_construction' => 2019,
                 'register_year' => 2020,
                 'number_of_seats' => 5,
-                'drive_type' => 1, // FWD
+                'drive_type' => 1,
                 'cylinders' => 4,
                 'cylinder_capacity' => 1.6,
-                'used' => 1, // Rental
+                'used' => 1,
                 'sunroof' => ProductStatus::SUNROOF_NO,
                 'creation_country'=>'korea'
             ],
         ];
+
 
         foreach ($products as $product) {
             Product::create($product);
