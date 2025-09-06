@@ -53,8 +53,8 @@ class Offer extends Model
                         $subQuery->select(DB::raw(1))
                             ->from('services')
                             ->join('category_services', 'services.category_service_id', '=', 'category_services.id')
-                            ->whereColumn('services.id', 'orders.service_id')
-                            ->where('category_services.name', 'subscription');
+                            ->whereColumn('services.id', 'orders.service_id');
+//                            ->where('category_services.name', 'subscription');
                     });
             })
             ->select('offers.*')

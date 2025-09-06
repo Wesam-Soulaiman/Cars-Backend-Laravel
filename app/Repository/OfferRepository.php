@@ -8,9 +8,13 @@ use App\ApiHelper\ApiResponseHelper;
 use App\ApiHelper\Result;
 use App\Filter\PaginationFilter;
 use App\Http\Resources\OfferResource;
+use App\Http\Resources\OfferWithProductResource;
+use App\Http\Resources\ProductResource;
 use App\Interfaces\OfferInterface;
 use App\Models\Offer;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OfferRepository extends BaseRepositoryImplementation implements OfferInterface
 {
@@ -52,18 +56,44 @@ class OfferRepository extends BaseRepositoryImplementation implements OfferInter
 
     public function activeOffer($page = 1, $per_page = 10)
     {
-        $this->scopes = ['activeOffer' => []];
-        $this->with('product');
-        $offers = $this->paginate($per_page, ['*'], 'page', $page);
-        $pagination = [
-            'total' => $offers->total(),
-            'current_page' => $offers->currentPage(),
-            'last_page' => $offers->lastPage(),
-            'per_page' => $offers->perPage(),
-        ];
-        $offers = OfferResource::collection($offers);
+//        $this->scopes = ['activeOffer' => []];
+//        $this->with('product');
+//        $offers = $this->paginate($per_page, ['*'], 'page', $page);
+//        $pagination = [
+//            'total' => $offers->total(),
+//            'current_page' => $offers->currentPage(),
+//            'last_page' => $offers->lastPage(),
+//            'per_page' => $offers->perPage(),
+//        ];
+//        $offers = OfferWithProductResource::collection($offers);
+//
+//        return ApiResponseHelper::sendResponseWithPagination(new Result($offers, 'get offer successfully', $pagination));
+        $query = Product::query()
+            ->join('offers', 'products.id', '=', 'offers.product_id')
+            ->whereDate('offers.start_time', '<=', now())
+            ->whereDate('offers.end_time', '>=', now())
+            ->leftJoin('orders', function ($join) {
+                $join->on('orders.store_id', '=', 'products.store_id')
+                    ->whereDate('orders.start_time', '<=', now())
+                    ->whereDate('orders.end_time', '>=', now())
+                    ->where('orders.active', true)
+                    ->whereExists(function ($subQuery) {
+                        $subQuery->select(DB::raw(1))
+                            ->from('services')
+                            ->join('category_services', 'services.category_service_id', '=', 'category_services.id')
+                            ->whereColumn('services.id', 'orders.service_id');
+//                            ->where('category_services.name', 'subscription');
+                    });
+            })
+            ->select('products.*')
+            ->whereNotNull('orders.store_id')
+            ->distinct();
 
-        return ApiResponseHelper::sendResponseWithPagination(new Result($offers, 'get offer successfully', $pagination));
+        $results = $query->get();
+
+        return ApiResponseHelper::sendResponse(
+            new Result(ProductResource::collection($results), 'Products with active offers retrieved successfully')
+        );
     }
 
     public function indexOffer(PaginationFilter $filters)
